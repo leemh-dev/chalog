@@ -8,7 +8,7 @@
     <uses-permission android:name="pleos.car.permission.NAVI_ROUTE" />
     <uses-permission android:name="pleos.car.permission.NAVI_ROUTE_SEARCH" />
     <uses-permission android:name="pleos.car.permission.FUSED_LOCATION" />
-    <application android:name=".CharokApp" android:label="차록" android:allowBackup="false" android:supportsRtl="true" android:theme="@style/AppTheme">
+    <application android:name=".CharokApp" android:label="차록" android:icon="@drawable/charok_icon" android:allowBackup="false" android:supportsRtl="true" android:theme="@style/AppTheme">
         <uses-library android:name="android.car" android:required="false" />
         <activity android:name=".MainActivity" android:exported="true" android:launchMode="singleTop" android:resizeableActivity="true">
             <intent-filter><action android:name="android.intent.action.MAIN" /><category android:name="android.intent.category.LAUNCHER" /></intent-filter>

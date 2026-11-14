@@ -18,6 +18,8 @@
 
 첫 통합 JVM19건·lint 오류0·debug/test/unsigned release 빌드 통과. 후속 코드의 검사/CI 결과는 아래에 추가하며 이전 통과를 후속 기기 성공으로 표시하지 않습니다.
 
+후속 Cloud: 음성 parser/후속 질문3건을 추가해 JVM22건 통과, lint 오류0, debug/test/unsigned release 빌드 통과. 최초 CI43649069111은 폐기된 SDK tools 패키지 설치 단계에서 실패했으며 앱·기기 검사는 미실행. workflow 패키지 지정과 실제 force-stop/새 PID 검사 코드를 보완해 다음 CI에서 확인합니다.
+
 ## 해석 제한
 
 - TEST 준비 길이는 앱이 실제로 생성·수신한 TEST 구간이며 차량 과거를 복원한 것이 아닙니다.

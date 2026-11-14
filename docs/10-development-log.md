@@ -32,3 +32,11 @@
 CI 일반 Android TEST 흐름과 실제 앱 캡처, 새로운 PID 복원, Mac Pleos 실제 SDK/마이크/Gleo/분할/내비 핀/보고서 전달. APK는 생성 파일마다 metadata를 남긴다. debug/test는 개발 서명, release는 미서명이며 실제 제출용 실행 가능한 signed release가 아니다. 시연 영상은 이번에 제작하지 않는다.
 
 AAOS 보완 후 동일 통합 명령 재실행은 48초에 성공했다. JVM19건, lint 오류0, debug/test/unsigned release APK 생성. workflow는 actionlint1.7.7 정적 검사 통과. CI의 실제 기기 결과는 아직 대기이며 이번 기능 커밋과 함께 실행한다.
+
+### 첫 CI 환경 실패와 후속 검증 보완
+
+기능954dc0c / PR #2 / CI43649069111은 setup-android 기본값이 폐기된 `sdkmanager tools`를 요청해 package not found로 실패했다. build·에뮬레이터·기기 검사는 시작되지 않았다. 지원 패키지(platform-tools/platform35/build-tools35)를 명시해 수정했다. 실패한 실행을 앱 실패나 Pleos 실패로 세지 않는다.
+
+일반 Android 전용 force-stop/새 PID 검사2단계를 추가했다. seed marker만 교체하고 DB를 보존하며, 실행 중 기록 상태에서 종료 후 같은ID/설명/관측 유지·자동 수집 없음 확인을 목표로 한다. 추가 음성 parser/후속 질문 검사를 작성하고 CAR_SPEED 정상 런타임 권한 요청과 앱 아이콘을 보완했다. 후속 실제 결과는 다음 기록에 남긴다.
+
+후속 Cloud 통합 검사: JVM22건·lint 오류0·debug/test/unsigned release 성공. 코드 검토에서 이전 STT 세션의 늦은 callback과 초기화 중 TTS가 다음 STT 위에 재생될 가능성을 발견해 세대별 callback 차단과 TTS 참조 해제로 보완했다. 이는 실제 기기에서 재현된 오류가 아닌 코드 검토 수정이며 음성 실행 성공으로 세지 않는다. 이 변경 후 통합 명령은24초에 통과했다.

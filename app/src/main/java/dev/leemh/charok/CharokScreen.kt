@@ -31,7 +31,7 @@ private val Palette = darkColorScheme(primary = Color(0xFFA9C9FF), onPrimary = I
     surface = Ink, surfaceVariant = CardInk, onSurface = Color(0xFFF5F8FA), onSurfaceVariant = Muted)
 private fun at(time: Long) = SimpleDateFormat("HH:mm:ss", Locale.KOREA).format(Date(time))
 
-@Composable fun CharokScreen(model: RecorderModel, share: (File) -> Unit) {
+@Composable fun CharokScreen(model: RecorderModel, connectPleos: () -> Unit, share: (File) -> Unit) {
     val state by model.ui.collectAsStateWithLifecycle()
     var page by remember { mutableStateOf("main") }
     var consent by remember { mutableStateOf(false) }
@@ -102,7 +102,7 @@ private fun at(time: Long) = SimpleDateFormat("HH:mm:ss", Locale.KOREA).format(D
                                     Info("기록 준비", "실제 받은 최근 최대 60초의 차량 상태\n소리 원음은 녹음하지 않습니다.")
                                     Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                                         OutlinedButton(onClick = { model.chooseMode(InputMode.TEST) }, modifier = Modifier.testTag("test-mode")) { Text("TEST 선택") }
-                                        OutlinedButton(onClick = { model.chooseMode(InputMode.PLEOS) }) { Text("Pleos 연결") }
+                                        OutlinedButton(onClick = connectPleos) { Text("Pleos 연결") }
                                     }
                                     Check("차량 상태 기록 준비에 동의합니다", consent, state.parked) { consent = it }
                                     if (state.mode == InputMode.PLEOS) Check("위치도 기록에 포함 (선택)", state.locationConsent, state.parked) { model.locationConsent(it) }

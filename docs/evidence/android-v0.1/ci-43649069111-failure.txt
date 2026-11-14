@@ -1,0 +1,3 @@
+android	Run android-actions/setup-android@v3	2026-11-14T22:37:54.5227985Z [command]/usr/local/lib/android/sdk/cmdline-tools/16.0/bin/sdkmanager tools
+android	Run android-actions/setup-android@v3	2026-11-14T22:37:55.6648413Z Warning: Failed to find package 'tools'
+android	Run android-actions/setup-android@v3	2026-11-14T22:37:55.7032132Z Error: The process '/usr/local/lib/android/sdk/cmdline-tools/16.0/bin/sdkmanager' failed with exit code 1

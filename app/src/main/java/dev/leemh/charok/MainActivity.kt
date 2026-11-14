@@ -5,14 +5,19 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.FileProvider
 import org.json.JSONObject
 
 class MainActivity : ComponentActivity() {
     private val model: RecorderModel by viewModels()
+    private val carPermission = registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+        // Denial remains unknown/locked; never substitute a simulated parked state.
+        model.chooseMode(dev.leemh.charok.core.InputMode.PLEOS)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent { CharokScreen(model) { file ->
+        setContent { CharokScreen(model, connectPleos = { carPermission.launch("android.car.permission.CAR_SPEED") }) { file ->
             val uri = FileProvider.getUriForFile(this, "$packageName.reports", file)
             val share = Intent(Intent.ACTION_SEND).apply {
                 type = "text/plain"; putExtra(Intent.EXTRA_STREAM, uri); addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)

@@ -2,6 +2,13 @@
   "level": "Cloud JVM/Robolectric/build only; not device execution",
   "unit_suites": [
     {
+      "name": "dev.leemh.charok.VoiceCommandTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
       "name": "dev.leemh.charok.RoomStoreTest",
       "tests": "1",
       "failures": "0",
@@ -21,7 +28,6 @@
     "DataExtractionRules",
     "GradleDependency",
     "KaptUsageInsteadOfKsp",
-    "MissingApplicationIcon",
     "OldTargetApi"
   ],
   "build_tasks": [
