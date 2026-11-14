@@ -1,0 +1,11 @@
+{
+  "packageName": "dev.leemh.charok",
+  "appDescription": "Records driver-reported intermittent symptoms with available vehicle observations for a service consultation.",
+  "invokeWord": "차록",
+  "version": "0.1.0",
+  "actionCalls": [
+    {"type":"function","function":{"component":"activity","name":"START_SYMPTOM_RECORD","description":"Starts a symptom record after recording preparation has been enabled by the driver.","parameters":{"type":"object","properties":{"note":{"type":"string","description":"The symptom description supplied by the driver."}},"required":[]}}},
+    {"type":"function","function":{"component":"activity","name":"ADD_SYMPTOM_NOTE","description":"Adds a driver symptom description or marks the current moment in the active record.","parameters":{"type":"object","properties":{"note":{"type":"string","description":"The symptom description supplied by the driver."},"markMoment":{"type":"boolean","description":"Whether the driver wants to mark the current symptom moment."}},"required":[]}}},
+    {"type":"function","function":{"component":"activity","name":"END_SYMPTOM_RECORD","description":"Stops observation collection and saves the active symptom record.","parameters":{"type":"object","properties":{},"required":[]}}}
+  ]
+}

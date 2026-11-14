@@ -4,7 +4,17 @@
 
 차록은 운전자가 느낀 이상 증상을 음성으로 표시하면, 실제 확보한 직전 1분부터 종료 명령까지의 차량 상태를 함께 보존하고 정비사와 검토할 수 있게 하는 서비스입니다.
 
-현재는 **기획·SDK 조사 및 UX 프로토타입 단계**입니다. 공식 공모전 양식의 작품 소개 초안과 조작 가능한 브라우저 시안을 만들었습니다. Android 앱·서버·정비사 뷰어는 아직 구현하지 않았으며, Pleos SDK 실제 실행과 정비소 스캐너 연동도 미검증입니다.
+현재 **Android 0.1.0/1 첫 구현**을 진행 중입니다. 기획·브라우저 시안은 아래에 보존했습니다. 실제 구현 상태는 [검증 현황](docs/11-verification.md), 진행 이력은 [개발 기록](docs/10-development-log.md)을 따릅니다. 실제 Pleos SDK 실행과 정비소 스캐너 연동은 미검증입니다.
+
+## Android 실행
+
+JDK17·Android SDK35에서 `./gradlew :app:testDebugUnitTest :app:lintDebug :app:assembleDebug :app:assembleDebugAndroidTest :app:assembleRelease`로 검사·빌드합니다. debug/test APK는 개발 서명이고 release는 미서명입니다. unsigned release는 실행 가능한 제출 APK가 아닙니다.
+
+- CI: GitHub Actions `Charok Android` → `charok-apks-and-evidence` artifact의 APK·해시·서명과 일반 Android 검사 결과를 함께 확인합니다.
+- [Mac Pleos 설치·실행·실제 화면 녹화 절차](docs/12-mac-pleos-handoff.md)
+- 기본은 Pleos 입력/운전 상태 미확인입니다. 일반 Android에서는 **TEST 선택 → 준비 동의 → 준비 켜기 → 기록 시작 → TEST 설명/순간 → 종료 → 상담 카드**로 확인합니다.
+- 실제 앱은 차록 패널만 그립니다. 아래의 차량/내비 도식은 브라우저 설계 자료이며 앱 자체 기능이 아닙니다.
+- 현 단계 자동 예약·원음 녹음·GDS 자동 열람은 없습니다. 기획서 제출용 DOCX는 당시 초안이며 앱 구현 결과를 자동 반영하지 않습니다.
 
 ## 최신 기획과 디자인
 
