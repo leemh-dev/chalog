@@ -38,6 +38,7 @@ private fun at(time: Long) = SimpleDateFormat("HH:mm:ss", Locale.KOREA).format(D
     var note by remember { mutableStateOf("") }
     var includeLocation by remember { mutableStateOf(false) }
     LaunchedEffect(state.mode) { consent = false }
+    LaunchedEffect(state.phase) { if (state.phase == Phase.SAVE_FAILED) page = "main" }
     MaterialTheme(colorScheme = Palette) {
         Surface(Modifier.fillMaxSize(), color = Ink) {
             BoxWithConstraints {
@@ -69,6 +70,8 @@ private fun at(time: Long) = SimpleDateFormat("HH:mm:ss", Locale.KOREA).format(D
                                     Info("함께 남긴 관측", "${s.observations.size}건 · ${s.observations.map { it.field }.distinct().joinToString()}")
                                     Info("수신하지 못한 관측", "${s.observations.count { !it.available }}건 · 관측 사이 구간과 미지원 필드는 미확인")
                                     Text("원음 미녹음 · 고장 원인 미판정\n${s.reason}", color = Muted)
+                                    OutlinedTextField(note, { note = it.take(980) }, label = { Text("사용자 보완 · 원문 유지") }, modifier = Modifier.fillMaxWidth())
+                                    OutlinedButton(onClick = { model.supplement(note); note = "" }, enabled = note.isNotBlank()) { Text("보완 내용 저장") }
                                     Action("관측 타임라인") { page = "timeline" }
                                     Action("내보내기 검토") { page = "export" }
                                     Action("센터 위치로 길 안내") { page = "center" }

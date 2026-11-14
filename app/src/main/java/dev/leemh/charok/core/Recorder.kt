@@ -109,6 +109,14 @@ class Recorder(private val clock: Clock, private val store: RecordStore, private
             reason = "저장 실패 후 관측 중지", endedAt = clock.wall()) else value)
     }
 
+    @Synchronized fun supplement(text: String) {
+        check(phase in listOf(Phase.SAVED, Phase.INTERRUPTED))
+        require(text.isNotBlank())
+        val current = session!!
+        check(current.notes.size < 200)
+        persist(current.copy(notes = current.notes + Note(id(), "사용자 보완: ${text.take(980)}", Origin.MANUAL, clock.elapsed(), clock.wall(), false)))
+    }
+
     @Synchronized fun close() {
         check(phase != Phase.SAVE_FAILED) { "저장되지 않은 기록이 있습니다. 먼저 재시도하세요." }
         stop("화면 닫기", interrupted = true)

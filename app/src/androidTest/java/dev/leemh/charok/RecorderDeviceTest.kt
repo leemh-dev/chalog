@@ -77,4 +77,18 @@ class RecorderDeviceTest {
         await("details"); assertEquals(id, app.store.latest()!!.id)
         assertFalse(has("stop"))
     }
+    @Test fun rapidCommandsKeepTheSameSession() {
+        prepare(); tap("start"); await("stop")
+        val original = app.store.latest()!!
+        val count = app.store.list().size
+        ui.activityRule.scenario.onActivity { activity ->
+            val model = androidx.lifecycle.ViewModelProvider(activity)[RecorderModel::class.java]
+            repeat(8) { model.start() }
+            repeat(8) { model.finish() }
+        }
+        await("details")
+        assertEquals(original.id, app.store.latest()!!.id)
+        assertEquals(count, app.store.list().size)
+        assertEquals(Phase.SAVED, app.store.latest()!!.phase)
+    }
 }

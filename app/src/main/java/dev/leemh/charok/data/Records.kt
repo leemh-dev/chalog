@@ -11,6 +11,7 @@ data class StoredSession(@PrimaryKey val id: String, val startedAt: Long, val pa
 @Dao interface SessionDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE) fun put(value: StoredSession)
     @Query("SELECT * FROM sessions WHERE id=:id") fun get(id: String): StoredSession?
+    @Query("SELECT * FROM sessions ORDER BY rowid DESC LIMIT 1") fun latest(): StoredSession?
     @Query("SELECT * FROM sessions ORDER BY rowid DESC LIMIT 100") fun all(): List<StoredSession>
 }
 @Database(entities = [StoredSession::class], version = 1, exportSchema = true)
@@ -29,7 +30,7 @@ class RoomRecordStore(private val db: RecordsDb) : RecordStore {
         }
     }
     override fun get(id: String) = db.sessions().get(id)?.let { SessionCodec.decode(it.payload) }
-    override fun latest() = db.sessions().all().firstOrNull()?.let { SessionCodec.decode(it.payload) }
+    override fun latest() = db.sessions().latest()?.let { SessionCodec.decode(it.payload) }
     override fun list() = db.sessions().all().map { SessionCodec.decode(it.payload) }
 }
 

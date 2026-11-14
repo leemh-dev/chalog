@@ -2,6 +2,17 @@ name: Charok Android
 on:
   push:
     branches: [feat/charok-recorder]
+    paths:
+      - 'app/**'
+      - 'gradle/**'
+      - '*.gradle.kts'
+      - 'gradle.properties'
+      - 'gradlew*'
+      - 'scripts/adb_readiness.py'
+      - 'scripts/process_recovery.py'
+      - 'scripts/ci_device.sh'
+      - 'scripts/apk_metadata.py'
+      - '.github/workflows/android.yml'
   workflow_dispatch:
 permissions:
   contents: read
@@ -56,4 +67,5 @@ jobs:
             app/build/outputs/apk/
             app/build/reports/
             app/build/test-results/
+            app/build/outputs/androidTest-results/
           retention-days: 14

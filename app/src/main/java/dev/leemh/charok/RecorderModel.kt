@@ -13,6 +13,8 @@ import java.util.concurrent.Executors
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 
 data class RecorderUi(val ready: Boolean = false, val mode: InputMode = InputMode.PLEOS,
     val phase: Phase = Phase.IDLE, val session: Session? = null, val bufferSeconds: Long = 0,
@@ -22,6 +24,7 @@ data class RecorderUi(val ready: Boolean = false, val mode: InputMode = InputMod
 
 class RecorderModel(app: Application) : AndroidViewModel(app) {
     private val worker = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
+    private val operation = Mutex()
     private val clock = object : Clock { override fun elapsed() = SystemClock.elapsedRealtime(); override fun wall() = System.currentTimeMillis() }
     private val backing = (app as CharokApp).store
     private var failNext = false
@@ -52,24 +55,30 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
         viewModelScope.launch(worker) {
             while (isActive) {
                 delay(1000)
-                if (!foreground || !loaded) continue
-                if (mutable.value.mode == InputMode.TEST) {
-                    gear = if (testParked) "PARK" else "DRIVE"; gearAt = clock.elapsed()
-                    speed = if (testParked) 0.0 else 5.0; speedAt = clock.elapsed()
-                    if (recorder.phase in listOf(Phase.ARMED, Phase.RECORDING)) {
-                        listOf("gear" to gear!!, "speed" to speed.toString(), "steering" to if (testParked) "0.0" else "12.0", "brake" to testParked.toString()).forEach { (field, value) ->
-                            recorder.observe(Observation(field, value, when(field) { "steering" -> "degree"; "speed" -> "m/s"; else -> "state" }, Origin.TEST, clock.elapsed(), clock.wall()))
+                operation.withLock {
+                    if (!foreground || !loaded) return@withLock
+                    if (mutable.value.mode == InputMode.TEST) {
+                        gear = if (testParked) "PARK" else "DRIVE"; gearAt = clock.elapsed()
+                        speed = if (testParked) 0.0 else 5.0; speedAt = clock.elapsed()
+                        if (recorder.phase in listOf(Phase.ARMED, Phase.RECORDING)) {
+                            listOf("gear" to gear!!, "speed" to speed.toString(), "steering" to if (testParked) "0.0" else "12.0", "brake" to testParked.toString()).forEach { (field, value) ->
+                                recorder.observe(Observation(field, value, when(field) { "steering" -> "degree"; "speed" -> "m/s"; else -> "state" }, Origin.TEST, clock.elapsed(), clock.wall()))
+                            }
                         }
-                    }
-                } else withContext(Dispatchers.Main) { signals?.poll(recorder.phase in listOf(Phase.ARMED, Phase.RECORDING)) }
-                recorder.tick(); publish()
-                if (recorder.phase !in listOf(Phase.ARMED, Phase.RECORDING)) withContext(Dispatchers.Main) { signals?.setLocation(false) }
+                    } else withContext(Dispatchers.Main) { signals?.poll(recorder.phase in listOf(Phase.ARMED, Phase.RECORDING)) }
+                    recorder.tick(); publish()
+                    if (recorder.phase !in listOf(Phase.ARMED, Phase.RECORDING)) withContext(Dispatchers.Main) { signals?.setLocation(false) }
+                }
             }
         }
     }
 
     private fun launch(block: suspend () -> Unit) = viewModelScope.launch(worker) {
-        try { block() } catch (_: Exception) { publish(message = "요청을 완료하지 못했습니다. 상태·권한·저장 공간을 확인하세요.") }
+        operation.withLock {
+            try { block() }
+            catch (cancel: CancellationException) { throw cancel }
+            catch (_: Exception) { publish(message = "요청을 완료하지 못했습니다. 상태·권한·저장 공간을 확인하세요.") }
+        }
     }
     private fun parked() = isParked(gear, gearAt, clock.elapsed()) && speed?.let { it.isFinite() && kotlin.math.abs(it) < 0.1 } == true && speedAt?.let { clock.elapsed() - it in 0..3000 } == true
     private fun publish(message: String? = null) {
@@ -188,6 +197,7 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
         } catch (_: Exception) { response("fail", "The record is not ready for this action.") }
     }
     fun loadHistory() = launch { check(parked()); mutable.value = mutable.value.copy(history = store.list()); publish() }
+    fun supplement(text: String) = launch { check(parked()); recorder.supplement(text); publish(message = "원문을 유지하고 사용자 보완을 저장했습니다") }
     fun openHistory(id: String) = launch { check(parked()); recorder.open(id); publish() }
     fun export(includeLocation: Boolean, done: (File) -> Unit) = launch {
         check(parked() && recorder.phase in listOf(Phase.SAVED, Phase.INTERRUPTED))

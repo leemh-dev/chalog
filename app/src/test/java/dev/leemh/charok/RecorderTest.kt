@@ -113,4 +113,17 @@ class RecorderTest {
         val report = ConsultationReport.text(s)
         assertTrue(report.contains("TEST")); assertTrue(report.contains("수신 불가")); assertTrue(report.contains("GLEO_INTENT"))
     }
+    @Test fun savedSupplementPreservesOriginalAndDoesNotResume() {
+        ready(); val id = recorder.start("앞쪽 소리", Origin.PLEOS_STT); recorder.stop()
+        recorder.supplement("앞쪽보다 오른쪽에 가까웠어요")
+        assertEquals(id, recorder.session!!.id); assertEquals(Phase.SAVED, recorder.phase)
+        assertEquals("앞쪽 소리", recorder.session!!.notes.first().text)
+        assertTrue(store.get(id)!!.notes.last().text.startsWith("사용자 보완:"))
+    }
+    @Test fun failedSupplementRetriesSameSavedRecord() {
+        ready(); val id = recorder.start(); recorder.stop(); store.fail = true; recorder.supplement("설명 보완")
+        assertEquals(Phase.SAVE_FAILED, recorder.phase); store.fail = false; recorder.retry()
+        assertEquals(id, recorder.session!!.id); assertEquals(Phase.SAVED, recorder.phase)
+        assertEquals(1, store.get(id)!!.notes.size)
+    }
 }

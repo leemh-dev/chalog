@@ -20,6 +20,8 @@
 
 후속 Cloud: 음성 parser/후속 질문3건을 추가해 JVM22건 통과, lint 오류0, debug/test/unsigned release 빌드 통과. 최초 CI43649069111은 폐기된 SDK tools 패키지 설치 단계에서 실패했으며 앱·기기 검사는 미실행. workflow 패키지 지정과 실제 force-stop/새 PID 검사 코드를 보완해 다음 CI에서 확인합니다.
 
+6c9f300 / CI43649588669: 일반 Android API34 기기4건 통과. Gradle 검사 후 앱 제거로 화면 수집/새 PID 검사는 실패했고 실제 캡처 파일을 확보하지 못했습니다. APK 유지 옵션을 적용해 후속 확인합니다. 독립 보완 코드의 Cloud JVM24·lint·debug/test/unsigned release 빌드 통과, 새 반복 명령 기기 검사는 컴파일 수준입니다.
+
 ## 해석 제한
 
 - TEST 준비 길이는 앱이 실제로 생성·수신한 TEST 구간이며 차량 과거를 복원한 것이 아닙니다.

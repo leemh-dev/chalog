@@ -40,3 +40,11 @@ AAOS 보완 후 동일 통합 명령 재실행은 48초에 성공했다. JVM19�
 일반 Android 전용 force-stop/새 PID 검사2단계를 추가했다. seed marker만 교체하고 DB를 보존하며, 실행 중 기록 상태에서 종료 후 같은ID/설명/관측 유지·자동 수집 없음 확인을 목표로 한다. 추가 음성 parser/후속 질문 검사를 작성하고 CAR_SPEED 정상 런타임 권한 요청과 앱 아이콘을 보완했다. 후속 실제 결과는 다음 기록에 남긴다.
 
 후속 Cloud 통합 검사: JVM22건·lint 오류0·debug/test/unsigned release 성공. 코드 검토에서 이전 STT 세션의 늦은 callback과 초기화 중 TTS가 다음 STT 위에 재생될 가능성을 발견해 세대별 callback 차단과 TTS 참조 해제로 보완했다. 이는 실제 기기에서 재현된 오류가 아닌 코드 검토 수정이며 음성 실행 성공으로 세지 않는다. 이 변경 후 통합 명령은24초에 통과했다.
+
+### 일반 Android 4건 통과 / 후속 증거 수집 실패
+
+6c9f300의 CI43649588669는 SDK 설치·JVM22·lint·빌드를 통과했고 새 API34 AVD의 transport/boot/package/activity 준비 후 connectedDebugAndroidTest 4건을 통과했다. 이후 run-as unknown package로 프로세스 복원 seed 시작이 실패했다. Gradle 기본 정리로 APK가 제거돼 앱 전용 화면 파일도 남지 않았다. 화면을 확보하지 못했으며 앱 화면 캡처를 보여줬다고 기록하지 않는다.
+
+AGP8.8.0 BooleanOption javap에서 `android.injected.androidTest.leaveApksInstalledAfterRun`을 확인해 true로 설정하고 `uninstallIncompatibleApks=false`도 명시했다. 기존 데이터를 지우는 재설치로 해결하지 않는다. 후속 새 전용 AVD에서 실제 화면/새 PID 검사를 이어간다.
+
+독립 보완: 코루틴이 Main 전환에서 중단될 때 제어 작업이 엇갈릴 가능성을 코드 검토로 확인해 Mutex로 작업과 tick을 직렬화했다. 원문 보존 사용자 보완을 추가하고 저장 실패 시 재시도 화면으로 전환한다. latest 조회는 모든 기록을 읽지 않고 1건만 조회한다. 추가2건 포함 JVM24·lint·세 APK 빌드 통과(39초), 반복 명령 기기 검사 추가 컴파일 통과(12초). 문서만 바뀌면 기존 앱 검사를 불필요하게 반복하지 않도록 CI paths를 지정했다.
