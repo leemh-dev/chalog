@@ -11,6 +11,7 @@
 - [기획서](docs/01-product-plan.md): 서비스 정의, 고객, 대표 시나리오, 화면, 데이터·저장·공유 원칙
 - [SDK와 정비 장비 연동 분석](docs/02-sdk-feasibility.md): 확인한 API·권한, 미지원/미확인 영역, 공식 근거
 - [단계별 개발·검증 계획](docs/03-development-plan.md): Cloud 구현과 Mac Pleos 검증, 시연·완료 기준
+- [대화형 전체 시나리오 기술 재검토](docs/05-conversation-scenario-feasibility.md)
 - [조사·의사결정 기록](docs/04-decision-log.md)
 - [문서 전체 목록](docs/README.md)
 

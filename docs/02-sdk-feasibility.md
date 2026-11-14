@@ -2,6 +2,8 @@
 
 기준일 2026-11-14 UTC. **문서 제공 / 정적 바이너리 확인 / 컴파일 / 실제 SDK 실행 / 실차**는 서로 다른 검증 수준입니다. 차록에서 새 SDK 실행·기기 검증은 아직 하지 않았습니다.
 
+> 후속 조사: [05·대화형 전체 시나리오](05-conversation-scenario-feasibility.md)에서 Gleo 최대3함수/asking/7초timeout, 시스템 창 정책, 원음 미확인, 실제 예약 제약, AAOS 차속 문서 경로를 보완했습니다.
+
 ## 1. API·권한 판정
 
 Vehicle 2.3.2 AAR의 정적 조사 결과를 이전 저장소에서 출처와 함께 가져왔습니다. STT/TTS 3.3.1과 FusedLocation 1.1.3은 공식 웹 문서 확인 수준입니다. 차록의 Gradle 의존성/매니페스트는 아직 없습니다.
@@ -27,7 +29,7 @@ Vehicle 2.3.2 AAR의 정적 조사 결과를 이전 저장소에서 출처와 �
 
 Vehicle 대표 도메인 권한만 보고 판단하지 않습니다. 실제 함수의 `RequiresPermission`이 우선이며 PRIVATE 권한을 임의 선언해 해결하거나 우회하지 않습니다. 정적 증거는 [선정 28개 메서드](evidence/sdk-review/vehicle-selected-methods.json)와 [AAR 해시](evidence/sdk-review/binary-inspection.json)에 있습니다.
 
-차속·RPM·DTC·raw CAN·진동·제동압·도로 요철·외부 카메라 프레임은 이 조사에서 차록이 쓸 공개 경로를 확정하지 않았습니다. Android 권한 상수의 존재나 다른 앱의 동작만으로 제공을 선언하지 않습니다.
+RPM·DTC·raw CAN·진동·제동압·도로 요철·외부 카메라 프레임은 이 조사에서 차록이 쓸 공개 경로를 확정하지 않았습니다. 차속은 후속 공식 FAQ에서 CarPropertyManager의 PERF_VEHICLE_SPEED 경로를 확인했으며 실제 권한/기기 수신은 미검증입니다. Android 권한 상수의 존재나 다른 앱의 동작만으로 제공을 선언하지 않습니다.
 
 ## 2. 전1분 버퍼와 백그라운드의 현실성
 
