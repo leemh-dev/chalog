@@ -1,0 +1,38 @@
+{
+  "code_commit": "ef85516e89bd74e50dc23038fbcd52b0bfaf55cb",
+  "working_tree_dirty": false,
+  "apk_files": [
+    {
+      "path": "app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk",
+      "bytes": 2237020,
+      "sha256": "1a498115f7b9a7657b1ff74e4cdf4055cbf8703aa9f9711a5a213b3d50a086b1",
+      "package": "package: name='dev.leemh.charok.test' versionCode='' versionName='' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'",
+      "signature_rc": 0,
+      "signature": "V2 Signer: certificate DN: C=US, O=Android, CN=Android Debug\nV2 Signer: certificate SHA-256 digest: 6a1e3e07c814f65dcc21b3f30bd217a1a52349b6ae6a50ea3eec7016a646c735\nV2 Signer: certificate SHA-1 digest: fcf80ac1298e4c843871d64713894f4a239b5828\nV2 Signer: certificate MD5 digest: 47975b4aeb932e9f977f6bfde01858db\n",
+      "signing_purpose": "development/test"
+    },
+    {
+      "path": "app/build/outputs/apk/debug/app-debug.apk",
+      "bytes": 47319707,
+      "sha256": "c559512b0a319f7a7b0f7d723ab3b304d07395489ca17a199825d55e81a8af0f",
+      "package": "package: name='dev.leemh.charok' versionCode='1' versionName='0.1.0' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'",
+      "signature_rc": 0,
+      "signature": "V2 Signer: certificate DN: C=US, O=Android, CN=Android Debug\nV2 Signer: certificate SHA-256 digest: 6a1e3e07c814f65dcc21b3f30bd217a1a52349b6ae6a50ea3eec7016a646c735\nV2 Signer: certificate SHA-1 digest: fcf80ac1298e4c843871d64713894f4a239b5828\nV2 Signer: certificate MD5 digest: 47975b4aeb932e9f977f6bfde01858db\n",
+      "signing_purpose": "development/test"
+    },
+    {
+      "path": "app/build/outputs/apk/release/app-release-unsigned.apk",
+      "bytes": 39495992,
+      "sha256": "a9215c1079b3df8e920305e0da755736550305da712c4442f06122f00c647ff4",
+      "package": "package: name='dev.leemh.charok' versionCode='1' versionName='0.1.0' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'",
+      "signature_rc": 1,
+      "signature": "unsigned or verification failed; not an installable signed release",
+      "signing_purpose": "unsigned release"
+    }
+  ],
+  "device_validation": "see separate device reports; hashes do not prove execution",
+  "run_url": "https://github.com/leemh-dev/charok/actions/runs/43650320801",
+  "artifact_id": 14136300842,
+  "artifact_url": "https://github.com/leemh-dev/charok/actions/runs/43650320801/artifacts/14136300842",
+  "retention_days": 14
+}

@@ -4,17 +4,25 @@
 
 차록은 운전자가 느낀 이상 증상을 음성으로 표시하면, 실제 확보한 직전 1분부터 종료 명령까지의 차량 상태를 함께 보존하고 정비사와 검토할 수 있게 하는 서비스입니다.
 
-현재 **Android 0.1.0/1 첫 구현**을 진행 중입니다. 기획·브라우저 시안은 아래에 보존했습니다. 실제 구현 상태는 [검증 현황](docs/11-verification.md), 진행 이력은 [개발 기록](docs/10-development-log.md)을 따릅니다. 실제 Pleos SDK 실행과 정비소 스캐너 연동은 미검증입니다.
+현재 **Android 0.1.0/1 첫 구현과 일반 Android TEST 검증을 완료**했습니다. 기획·브라우저 시안은 아래에 보존했습니다. 실제 구현 상태는 [검증 현황](docs/11-verification.md), 진행 이력은 [개발 기록](docs/10-development-log.md)을 따릅니다. 실제 Pleos SDK 실행과 정비소 스캐너 연동은 미검증입니다.
 
 ## Android 실행
 
 JDK17·Android SDK35에서 `./gradlew :app:testDebugUnitTest :app:lintDebug :app:assembleDebug :app:assembleDebugAndroidTest :app:assembleRelease`로 검사·빌드합니다. debug/test APK는 개발 서명이고 release는 미서명입니다. unsigned release는 실행 가능한 제출 APK가 아닙니다.
 
-- CI: GitHub Actions `Charok Android` → `charok-apks-and-evidence` artifact의 APK·해시·서명과 일반 Android 검사 결과를 함께 확인합니다.
+- 최신 [성공 CI43650320801](https://github.com/leemh-dev/charok/actions/runs/43650320801) · [APK artifact](https://github.com/leemh-dev/charok/actions/runs/43650320801/artifacts/14136300842): 앱 코드ef85516, JVM24·기기5건·새 PID 복원 성공. [해시/서명](docs/evidence/android-v0.1/apk-metadata.json)을 대조하세요.
 - [Mac Pleos 설치·실행·실제 화면 녹화 절차](docs/12-mac-pleos-handoff.md)
 - 기본은 Pleos 입력/운전 상태 미확인입니다. 일반 Android에서는 **TEST 선택 → 준비 동의 → 준비 켜기 → 기록 시작 → TEST 설명/순간 → 종료 → 상담 카드**로 확인합니다.
 - 실제 앱은 차록 패널만 그립니다. 아래의 차량/내비 도식은 브라우저 설계 자료이며 앱 자체 기능이 아닙니다.
 - 현 단계 자동 예약·원음 녹음·GDS 자동 열람은 없습니다. 기획서 제출용 DOCX는 당시 초안이며 앱 구현 결과를 자동 반영하지 않습니다.
+
+## 실제 Android 앱 화면
+
+일반 Android API34 · TEST 입력 · ef85516. native Compose 앱 영역이며 실제 Pleos 분할/차량/마이크 성공 증거가 아닙니다.
+
+![실제 차록 Android 기록 화면 · TEST](docs/evidence/android-v0.1/screens/02-recording-test.png)
+
+[실제 화면7장과 검사 증거](docs/evidence/android-v0.1/README.md) · [Mac 다음 실행 프롬프트](docs/13-next-development-prompt.md)
 
 ## 최신 기획과 디자인
 

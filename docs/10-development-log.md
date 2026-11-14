@@ -48,3 +48,15 @@ AAOS 보완 후 동일 통합 명령 재실행은 48초에 성공했다. JVM19�
 AGP8.8.0 BooleanOption javap에서 `android.injected.androidTest.leaveApksInstalledAfterRun`을 확인해 true로 설정하고 `uninstallIncompatibleApks=false`도 명시했다. 기존 데이터를 지우는 재설치로 해결하지 않는다. 후속 새 전용 AVD에서 실제 화면/새 PID 검사를 이어간다.
 
 독립 보완: 코루틴이 Main 전환에서 중단될 때 제어 작업이 엇갈릴 가능성을 코드 검토로 확인해 Mutex로 작업과 tick을 직렬화했다. 원문 보존 사용자 보완을 추가하고 저장 실패 시 재시도 화면으로 전환한다. latest 조회는 모든 기록을 읽지 않고 1건만 조회한다. 추가2건 포함 JVM24·lint·세 APK 빌드 통과(39초), 반복 명령 기기 검사 추가 컴파일 통과(12초). 문서만 바뀌면 기존 앱 검사를 불필요하게 반복하지 않도록 CI paths를 지정했다.
+
+### 최신 CI 전체 성공과 증거 확보
+
+기능/제어 보완 커밋 **ef85516**, CI **43650320801**, artifact **14136300842**. 새 일반 Android API34 AVD에서 `bash scripts/ci_device.sh` 실행: ADB transport=device·boot1·package/activity found와 모든rc0, 설치 직전 재확인 성공. JVM24·lint 오류0·debug/test/unsigned release 성공, connectedDebugAndroidTest 기능5건 성공. 이어 process_recovery.py의 seed/force-stop/새 PID 검증 성공. 같은 세션525d092f-f572-43c9-a06f-5e15e60ee0c4, PID2657→2730, 설명2건·INTERRUPTED·관측 수 유지. seed는 의도적으로 강제종료하며 별도의 완료된 JUnit2건으로 세지 않는다.
+
+APK 유지 옵션으로 이전 증거 수집 실패를 해결했다. 실제 native Compose 앱 영역 캡처7장과 session-proof/process-recovery JSON을 확보하고 기록/저장/준비/상담/실패/주행 제한 화면을 채팅에 즉시 표시했다. 이전 HTML 시안을 새 앱 캡처로 사용하지 않았다. 화면은 TEST 입력이고 시스템 바/순정 내비는 포함하지 않는다. 실제 주행 상세 잠금 시험에서 수집 이전 종료한 기록은 관측0건이며 가짜 데이터를 넣지 않았다.
+
+artifact ZIP 다운로드는 GitHub CLI의 저장소 blob 경로403으로 막혔다. 연결된 GitHub artifact 다운로드 도구의 파일 전달 경로로 받았으며 임시 URL은 공개 증거에 넣지 않았다. 실제 APK3개 SHA256·version·apksigner 결과를 CI metadata와 재대조했다. 로컬 apksigner35와 CI 도구의 `Signer #1`/`V2 Signer` 출력 접두어 차이로 전체 문자열 비교가 실패했으나 certificate SHA256과 검증rc는 동일했다. 해시/인증서 필드 단위로 대조해 일치 확인했다. 공개 metadata의 인증서 지문은 공개키 지문이며 개인키를 포함하지 않는다.
+
+증거: docs/evidence/android-v0.1/{README.md,ci-43650320801-summary.json,apk-metadata.json,apk-crosscheck.json,screens/}. APK코드ef85516·0.1.0/1·개발서명/unsigned를 구분한다. 문서/증거 커밋에는 앱 변경이 없으므로 동일 검사를 반복하지 않는다. PR #2에 결과·차단·다음 작업을 반영한다.
+
+남은 작업: Mac 외장SSD에서 기존 Pleos 환경/자원 확인→같은 artifact debug APK 준비·설치→실제 SDK/Console/STT/Gleo/순정 내비 핀/보고서 전달→실제 화면 녹화. Cloud에서 Mac 접속/녹화를 수행하지 않았고 원음·자동예약·GDS는 미연결 확장이다. 다음 작업 프롬프트는 docs/13에 저장하고 채팅에도 제공한다. 기획 DOCX는 기존 초안으로 유지하며 제출/서명/개인정보 작성은 수행하지 않았다.

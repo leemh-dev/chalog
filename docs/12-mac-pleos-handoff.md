@@ -20,7 +20,7 @@ adb devices -l
 
 ## 2. APK 선택·설치
 
-GitHub Actions의 `Charok Android` 성공 run에서 `charok-apks-and-evidence`를 받습니다. artifact의 `apk-metadata.json`과 실제 APK SHA-256, 버전, 개발 서명을 대조합니다. debug APK는 실행 확인용 개발 서명이며 release-unsigned는 설치용이 아닙니다.
+현재 검증 기준은 [CI43650320801](https://github.com/leemh-dev/charok/actions/runs/43650320801)의 [artifact14136300842](https://github.com/leemh-dev/charok/actions/runs/43650320801/artifacts/14136300842), 앱 코드ef85516·0.1.0/1입니다. GitHub Actions의 `charok-apks-and-evidence`를 받습니다. artifact의 `apk-metadata.json`과 실제 APK SHA-256, 버전, 개발 서명을 대조합니다. debug APK는 실행 확인용 개발 서명이며 release-unsigned는 설치용이 아닙니다.
 
 ```bash
 shasum -a 256 /path/to/app-debug.apk
@@ -29,6 +29,10 @@ bash scripts/install_apk.sh emulator-5554 /path/to/app-debug.apk
 ```
 
 예상: devices=device, boot=1, package/activity found, 각rc0. 준비가 하나라도 실패하면 설치 차단. 설치 성공 뒤 실제 앱 화면과 오류를 확인합니다. Android 보안 승인창은 정상 화면에서 직접 승인하며, unauthorized를 앱 성공으로 표시하지 않습니다.
+
+기존 checkout이 있다면 먼저 `git status --short --branch`를 확인하고 작업이 남아 있으면 보존합니다. 깨끗한 동일 브랜치만 `git pull --ff-only`로 갱신합니다. 강제 reset/checkout으로 변경을 덮어쓰지 않습니다.
+
+APK artifact는 보존 기간14일입니다. 만료된 경우 최신 소스의 CI에서 다시 빌드하고 새 코드·해시·서명을 기록합니다. 예전 metadata를 새 빌드에 재사용하지 않습니다.
 
 ## 3. TEST 기록 흐름
 
@@ -53,3 +57,7 @@ bash scripts/record_mac_demo.sh emulator-5554
 ```
 
 `private-evidence/`는 Git 제외입니다. 원본 영상을 검토·정제한 뒤 공개 증거로 옮깁니다. 입력 방식, 실행 이미지/SDK 버전, 코드 커밋·APK 해시, 실제 통과/미검증을 함께 남깁니다. screenrecord 미지원이면 Mac 화면 녹화로 전환하되 실제 화면 녹화 여부를 기록합니다.
+
+## 6. 실행 결과 인계
+
+[다음 실행 프롬프트](13-next-development-prompt.md)를 사용합니다. 검증이 끝나면 코드/APK 해시·Pleos 이미지 버전·준비 상태·화면별 입력 출처·실제 결과를 docs/10과 docs/11에 남깁니다. 실제 화면 녹화는 확인된 기능 흐름으로 진행하며, 이번 Cloud 작업에서 Mac 실행/녹화를 했다고 표시하지 않습니다.

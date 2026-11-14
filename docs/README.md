@@ -16,6 +16,7 @@
 | [10 · 개발 기록](10-development-log.md) | 실제 앱 개발·검사·실패/해결 이력 |
 | [11 · 검증 현황](11-verification.md) | 최신 구현과 실제 실행 수준 |
 | [12 · Mac Pleos 인계](12-mac-pleos-handoff.md) | 설치·TEST/SDK 확인·실제 화면 녹화 절차 |
+| [13 · 다음 실행 프롬프트](13-next-development-prompt.md) | Mac 실제 앱·SDK 확인과 후속 녹화 작업 |
 | [디자인 시안](design/README.md) | 조작 가능한 HTML과 7장 캡처, TEST 시뮬레이션 |
 | [접수양식 초안](submission/charok-application-draft.docx) | 작품 소개 작성, 개인정보·동의·서명 미작성 |
 | [정적 SDK 조사 근거](evidence/sdk-review/README.md) | 이전 조사에서 확인한 버전·해시·28개 메서드/권한 |

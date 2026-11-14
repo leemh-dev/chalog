@@ -1,0 +1,25 @@
+{
+  "code_commit": "ef85516e89bd74e50dc23038fbcd52b0bfaf55cb",
+  "artifact_id": 14136300842,
+  "checked": [
+    {
+      "path": "app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk",
+      "sha256": "1a498115f7b9a7657b1ff74e4cdf4055cbf8703aa9f9711a5a213b3d50a086b1",
+      "apksigner_rc": 0,
+      "certificate_sha256": "6a1e3e07c814f65dcc21b3f30bd217a1a52349b6ae6a50ea3eec7016a646c735"
+    },
+    {
+      "path": "app/build/outputs/apk/debug/app-debug.apk",
+      "sha256": "c559512b0a319f7a7b0f7d723ab3b304d07395489ca17a199825d55e81a8af0f",
+      "apksigner_rc": 0,
+      "certificate_sha256": "6a1e3e07c814f65dcc21b3f30bd217a1a52349b6ae6a50ea3eec7016a646c735"
+    },
+    {
+      "path": "app/build/outputs/apk/release/app-release-unsigned.apk",
+      "sha256": "a9215c1079b3df8e920305e0da755736550305da712c4442f06122f00c647ff4",
+      "apksigner_rc": 1,
+      "certificate_sha256": null
+    }
+  ],
+  "note": "apksigner35 local vs CI textual prefix differs; verified rc and certificate SHA256, not display prefix"
+}
