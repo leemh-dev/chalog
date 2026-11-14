@@ -1,0 +1,16 @@
+{
+  "checked_at_utc": "2026-11-14",
+  "source_commit": "9adb2c5",
+  "source_repository": "leemh-dev/dochagjari",
+  "checks": "copied bytes equal source; both JSON files parse; selected methods count=28",
+  "files": [
+    {
+      "file": "binary-inspection.json",
+      "sha256": "9abaa8431f2f67818c7b929ac4e1c1958fded8a20c9ebd954558ce92ce262fed"
+    },
+    {
+      "file": "vehicle-selected-methods.json",
+      "sha256": "fda485de9c0de874b62153df728c7b5c41821fbd82569f5e9b6507b7eb0a0aaa"
+    }
+  ]
+}
