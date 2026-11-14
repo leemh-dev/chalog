@@ -1,0 +1,14 @@
+{
+  "created_at_utc": "2026-11-14T22:13:08.889740+00:00",
+  "level": "browser UX design, not Android/Pleos execution",
+  "files": {
+    "docs/design/charok-prototype.html": "26088ff14cde76b329ad4edeabfe1da021fce4077d95b77e4c1e2977df90b3b8",
+    "docs/design/failure.png": "435abe0a1645e665efdad209caf6bb8cc9b899befc1dc19bbb19d349ca6d1e48",
+    "docs/design/handoff.png": "5c0d96bc974a740fcf1771c8142dac46381deb0fcbd8387e62bc79faf1604e53",
+    "docs/design/marked.png": "2a13bbd7b50f231db5b0bbb2e628953fd6242995ef0f417e0639ab8c2b0a0d84",
+    "docs/design/narrow-recording.png": "ed605afcd3d6f1983644d335e47d1821b3400cfb16c6e976a7dcb27b1eb50eae",
+    "docs/design/ready.png": "4f8cfc42c976d97ea618c3d7be794857e08b132f42c4494d22736c7040da4669",
+    "docs/design/recording.png": "40bc19972c1e3118a76917bd032b0cc9ee1ad79aa950dca96e8b956fa6d88e78",
+    "docs/design/saved.png": "adc6da499caee1a2993e2d928cedca85f777d68db9a31f4f2b052d5baae8f433"
+  }
+}
