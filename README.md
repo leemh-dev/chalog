@@ -2,13 +2,13 @@
 
 **증상이 생긴 그 순간부터, 정비사와의 대화까지.**
 
-**[한글 자막 시연 영상 · 2분 39초](docs/evidence/macos-pleos-captioned-demo-2026-11-15/chalog-verified-scenarios-ko.mp4)** — 좌측 상단 시나리오6개·하단 한글 설명·실제 Mac Pleos TEST 화면. [영상·DB 검증](docs/20-captioned-scenario-demo.md).
+**[한글 자막 시연 영상 · 2분 39초](docs/evidence/macos-pleos-captioned-demo-2026-11-15/chalog-verified-scenarios-ko.mp4)** — 좌측 상단 시나리오6개·하단 한글 설명·실제 Mac Pleos TEST 화면(0.3.1 검증 영상). [영상·DB 검증](docs/20-captioned-scenario-demo.md).
 
 영문 브랜드는 **CHALOG**, 한글 서비스명은 **차록**입니다. ‘차 + log(기록)’를 조합한 이름으로, 함께 표기해 한글 이름을 일관되게 안내합니다.
 
 차록은 운전자가 느낀 이상 증상을 음성으로 표시하면, 실제 확보한 직전 1분부터 종료 명령까지의 차량 상태를 함께 보존하고 정비사와 검토할 수 있게 하는 서비스입니다.
 
-**저장소·소스 이름은 CHALOG로 정리했으며 Android 0.3.2/8 검증을 진행 중입니다.** [이름 변경·호환성](docs/21-chalog-rename.md).
+현재 **Android 0.3.2/8**입니다. 저장소·소스·클래스·리소스를 CHALOG로 통일했습니다. 기존 설치 ID와 DB는 유지하며 이전 실행 명령도 지원합니다. JVM40개·Pleos 기기16개·새 PID 복원 통과, 기존119개 모든 기록 보존을 확인했습니다. [이름 변경·검증](docs/21-chalog-rename.md) · [실제 화면·APK·DB 증거](docs/evidence/macos-pleos-chalog-rename-2026-11-15/README.md).
 
 아래는 직전 **Android 0.3.1/7** 검증 결과입니다. 최초 동의와 매 기록 시작을 분리하고, 화면 없는 CONTROL/ADD Broadcast와 명시적 OPEN을 구현했습니다. 동의 행 조작·보고서 결과 안내를 고쳤고 SIGNAL 패널과 경고등 이력을 유지합니다. Mac Pleos 기기15개·별도 새 PID 복원과 JVM39개를 통과했습니다. 이번 수정 전 기록77개 전체를 보존했으며 시연 후 최종 DB는119개·무결성ok입니다. [12개 시나리오별 재검증](docs/19-background-fixes-and-reverification.md) · [실제 화면·APK·DB 증거](docs/evidence/macos-pleos-gleo-fixes-2026-11-15/README.md).
 
@@ -20,6 +20,7 @@
 
 JDK17·Android SDK35에서 `./gradlew :app:testDebugUnitTest :app:lintDebug :app:assembleDebug :app:assembleDebugAndroidTest :app:assembleRelease`로 검사·빌드합니다. debug/test APK는 개발 서명이고 release는 미서명입니다. unsigned release는 실행 가능한 제출 APK가 아닙니다.
 
+- 최신0.3.2 [성공 CI43707910220](https://github.com/leemh-dev/chalog/actions/runs/43707910220): JVM40·일반 Android 기기16·새 PID 복원. [증거와 APK 대조](docs/evidence/macos-pleos-chalog-rename-2026-11-15/README.md).
 - 이전 0.3.1 [성공 CI43701282754](https://github.com/leemh-dev/chalog/actions/runs/43701282754): JVM39·일반 Android 기기15건·새 PID 복원, [APK와 metadata artifact](https://github.com/leemh-dev/chalog/actions/runs/43701282754/artifacts/14157071359). [다운로드한 ZIP/APK·버전·개발 서명 대조](docs/evidence/macos-pleos-gleo-fixes-2026-11-15/ci-apk-crosscheck.json). Mac은 기존 개발 서명을 유지해 DB를 보존합니다.
 - 0.1 기준 [성공 CI43650320801](https://github.com/leemh-dev/chalog/actions/runs/43650320801) · [APK artifact](https://github.com/leemh-dev/chalog/actions/runs/43650320801/artifacts/14136300842): 앱 코드ef85516, JVM24·기기5건·새 PID 복원 성공. [해시/서명](docs/evidence/android-v0.1/apk-metadata.json)을 대조하세요.
 - [Mac Pleos 설치·실행·실제 화면 녹화 절차](docs/12-mac-pleos-handoff.md)

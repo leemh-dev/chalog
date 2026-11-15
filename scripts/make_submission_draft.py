@@ -54,7 +54,8 @@ evidence = {
     "checks": ["8 project sections reopened and matched", "applicant and signature tables unchanged", "no applicant identity added"],
     "limitation": "Word page rendering and pagination not verified here; review in Word before signing/submitting",
 }
-(root / "docs/evidence/planning-design/submission-draft.json").write_text(
+# A regenerated draft must not overwrite the archived planning evidence.
+out.with_suffix(".metadata.json").write_text(
     json.dumps(evidence, ensure_ascii=False, indent=2) + "\n"
 )
 print(json.dumps(evidence, ensure_ascii=False))

@@ -1,0 +1,28 @@
+{
+  "applicationId": "dev.leemh.charok",
+  "application_class": "dev.leemh.chalog.ChalogApp",
+  "activities": [
+    {
+      "name": "dev.leemh.chalog.MainActivity",
+      "actions": [
+        "OPEN_CHALOG_RECORDS",
+        "OPEN_CHAROK_RECORDS"
+      ]
+    },
+    {
+      "name": "androidx.compose.ui.tooling.PreviewActivity",
+      "actions": []
+    },
+    {
+      "name": "androidx.activity.ComponentActivity",
+      "actions": []
+    }
+  ],
+  "launcher_aliases": [
+    {
+      "name": "dev.leemh.charok.MainActivity",
+      "target": "dev.leemh.chalog.MainActivity"
+    }
+  ],
+  "receiver_permission": "android.permission.BIND_VOICE_INTERACTION"
+}

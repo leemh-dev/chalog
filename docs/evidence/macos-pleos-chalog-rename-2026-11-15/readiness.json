@@ -1,0 +1,31 @@
+{
+  "ready": true,
+  "serial": "emulator-5560",
+  "checks": {
+    "devices": {
+      "rc": 0,
+      "stdout": "List of devices attached\nemulator-5560          device product:crp_avd_arm64 model:Car_on_arm64_emulator device:crp_avd_arm64 transport_id:20\n\n",
+      "stderr": ""
+    },
+    "transport": {
+      "rc": 0,
+      "stdout": "device\n",
+      "stderr": ""
+    },
+    "boot": {
+      "rc": 0,
+      "stdout": "1\n",
+      "stderr": ""
+    },
+    "package": {
+      "rc": 0,
+      "stdout": "Service package: found\n",
+      "stderr": ""
+    },
+    "activity": {
+      "rc": 0,
+      "stdout": "Service activity: found\n",
+      "stderr": ""
+    }
+  }
+}

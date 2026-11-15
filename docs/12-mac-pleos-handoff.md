@@ -2,7 +2,7 @@
 
 ## 2026-11-15 · CHALOG 이름 변경
 
-저장소는 `leemh-dev/chalog`, 소스 namespace는 `dev.leemh.chalog`, 버전은0.3.2/8입니다. 개발 브랜치·설치 ID·DB는 유지합니다. [현재 변경·검증 상태](21-chalog-rename.md)를 먼저 확인하세요. 아래 항목은 각 버전의 검증 이력입니다.
+저장소는 `leemh-dev/chalog`, 소스 namespace는 `dev.leemh.chalog`, 버전은0.3.2/8입니다. 개발 브랜치·설치 ID·DB는 유지합니다. Mac JVM40·Pleos16·새 PID 복원과 CI43707910220을 통과했고 기존119개 모든 행을 보존했습니다(최종133개, 추가14개 TEST). AVD 정상 종료·자동 병합 없음. [현재 변경·검증 상태](21-chalog-rename.md)를 먼저 확인하세요. 아래 항목은 각 버전의 검증 이력입니다.
 
 ## 2026-11-15 · 한글 자막 시연 제작·최종 검증
 
