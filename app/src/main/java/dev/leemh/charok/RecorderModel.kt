@@ -1,6 +1,8 @@
 package dev.leemh.charok
 
 import android.app.Application
+import android.content.Intent
+import androidx.core.content.ContextCompat
 import android.os.SystemClock
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
@@ -20,7 +22,7 @@ data class RecorderUi(val ready: Boolean = false, val mode: InputMode = InputMod
     val phase: Phase = Phase.IDLE, val session: Session? = null, val bufferSeconds: Long = 0,
     val parked: Boolean = false, val gear: String = "미확인", val busy: Boolean = false,
     val message: String = "차량 연결 대기", val speech: String = "마이크 꺼짐", val nav: String = "내비 요청 없음",
-    val locationConsent: Boolean = false, val history: List<Session> = emptyList(), val failNextSave: Boolean = false)
+    val notice: String? = null, val backgroundRunning: Boolean = false, val locationConsent: Boolean = false, val history: List<Session> = emptyList(), val failNextSave: Boolean = false)
 
 class RecorderModel(app: Application) : AndroidViewModel(app) {
     private val worker = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
@@ -35,6 +37,9 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
     private val mutable = MutableStateFlow(RecorderUi())
     val ui = mutable.asStateFlow()
     private var foreground = false
+    private var serviceRunning = false
+    private var preparationRequested = false
+    private fun collectingAllowed() = foreground || serviceRunning
     private var generation = 0
     private var gear: String? = null
     private var gearAt: Long? = null
@@ -56,7 +61,7 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
             while (isActive) {
                 delay(1000)
                 operation.withLock {
-                    if (!foreground || !loaded) return@withLock
+                    if (!collectingAllowed() || !loaded) return@withLock
                     if (mutable.value.mode == InputMode.TEST) {
                         gear = if (testParked) "PARK" else "DRIVE"; gearAt = clock.elapsed()
                         speed = if (testParked) 0.0 else 5.0; speedAt = clock.elapsed()
@@ -85,27 +90,51 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
         mutable.value = mutable.value.copy(ready = loaded, phase = recorder.phase, session = recorder.session,
             bufferSeconds = recorder.bufferedMs() / 1000, parked = parked(), gear = gear ?: "미확인", busy = false,
             message = if (recorder.phase == Phase.SAVE_FAILED) recorder.storageError else message ?: mutable.value.message,
-            failNextSave = failNext)
+            failNextSave = failNext, backgroundRunning = serviceRunning)
     }
     fun foreground() = launch {
-        foreground = true; connect()
+        foreground = true
+        if (!serviceRunning) connect()
+        publish()
     }
     fun background() = launch {
-        foreground = false; generation++; gear = null; gearAt = null; speed = null; speedAt = null
-        withContext(Dispatchers.Main) { signals?.close(); signals = null; speech?.close(); navigator?.close() }
-        if (loaded) recorder.stop("앱 비활성: 관측 중지", interrupted = true)
-        mutable.value = mutable.value.copy(locationConsent = false, speech = "마이크 꺼짐")
+        foreground = false
+        // App-owned STT is explicit and visible. Gleo remains the system voice entry point.
+        withContext(Dispatchers.Main) { speech?.close(); navigator?.close() }
+        mutable.value = mutable.value.copy(speech = "마이크 꺼짐")
+        if (!serviceRunning && !preparationRequested) disconnect()
+        publish()
+    }
+    private suspend fun disconnect() {
+        generation++
+        gear = null; gearAt = null; speed = null; speedAt = null
+        withContext(Dispatchers.Main) { signals?.close(); signals = null; speech?.close() }
+    }
+    fun serviceStarted() = launch {
+        if (!preparationRequested) return@launch
+        preparationRequested = false
+        serviceRunning = true
+        recorder.arm(mutable.value.mode)
+        withContext(Dispatchers.Main) { signals?.setLocation(mutable.value.locationConsent) }
+        publish(message = "다른 화면에서도 기록 준비를 이어갑니다")
+    }
+    fun serviceStopped() = launch {
+        preparationRequested = false
+        serviceRunning = false
+        if (loaded) recorder.stop("기록 서비스 종료", interrupted = true)
+        withContext(Dispatchers.Main) { speech?.close(); signals?.setLocation(false) }
+        if (!foreground) disconnect()
         publish()
     }
     private suspend fun connect() {
         generation++; val token = generation
         withContext(Dispatchers.Main) { signals?.close(); speech?.close(); signals = null }
         gear = null; gearAt = null; speed = null; speedAt = null
-        if (!foreground) return
+        if (!collectingAllowed()) return
         if (mutable.value.mode == InputMode.TEST) { gear = if (testParked) "PARK" else "DRIVE"; gearAt = clock.elapsed(); speed = if (testParked) 0.0 else 5.0; speedAt = clock.elapsed(); publish(); return }
         withContext(Dispatchers.Main) {
             signals = PleosSignals(getApplication(), { observation -> launch {
-                if (foreground && generation == token && mutable.value.mode == InputMode.PLEOS) {
+                if (collectingAllowed() && generation == token && mutable.value.mode == InputMode.PLEOS) {
                     if (observation.field == "gear") { gear = if (observation.available) observation.value else null; gearAt = observation.elapsed }
                     if (observation.field == "speed") { speed = if (observation.available) observation.value.toDoubleOrNull() else null; speedAt = observation.elapsed }
                     recorder.observe(observation)
@@ -126,11 +155,21 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
         connect(); publish(message = if (mode == InputMode.TEST) "TEST 입력 선택 · 실제 차량 데이터 아님" else "Pleos 차량 상태 수신 대기")
     }
     fun toggleTestMotion() = launch { if (mutable.value.mode == InputMode.TEST) { testParked = !testParked; gear = if (testParked) "PARK" else "DRIVE"; gearAt = clock.elapsed(); speed = if (testParked) 0.0 else 5.0; speedAt = clock.elapsed(); publish() } }
+    fun notificationDenied() = launch { mutable.value = mutable.value.copy(notice = "진행 알림을 받으려면 차록의 알림 권한을 허용해 주세요. 기록 준비는 아직 꺼져 있습니다.") }
     fun arm(consent: Boolean) = launch {
         check(loaded && foreground && parked() && consent)
-        recorder.arm(mutable.value.mode)
-        withContext(Dispatchers.Main) { signals?.setLocation(mutable.value.locationConsent) }
-        publish(message = "실제 수신한 최근 구간을 준비합니다")
+        if (preparationRequested || serviceRunning) return@launch
+        mutable.value = mutable.value.copy(notice = null)
+        preparationRequested = true
+        try {
+            withContext(Dispatchers.Main) {
+                ContextCompat.startForegroundService(getApplication(), Intent(getApplication(), RecordingService::class.java))
+            }
+        } catch (error: Exception) {
+            preparationRequested = false
+            mutable.value = mutable.value.copy(notice = "백그라운드 기록을 시작하지 못했습니다. 앱에서 다시 시도해 주세요.")
+            publish()
+        }
     }
     fun locationConsent(enabled: Boolean) = launch {
         check(parked())
@@ -139,7 +178,7 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
         publish(message = if (enabled) "위치 포함 선택 · 실제 수신 시에만 저장" else "위치 수집 중지 · 이미 저장한 위치는 기록에 남아 있습니다")
     }
     fun start(text: String = "", source: Origin = Origin.MANUAL) = launch { startNow(text, source); publish() }
-    private fun startNow(text: String, source: Origin) { check(loaded && foreground); recorder.start(text, source) }
+    private fun startNow(text: String, source: Origin) { check(loaded && serviceRunning); recorder.start(text, source) }
     fun mark() = launch { recorder.note("지금이야", if (mutable.value.mode == InputMode.TEST) Origin.TEST else Origin.MANUAL, true); publish(message = "사용자가 표시한 순간을 저장했습니다") }
     fun finish() = launch { finishNow(); publish(message = "관측 중지 · 저장 내용 재조회 완료") }
     private suspend fun finishNow() {
@@ -161,7 +200,7 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
     }
     fun stopListening() = launch { withContext(Dispatchers.Main) { speech?.close() }; mutable.value = mutable.value.copy(speech = "마이크 꺼짐") }
     fun voice(text: String, source: Origin = Origin.TEST) = launch {
-        check(foreground && loaded)
+        check(collectingAllowed() && loaded)
         if (source == Origin.TEST) check(mutable.value.mode == InputMode.TEST)
         val reply = when (val command = parseVoice(text)) {
             VoiceCommand.Start -> { startNow("", source); "기록을 시작했어요. 어떤 증상이 있었나요?" }
@@ -177,7 +216,7 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
     }
     fun gleo(action: String, note: String, mark: Boolean, response: (String, String) -> Unit) = launch {
         withContext(Dispatchers.Main) { speech?.close() }
-        if (!loaded || !foreground || mutable.value.mode != InputMode.PLEOS) { response("fail", "Open Charok in Pleos input mode first."); return@launch }
+        if (!loaded || !collectingAllowed() || mutable.value.mode != InputMode.PLEOS) { response("fail", "Open Charok in Pleos input mode first."); return@launch }
         if (action == "START_SYMPTOM_RECORD" && recorder.phase !in listOf(Phase.ARMED, Phase.RECORDING)) {
             response("fail", "Please enable recording preparation with consent while parked first."); return@launch
         }

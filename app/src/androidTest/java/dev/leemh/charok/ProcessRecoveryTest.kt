@@ -17,15 +17,21 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class ProcessRecoveryTest {
     @get:Rule val ui = createAndroidComposeRule<MainActivity>()
+    @org.junit.Before fun allowTestNotifications() {
+        if (android.os.Build.VERSION.SDK_INT >= 33) {
+            androidx.test.platform.app.InstrumentationRegistry.getInstrumentation().uiAutomation
+                .grantRuntimePermission("dev.leemh.charok", android.Manifest.permission.POST_NOTIFICATIONS)
+        }
+    }
     private val app get() = ApplicationProvider.getApplicationContext<CharokApp>()
     private fun has(tag: String) = ui.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty()
     private fun tap(tag: String) = ui.onNodeWithTag(tag).performScrollTo().performClick()
     @Test fun seedForProcessKill() {
-        ui.waitUntil(15_000) { has("close") || has("test-mode") }
+        ui.waitUntil(15_000) { has("close") || has("input-settings") }
         if (has("close")) tap("close")
-        ui.waitUntil { has("test-mode") }; tap("test-mode")
+        ui.waitUntil { has("input-settings") }; tap("input-settings"); tap("test-mode")
         ui.waitUntil { ui.onAllNodesWithText("TEST · P 확인").fetchSemanticsNodes().isNotEmpty() }
-        tap("consent"); tap("arm"); ui.waitUntil { has("start") }
+        tap("consent"); tap("arm"); ui.waitUntil { has("start") }; tap("test-tools")
         tap("start"); ui.waitUntil { has("test-note") }; tap("test-note")
         ui.onNodeWithTag("mark").performClick()
         ui.waitUntil(10_000) { app.store.latest()?.notes?.any { it.bookmark } == true }

@@ -17,16 +17,22 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 class RecorderDeviceTest {
     @get:Rule val ui = createAndroidComposeRule<MainActivity>()
+    @org.junit.Before fun allowTestNotifications() {
+        if (android.os.Build.VERSION.SDK_INT >= 33) {
+            androidx.test.platform.app.InstrumentationRegistry.getInstrumentation().uiAutomation
+                .grantRuntimePermission("dev.leemh.charok", android.Manifest.permission.POST_NOTIFICATIONS)
+        }
+    }
     private val app get() = ApplicationProvider.getApplicationContext<CharokApp>()
     private fun has(tag: String) = ui.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty()
     private fun await(tag: String) = ui.waitUntil(15_000) { has(tag) }
     private fun tap(tag: String) { ui.onNodeWithTag(tag).performScrollTo().performClick(); ui.waitForIdle() }
     private fun prepare() {
-        ui.waitUntil(15_000) { has("close") || has("test-mode") }
+        ui.waitUntil(15_000) { has("close") || has("input-settings") }
         if (has("close")) tap("close")
-        await("test-mode"); tap("test-mode")
+        await("input-settings"); tap("input-settings"); tap("test-mode")
         ui.waitUntil { ui.onAllNodesWithText("TEST · P 확인").fetchSemanticsNodes().isNotEmpty() }
-        tap("consent"); tap("arm"); await("start")
+        tap("consent"); tap("arm"); await("start"); tap("test-tools")
     }
     private fun capture(name: String) {
         val dir = File(app.getExternalFilesDir(null), "evidence").apply { mkdirs() }
@@ -66,23 +72,65 @@ class RecorderDeviceTest {
         capture("07-driving-lock-test")
         tap("motion"); ui.onNodeWithTag("details").assertIsEnabled()
     }
-    @Test fun recreationRetainsSessionAndBackgroundDoesNotResume() {
+    @Test fun recreationAndBackgroundKeepRecordingUntilNotificationStop() {
         prepare(); tap("start"); await("stop"); val id = app.store.latest()!!.id
         ui.activityRule.scenario.recreate(); await("stop")
         assertEquals(id, app.store.latest()!!.id)
+        val before = app.store.latest()!!.observations.size
         ui.activityRule.scenario.moveToState(androidx.lifecycle.Lifecycle.State.CREATED)
-        Thread.sleep(1500)
-        assertEquals(Phase.INTERRUPTED, app.store.latest()!!.phase)
+        Thread.sleep(2200)
+        assertEquals(Phase.RECORDING, app.store.latest()!!.phase)
+        assertTrue(app.store.latest()!!.observations.size > before)
+        assertEquals(id, app.store.latest()!!.id)
+        val manager = app.getSystemService(android.app.NotificationManager::class.java)
+        val ongoing = manager.activeNotifications.first { it.id == RecordingService.ONGOING_ID }
+        assertTrue(ongoing.notification.extras.getString(android.app.Notification.EXTRA_TEXT)!!.contains("TEST"))
+        ongoing.notification.actions.first { it.title.toString() == "지금이야" }.actionIntent.send()
+        Thread.sleep(600)
+        assertTrue(app.store.latest()!!.notes.any { it.bookmark })
+        manager.activeNotifications.first { it.id == RecordingService.ONGOING_ID }.notification.actions
+            .first { it.title.toString() == "종료·저장" }.actionIntent.send()
+        Thread.sleep(600)
+        assertEquals(Phase.SAVED, app.store.latest()!!.phase)
+        val stopped = app.store.latest()!!.observations.size
+        Thread.sleep(1200)
+        assertEquals(stopped, app.store.latest()!!.observations.size)
+        assertFalse(app.recorder.ui.value.backgroundRunning)
         ui.activityRule.scenario.moveToState(androidx.lifecycle.Lifecycle.State.RESUMED)
         await("details"); assertEquals(id, app.store.latest()!!.id)
         assertFalse(has("stop"))
+    }
+    @Test fun notificationStartsPreparedRecordInBackgroundOnlyOnce() {
+        prepare()
+        val count = app.store.list().size
+        ui.activityRule.scenario.moveToState(androidx.lifecycle.Lifecycle.State.CREATED)
+        Thread.sleep(2200)
+        assertEquals(Phase.ARMED, app.recorder.ui.value.phase)
+        assertTrue(app.recorder.ui.value.bufferSeconds > 0)
+        val manager = app.getSystemService(android.app.NotificationManager::class.java)
+        val start = manager.activeNotifications.first { it.id == RecordingService.ONGOING_ID }
+            .notification.actions.first { it.title.toString() == "기록 시작" }.actionIntent
+        start.send(); start.send()
+        Thread.sleep(800)
+        assertEquals(Phase.RECORDING, app.store.latest()!!.phase)
+        assertEquals(count + 1, app.store.list().size)
+        val id = app.store.latest()!!.id
+        assertTrue(app.store.latest()!!.observations.isNotEmpty())
+        manager.activeNotifications.first { it.id == RecordingService.ONGOING_ID }.notification.actions
+            .first { it.title.toString() == "종료·저장" }.actionIntent.send()
+        Thread.sleep(800)
+        assertEquals(id, app.store.latest()!!.id)
+        assertEquals(Phase.SAVED, app.store.latest()!!.phase)
+        assertFalse(app.recorder.ui.value.backgroundRunning)
+        ui.activityRule.scenario.moveToState(androidx.lifecycle.Lifecycle.State.RESUMED)
+        await("details")
     }
     @Test fun rapidCommandsKeepTheSameSession() {
         prepare(); tap("start"); await("stop")
         val original = app.store.latest()!!
         val count = app.store.list().size
         ui.activityRule.scenario.onActivity { activity ->
-            val model = androidx.lifecycle.ViewModelProvider(activity)[RecorderModel::class.java]
+            val model = (activity.application as CharokApp).recorder
             repeat(8) { model.start() }
             repeat(8) { model.finish() }
         }

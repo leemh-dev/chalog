@@ -8,15 +8,23 @@
     <uses-permission android:name="pleos.car.permission.NAVI_ROUTE" />
     <uses-permission android:name="pleos.car.permission.NAVI_ROUTE_SEARCH" />
     <uses-permission android:name="pleos.car.permission.FUSED_LOCATION" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <application android:name=".CharokApp" android:label="차록" android:icon="@drawable/charok_icon" android:allowBackup="false" android:supportsRtl="true" android:theme="@style/AppTheme">
         <uses-library android:name="android.car" android:required="false" />
         <activity android:name=".MainActivity" android:exported="true" android:launchMode="singleTop" android:resizeableActivity="true">
             <intent-filter><action android:name="android.intent.action.MAIN" /><category android:name="android.intent.category.LAUNCHER" /></intent-filter>
+        </activity>
+        <activity android:name=".GleoActivity" android:exported="true" android:theme="@style/CommandTheme" android:excludeFromRecents="true" android:taskAffinity="dev.leemh.charok.commands">
             <intent-filter>
                 <action android:name="START_SYMPTOM_RECORD" /><action android:name="ADD_SYMPTOM_NOTE" /><action android:name="END_SYMPTOM_RECORD" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <service android:name=".RecordingService" android:exported="false" android:foregroundServiceType="specialUse" android:stopWithTask="false">
+            <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE" android:value="User-initiated automotive symptom recording and rolling vehicle telemetry buffer while navigation is visible" />
+        </service>
         <provider android:name="androidx.core.content.FileProvider" android:authorities="${applicationId}.reports" android:exported="false" android:grantUriPermissions="true">
             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/report_paths" />
         </provider>
