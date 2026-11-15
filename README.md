@@ -1,7 +1,5 @@
 # 차록 · CHALOG
 
-[공모전 제출 안내](https://appdevchallenge.auto-hmg.io/guide/submission)의 README 필수 5개 항목에 맞춘 실행·검증 안내입니다.
-
 ## 1. 앱 이름 및 한 줄 소개
 
 **차록(CHALOG)** — 차량에서 느낀 이상 징후와 관측 정보를 백그라운드에서 기록하고, 주차 후 정비 상담용 메모로 확인하는 차량용 앱입니다.
