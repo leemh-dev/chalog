@@ -7,6 +7,7 @@ import android.app.PendingIntent
 import android.app.Service
 import android.content.Intent
 import android.content.pm.ServiceInfo
+import android.net.Uri
 import android.os.Build
 import android.os.IBinder
 import androidx.core.app.NotificationCompat
@@ -94,7 +95,8 @@ class RecordingService : Service() {
     }
 
     private fun action(name: String, requestCode: Int): PendingIntent = PendingIntent.getService(
-        this, requestCode, Intent(this, RecordingService::class.java).setAction(name).putExtra("token", token),
+        this, requestCode, Intent(this, RecordingService::class.java).setAction(name)
+            .setData(Uri.parse("charok://recording/$token")).putExtra("token", token),
         PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
 
     private fun notification(state: RecorderUi, title: String, ongoing: Boolean, event: Boolean = false): Notification {

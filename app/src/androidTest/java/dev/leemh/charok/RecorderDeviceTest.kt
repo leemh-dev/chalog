@@ -156,6 +156,27 @@ class RecorderDeviceTest {
             assertEquals(id, app.store.latest()!!.id)
         }
     }
+    @Test fun staleNotificationCannotStartTheNextPreparation() {
+        prepare()
+        val manager = app.getSystemService(android.app.NotificationManager::class.java)
+        fun startAction() = manager.activeNotifications.first { it.id == RecordingService.ONGOING_ID }
+            .notification.actions.first { it.title.toString() == "기록 시작" }.actionIntent
+        val stale = startAction()
+        kotlinx.coroutines.runBlocking { app.recorder.finish().join() }
+        ui.waitUntil { !app.recorder.ui.value.backgroundRunning }
+        kotlinx.coroutines.runBlocking { app.recorder.arm(true).join() }
+        ui.waitUntil { app.recorder.ui.value.backgroundRunning && app.recorder.ui.value.phase == Phase.ARMED }
+        ui.waitUntil { runCatching { startAction() != stale }.getOrDefault(false) }
+        val current = startAction()
+        assertNotEquals(stale, current)
+        val count = app.store.list().size
+        stale.send(); Thread.sleep(400)
+        assertEquals(Phase.ARMED, app.recorder.ui.value.phase)
+        assertEquals(count, app.store.list().size)
+        current.send()
+        ui.waitUntil { app.recorder.ui.value.phase == Phase.RECORDING }
+        assertEquals(count + 1, app.store.list().size)
+    }
     @Test fun rapidCommandsKeepTheSameSession() {
         prepare(); tap("start"); await("stop")
         val original = app.store.latest()!!
