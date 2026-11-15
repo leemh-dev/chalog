@@ -27,7 +27,7 @@ class MainActivity : ComponentActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent { CharokScreen(model, prepare = ::prepareRecording, hide = { moveTaskToBack(true) }, connectPleos = { carPermission.launch("android.car.permission.CAR_SPEED") }) { file ->
+        setContent { CharokScreen(model, prepare = ::prepareRecording, hide = { finish() }, connectPleos = { carPermission.launch("android.car.permission.CAR_SPEED") }) { file ->
             val uri = FileProvider.getUriForFile(this, "$packageName.reports", file)
             val share = Intent(Intent.ACTION_SEND).apply {
                 type = "text/plain"; putExtra(Intent.EXTRA_STREAM, uri); addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)

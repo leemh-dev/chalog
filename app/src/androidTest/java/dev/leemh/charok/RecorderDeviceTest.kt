@@ -125,6 +125,27 @@ class RecorderDeviceTest {
         ui.activityRule.scenario.moveToState(androidx.lifecycle.Lifecycle.State.RESUMED)
         await("details")
     }
+    @Test fun closingDashboardKeepsServiceAndReopeningKeepsId() {
+        prepare(); tap("start"); await("stop")
+        val id = app.store.latest()!!.id
+        val before = app.store.latest()!!.observations.size
+        tap("hide")
+        Thread.sleep(1800)
+        assertEquals(androidx.lifecycle.Lifecycle.State.DESTROYED, ui.activityRule.scenario.state)
+        assertEquals(Phase.RECORDING, app.store.latest()!!.phase)
+        assertTrue(app.store.latest()!!.observations.size > before)
+        androidx.test.core.app.ActivityScenario.launch<MainActivity>(android.content.Intent(app, MainActivity::class.java)).use {
+            Thread.sleep(600)
+            assertEquals(id, app.recorder.ui.value.session!!.id)
+            assertEquals(Phase.RECORDING, app.recorder.ui.value.phase)
+            val manager = app.getSystemService(android.app.NotificationManager::class.java)
+            manager.activeNotifications.first { n -> n.id == RecordingService.ONGOING_ID }.notification.actions
+                .first { a -> a.title.toString() == "종료·저장" }.actionIntent.send()
+            Thread.sleep(600)
+            assertEquals(Phase.SAVED, app.store.latest()!!.phase)
+            assertEquals(id, app.store.latest()!!.id)
+        }
+    }
     @Test fun rapidCommandsKeepTheSameSession() {
         prepare(); tap("start"); await("stop")
         val original = app.store.latest()!!
