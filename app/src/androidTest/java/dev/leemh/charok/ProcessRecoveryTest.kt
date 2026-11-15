@@ -24,7 +24,7 @@ class ProcessRecoveryTest {
         }
     }
     private val app get() = ApplicationProvider.getApplicationContext<CharokApp>()
-    private fun has(tag: String) = ui.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty()
+    private fun has(tag: String) = runCatching { ui.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }.getOrDefault(false)
     private fun tap(tag: String) = ui.onNodeWithTag(tag).performScrollTo().performClick()
     @Test fun seedForProcessKill() {
         ui.waitUntil(15_000) { has("close") || has("input-settings") }

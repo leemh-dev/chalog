@@ -23,8 +23,17 @@ class RecorderDeviceTest {
                 .grantRuntimePermission("dev.leemh.charok", android.Manifest.permission.POST_NOTIFICATIONS)
         }
     }
+    @org.junit.After fun stopThisTestWithoutDeletingRecords() {
+        kotlinx.coroutines.runBlocking {
+            app.recorder.finish().join()
+            if (app.recorder.ui.value.phase == Phase.SAVE_FAILED) app.recorder.retry().join()
+            if (app.recorder.ui.value.mode == InputMode.TEST && app.recorder.ui.value.gear == "DRIVE") app.recorder.toggleTestMotion().join()
+        }
+        val deadline = android.os.SystemClock.elapsedRealtime() + 5000
+        while (app.recorder.ui.value.backgroundRunning && android.os.SystemClock.elapsedRealtime() < deadline) Thread.sleep(50)
+    }
     private val app get() = ApplicationProvider.getApplicationContext<CharokApp>()
-    private fun has(tag: String) = ui.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty()
+    private fun has(tag: String) = runCatching { ui.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }.getOrDefault(false)
     private fun await(tag: String) = ui.waitUntil(15_000) { has(tag) }
     private fun tap(tag: String) { ui.onNodeWithTag(tag).performScrollTo().performClick(); ui.waitForIdle() }
     private fun prepare() {
@@ -66,7 +75,8 @@ class RecorderDeviceTest {
         assertEquals(Phase.SAVED, app.store.latest()!!.phase)
     }
     @Test fun drivingLocksDetailsButAllowsStop() {
-        prepare(); tap("start"); await("motion"); tap("motion")
+        prepare(); tap("start"); await("stop"); tap("motion")
+        ui.waitUntil { !app.recorder.ui.value.parked }
         ui.onNodeWithTag("stop").performClick(); await("details")
         ui.onNodeWithTag("details").assertIsNotEnabled()
         capture("07-driving-lock-test")
