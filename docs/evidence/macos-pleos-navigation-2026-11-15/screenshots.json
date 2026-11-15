@@ -1,0 +1,51 @@
+[
+  {
+    "path": "screens/01-chalog-installed.png",
+    "sha256": "0088b39290dde574b2adad266deda064c6c84da7e5ad863b6ca2bb37ead3c8d0",
+    "kind": "CHALOG header; existing TEST record; vehicle state unknown",
+    "capture": "actual Pleos adb screencap",
+    "modified": false
+  },
+  {
+    "path": "screens/02-native-map-before.png",
+    "sha256": "463a321caa89bf55afb871264b28d23a458f597d36ffb2668f672c12995cd941",
+    "kind": "native navigation; empty basemap",
+    "capture": "actual Pleos adb screencap",
+    "modified": false
+  },
+  {
+    "path": "screens/03-native-search.png",
+    "sha256": "0bd574f87701d9e1a3954db36b8f306b76f7873a0e796e7eda1216a604cb29cc",
+    "kind": "native public charging search; emulator default location",
+    "capture": "actual Pleos adb screencap",
+    "modified": false
+  },
+  {
+    "path": "screens/04-route-request.png",
+    "sha256": "a7b8af88a6208fc8bb80fe170861b67118ac955c0068aacab4721cb7e705ca7d",
+    "kind": "native route guidance started; no actual driving",
+    "capture": "actual Pleos adb screencap",
+    "modified": false
+  },
+  {
+    "path": "screens/07-swiftshader-settled.png",
+    "sha256": "3bd3af5fc2ad814753e5c5d58a546c5e9f1c46c7dc52617e7742e0c9338b54a7",
+    "kind": "failed software rendering comparison; black map",
+    "capture": "actual Pleos adb screencap",
+    "modified": false
+  },
+  {
+    "path": "screens/08-chalog-right-navigation.png",
+    "sha256": "96a8834eb462936cf244eb99351d22802f34b67fc123025d83e18529872acdd7",
+    "kind": "OS manual right split; CHALOG and native navigation",
+    "capture": "actual Pleos adb screencap",
+    "modified": false
+  },
+  {
+    "path": "screens/10-chalog-guidance-right.png",
+    "sha256": "c3ec0a7dbe58a079d48237c2f9c8b77f7e3ecfe8dd006f494f5ef009a9e5c696",
+    "kind": "native route guidance and CHALOG existing TEST record in right split",
+    "capture": "actual Pleos adb screencap",
+    "modified": false
+  }
+]

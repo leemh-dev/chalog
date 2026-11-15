@@ -1,5 +1,11 @@
 # 다음 실행 · Mac Pleos 실제 앱 검증
 
+## 2026-11-15 · 0.2.3 CHALOG와 순정 내비
+
+영문 CHALOG / 한글 차록으로 헤더·보고서·영문 응답을 바꿨습니다. 앱 식별자와 DB는 유지했고 기존66개 전체 행이 정확히 동일합니다. 코드 **1ed571d / 0.2.3/5**. Mac JVM31·lint 오류0/경고14, [CI43690911090](https://github.com/leemh-dev/charok/actions/runs/43690911090) 일반 Android 기기9·새 PID 복원까지 통과했습니다.
+
+**순정 내비 직접 조작으로 충전소 검색·340m 경로 안내 시작·종료를 확인했습니다.** 경로선/회전 안내/목적지 핀은 나오지만 배경 도로·건물은 비어 있습니다. SwiftShader 비교는 검은 화면 오류가 나 기존 host로 복귀했으며 지도 바탕의 원인은 미확정입니다. 차록 SDK 목적지 요청, 실제 주행·마이크·Gleo 성공으로 확대하지 않습니다. [브랜드/조사 상세](17-chalog-and-navigation.md) · [실제 화면·APK·DB·검증 증거](evidence/macos-pleos-navigation-2026-11-15/README.md). 영상은 만들지 않았습니다.
+
 ## 2026-11-15 · 0.2.2 경고·표시등 관측
 
 SIGNAL 기록 요약·상담 카드·보고서에 경고·표시등 이름, 최초 관측 시각/출처, 점등·점멸·소등 이력을 추가했습니다. 누락/조회 실패는 미확인으로 남깁니다. 공개 CAR_SAFETY getter를 최대5초 간격으로 연결했고 private 구독 API는 사용하지 않았습니다. DB 스키마는 그대로입니다. [명세](16-warning-light-observations.md).
@@ -31,7 +37,7 @@ Mac JVM24·lint 오류0, Pleos 기기8개 메서드 개별 실행·별도 새 �
 
 2026-11-15 Mac 결과는 [실행 증거](evidence/macos-pleos-2026-11-15/README.md)를 먼저 확인합니다. b6b7e77에서 초기 화면 크래시 수정, Pleos TEST·복원·보고서·분할 표시·89.6초 녹화를 완료했습니다. 다음 작업은 기존 차록 전용 AVD와 DB를 보존하면서 Console/VHAL 비활성 원인을 공식 지원 경로로 해결하고 실제 SDK·마이크·Gleo·센터 핀을 재검증하는 것입니다. 아래 전달문은 최초 실행 이력입니다.
 
-Cloud 구현과 일반 Android TEST 결과를 실제 Pleos 성공으로 바꾸어 해석하지 않습니다. 최신 결과·APK 기준은 docs/11-verification.md와 docs/evidence/macos-pleos-warnings-2026-11-15/apk-metadata.json을 먼저 확인합니다.
+Cloud 구현과 일반 Android TEST 결과를 실제 Pleos 성공으로 바꾸어 해석하지 않습니다. 최신 결과·APK 기준은 docs/11-verification.md와 docs/evidence/macos-pleos-navigation-2026-11-15/apk-metadata.json을 먼저 확인합니다.
 
 아래 내용을 Mac Codex에 전달합니다.
 

@@ -1,0 +1,8 @@
+{
+  "method": "adb emu kill",
+  "after_devices": "List of devices attached\n\n",
+  "recording_started_this_task": false,
+  "native_test_route_stopped": true,
+  "data_deleted": false,
+  "video_recorded": false
+}

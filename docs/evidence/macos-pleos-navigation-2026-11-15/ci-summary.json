@@ -1,0 +1,53 @@
+{
+  "run_id": 43690911090,
+  "url": "https://github.com/leemh-dev/charok/actions/runs/43690911090",
+  "head_sha": "1ed571d9d0ab4cc8aad7dcd7aa51530fb504ee42",
+  "conclusion": "success",
+  "environment": "disposable general Android API34 x86_64; not Pleos",
+  "suites": [
+    {
+      "name": "dev.leemh.charok.RecorderDeviceTest",
+      "tests": "9",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "dev.leemh.charok.RoomStoreTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "dev.leemh.charok.TelltalesTest",
+      "tests": "7",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "dev.leemh.charok.VoiceCommandTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "dev.leemh.charok.RecorderTest",
+      "tests": "20",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ],
+  "process_recovery": {
+    "sessionId": "d29ed924-922f-4798-bf2a-1ebb7aa0cb1e",
+    "oldPid": 2666,
+    "newPid": 2741,
+    "phase": "INTERRUPTED",
+    "notes": 2,
+    "observationsUnchanged": true,
+    "input": "TEST"
+  }
+}
