@@ -1,0 +1,31 @@
+{
+  "code_commit": "31ba254426eab16f2253dfd9a389c2ad27360c0d",
+  "build": "BUILD SUCCESSFUL in 1m 42s",
+  "unit_suites": [
+    {
+      "name": "dev.leemh.charok.RecorderTest",
+      "tests": "20",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "dev.leemh.charok.RoomStoreTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "dev.leemh.charok.VoiceCommandTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ],
+  "lint_severity_counts": {
+    "Warning": 14
+  },
+  "video_recorded": false
+}

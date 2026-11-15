@@ -1,0 +1,17 @@
+{
+  "display_pixels": [
+    2560,
+    1440
+  ],
+  "density_dpi": 160,
+  "font_scale_setting_before": "null (system default)",
+  "title_sp": 26,
+  "body_sp": 18,
+  "caption_sp": 16,
+  "duration_sp": 38,
+  "button_height_min_dp": 52,
+  "header_close_touch_dp": 48,
+  "content_width_max_dp": 720,
+  "os_density_changed": false,
+  "video_recorded": false
+}

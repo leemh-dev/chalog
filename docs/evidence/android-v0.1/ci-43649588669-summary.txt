@@ -1,0 +1,8 @@
+android	General Android TEST flow (not Pleos)	2026-11-14T22:49:08.0938960Z {"ready": true, "report": "artifacts/adb-readiness.json"}
+android	General Android TEST flow (not Pleos)	2026-11-14T22:49:09.1239055Z {"ready": true, "report": "artifacts/pre-install-readiness.json"}
+android	General Android TEST flow (not Pleos)	2026-11-14T22:49:23.7858811Z Starting 4 tests on emulator-5554 - 14
+android	General Android TEST flow (not Pleos)	2026-11-14T22:49:33.7849881Z emulator-5554 - 14 Tests 2/4 completed. (0 skipped) (0 failed)
+android	General Android TEST flow (not Pleos)	2026-11-14T22:49:40.9816165Z Finished 4 tests on emulator-5554 - 14
+android	General Android TEST flow (not Pleos)	2026-11-14T22:49:41.5768239Z BUILD SUCCESSFUL in 32s
+android	General Android TEST flow (not Pleos)	2026-11-14T22:49:41.7262038Z {"ready": true, "report": "artifacts/process-readiness.json"}
+android	General Android TEST flow (not Pleos)	2026-11-14T22:49:41.7465367Z run-as: unknown package: dev.leemh.charok

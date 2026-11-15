@@ -1,0 +1,13 @@
+{
+  "original_records": 8,
+  "final_records": 47,
+  "all_original_payloads_unchanged": true,
+  "sqlite_integrity": "ok",
+  "restored_id": "fbdcc80b-e003-417c-b4e5-32a9e36c7936",
+  "restored_phase": "INTERRUPTED",
+  "demo_id": "40f67f6c-79fe-4b77-a633-02b70c334245",
+  "demo_mode": "TEST",
+  "demo_phase": "SAVED",
+  "demo_observations": 324,
+  "demo_bookmarks": 1
+}

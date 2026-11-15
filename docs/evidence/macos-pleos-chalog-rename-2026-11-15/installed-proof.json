@@ -1,0 +1,10 @@
+{
+  "version": "0.3.2/8",
+  "applicationId": "dev.leemh.charok",
+  "source_namespace": "dev.leemh.chalog",
+  "installed_sha256": "56deee7ac78bc71ce5f72db3ab6f74d01933f96a2ed30d2e2ad1b4797fb5d56d",
+  "matches_built_debug_apk": true,
+  "foreground_recording_service_after_tests": false,
+  "before_apk_sha256": "c6eb42e1418bc0bf081682e1b5e3394ab13eff580d213e6be301265a9d77c2e7",
+  "legacy_launch_and_both_open_actions": "passed device instrumentation; no new record and no collection"
+}

@@ -1,0 +1,54 @@
+{
+  "run_id": 43701282754,
+  "artifact_id": 14157071359,
+  "code_commit": "8c8f793a87f70946c98636acea6d3914f13f90e1",
+  "archive_sha256": "e1cddf468e0690c7a17bc3d370cf3cb462c190cba83113a616213d43bf5db3c9",
+  "apks": [
+    {
+      "path": "app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk",
+      "sha256": "e84027394d00856dd350b6e795cd5e5ad79aeaf2d51222f2b571bb600ed60747",
+      "hash_matches_metadata": true,
+      "signature_rc": 0,
+      "certificate_sha256": [
+        "4d9e0b722da9246bc1ee86f41f6524d509697415f20ece74a001fc78a5620688"
+      ],
+      "package": "package: name='dev.leemh.charok.test' versionCode='' versionName='' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'",
+      "signing_purpose": "development/test"
+    },
+    {
+      "path": "app/build/outputs/apk/debug/app-debug.apk",
+      "sha256": "5bbbe1d0e4122b7992333d68e299a546ac3d0f0e973571fcb19644a418e6f531",
+      "hash_matches_metadata": true,
+      "signature_rc": 0,
+      "certificate_sha256": [
+        "4d9e0b722da9246bc1ee86f41f6524d509697415f20ece74a001fc78a5620688"
+      ],
+      "package": "package: name='dev.leemh.charok' versionCode='7' versionName='0.3.1' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'",
+      "signing_purpose": "development/test"
+    },
+    {
+      "path": "app/build/outputs/apk/release/app-release-unsigned.apk",
+      "sha256": "08fb75b451c424735b7c6a3d35b8c69a1b3718b3a12fd04da56b44333fdf75e8",
+      "hash_matches_metadata": true,
+      "signature_rc": 1,
+      "certificate_sha256": [],
+      "package": "package: name='dev.leemh.charok' versionCode='7' versionName='0.3.1' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'",
+      "signing_purpose": "unsigned release"
+    }
+  ],
+  "jvm_tests": {
+    "tests": 39,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "android_tests": {
+    "tests": 15,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "process_recovery_passed": true,
+  "installed_on_mac": false,
+  "why_not_installed": "Different development signer; preserve existing app and DB. Same code built with the existing Mac development signer."
+}

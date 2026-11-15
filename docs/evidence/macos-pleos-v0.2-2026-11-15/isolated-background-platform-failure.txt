@@ -1,0 +1,62 @@
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=notificationStartsPreparedRecordInBackgroundOnlyOnce
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stack=java.lang.IllegalStateException: No compose hierarchies found in the app. Possible reasons include: (1) the Activity that calls setContent did not launch; (2) setContent was not called; (3) setContent was called before the ComposeTestRule ran. If setContent is called by the Activity, make sure the Activity is launched after the ComposeTestRule runs
+	at androidx.compose.ui.test.TestContext.getAllSemanticsNodes$ui_test_release(TestOwner.kt:87)
+	at androidx.compose.ui.test.TestContext.getAllSemanticsNodes$ui_test_release$default(TestOwner.kt:81)
+	at androidx.compose.ui.test.SemanticsNodeInteractionCollection.fetchSemanticsNodes(SemanticsNodeInteraction.kt:256)
+	at androidx.compose.ui.test.SemanticsNodeInteractionCollection.fetchSemanticsNodes$default(SemanticsNodeInteraction.kt:249)
+	at dev.leemh.charok.RecorderDeviceTest$prepare$2.invoke(RecorderDeviceTest.kt:43)
+	at dev.leemh.charok.RecorderDeviceTest$prepare$2.invoke(RecorderDeviceTest.kt:43)
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:424)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:306)
+	at dev.leemh.charok.RecorderDeviceTest.prepare(RecorderDeviceTest.kt:43)
+	at dev.leemh.charok.RecorderDeviceTest.notificationStartsPreparedRecordInBackgroundOnlyOnce(RecorderDeviceTest.kt:114)
+
+INSTRUMENTATION_STATUS: stream=
+Error in notificationStartsPreparedRecordInBackgroundOnlyOnce(dev.leemh.charok.RecorderDeviceTest):
+java.lang.IllegalStateException: No compose hierarchies found in the app. Possible reasons include: (1) the Activity that calls setContent did not launch; (2) setContent was not called; (3) setContent was called before the ComposeTestRule ran. If setContent is called by the Activity, make sure the Activity is launched after the ComposeTestRule runs
+	at androidx.compose.ui.test.TestContext.getAllSemanticsNodes$ui_test_release(TestOwner.kt:87)
+	at androidx.compose.ui.test.TestContext.getAllSemanticsNodes$ui_test_release$default(TestOwner.kt:81)
+	at androidx.compose.ui.test.SemanticsNodeInteractionCollection.fetchSemanticsNodes(SemanticsNodeInteraction.kt:256)
+	at androidx.compose.ui.test.SemanticsNodeInteractionCollection.fetchSemanticsNodes$default(SemanticsNodeInteraction.kt:249)
+	at dev.leemh.charok.RecorderDeviceTest$prepare$2.invoke(RecorderDeviceTest.kt:43)
+	at dev.leemh.charok.RecorderDeviceTest$prepare$2.invoke(RecorderDeviceTest.kt:43)
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:424)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:306)
+	at dev.leemh.charok.RecorderDeviceTest.prepare(RecorderDeviceTest.kt:43)
+	at dev.leemh.charok.RecorderDeviceTest.notificationStartsPreparedRecordInBackgroundOnlyOnce(RecorderDeviceTest.kt:114)
+
+INSTRUMENTATION_STATUS: test=notificationStartsPreparedRecordInBackgroundOnlyOnce
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 10.404
+There was 1 failure:
+1) notificationStartsPreparedRecordInBackgroundOnlyOnce(dev.leemh.charok.RecorderDeviceTest)
+java.lang.IllegalStateException: No compose hierarchies found in the app. Possible reasons include: (1) the Activity that calls setContent did not launch; (2) setContent was not called; (3) setContent was called before the ComposeTestRule ran. If setContent is called by the Activity, make sure the Activity is launched after the ComposeTestRule runs
+	at androidx.compose.ui.test.TestContext.getAllSemanticsNodes$ui_test_release(TestOwner.kt:87)
+	at androidx.compose.ui.test.TestContext.getAllSemanticsNodes$ui_test_release$default(TestOwner.kt:81)
+	at androidx.compose.ui.test.SemanticsNodeInteractionCollection.fetchSemanticsNodes(SemanticsNodeInteraction.kt:256)
+	at androidx.compose.ui.test.SemanticsNodeInteractionCollection.fetchSemanticsNodes$default(SemanticsNodeInteraction.kt:249)
+	at dev.leemh.charok.RecorderDeviceTest$prepare$2.invoke(RecorderDeviceTest.kt:43)
+	at dev.leemh.charok.RecorderDeviceTest$prepare$2.invoke(RecorderDeviceTest.kt:43)
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:424)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:306)
+	at dev.leemh.charok.RecorderDeviceTest.prepare(RecorderDeviceTest.kt:43)
+	at dev.leemh.charok.RecorderDeviceTest.notificationStartsPreparedRecordInBackgroundOnlyOnce(RecorderDeviceTest.kt:114)
+
+FAILURES!!!
+Tests run: 1,  Failures: 1
+
+
+INSTRUMENTATION_CODE: -1

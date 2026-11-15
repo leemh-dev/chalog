@@ -1,0 +1,18 @@
+{
+  "gleo_package": "ai.umos.ambientai",
+  "gleo_version": "4.2.0.15",
+  "voice_interaction_permission_granted": true,
+  "actual_action_sender_or_speech_verified": false,
+  "actual_microphone_verified": false,
+  "emulator_audio": "no-audio; preserve existing CoreAudio workaround",
+  "media_playback_state_lines": [
+    "state=PlaybackState {state=ERROR(7), position=0, buffered position=0, speed=0.0, updated=45076, actions=0, custom actions=[], active item id=-1, error=블루투스 오디오가 연결 해제됨}"
+  ],
+  "audible_music_continuity_verified": false,
+  "vehicle_bridge": "see console-readiness.json",
+  "right_window": "OS manual only; OPEN does not force right window",
+  "actual_background_toast_visually_confirmed": false,
+  "result_notification_in_manually_opened_tray_confirmed": true,
+  "document_picker": "com.android.car.frameworkpackagestubs/.Stubs$DocumentsUIStubWithResult",
+  "actual_external_document_created": false
+}

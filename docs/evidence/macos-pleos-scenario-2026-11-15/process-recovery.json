@@ -1,0 +1,24 @@
+{
+  "provenance": "Host checks of preserved app-private Room DB plus completed ProcessRecoveryTest; not a retrieved app external-files artifact",
+  "sessionId": "4de9eac8-b51d-4ae6-b760-012eb612daf9",
+  "oldPid": 13108,
+  "verifyAfterProcessKill": {
+    "passed": true,
+    "newPidDifferentFromSeedAsserted": true,
+    "exactInstrumentationPid": null,
+    "evidence": "process-restore.txt",
+    "observationStabilityWaitMs": 1800
+  },
+  "postVerificationRelaunchPid": 15890,
+  "phase": "INTERRUPTED",
+  "notes": 2,
+  "bookmarks": 1,
+  "observationsBeforeRelaunch": 4,
+  "observationsAfterRelaunch": 4,
+  "observationsUnchanged": true,
+  "endedAt": null,
+  "foregroundServiceBeforeRelaunch": false,
+  "foregroundServiceAfterRelaunch": false,
+  "input": "TEST",
+  "externalArtifactRetrieval": "Permission denied for user 10 external storage; access was not bypassed"
+}

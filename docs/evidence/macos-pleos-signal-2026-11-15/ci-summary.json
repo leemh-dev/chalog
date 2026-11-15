@@ -1,0 +1,61 @@
+{
+  "run_id": 43683208769,
+  "url": "https://github.com/leemh-dev/charok/actions/runs/43683208769",
+  "artifact_id": 14149009486,
+  "head_sha": "31ba254426eab16f2253dfd9a389c2ad27360c0d",
+  "conclusion": "success",
+  "unit_suites": [
+    {
+      "name": "dev.leemh.charok.RoomStoreTest",
+      "tests": "1",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0",
+      "timestamp": "2026-11-15T05:59:49",
+      "hostname": "runnervmccnms",
+      "time": "7.661"
+    },
+    {
+      "name": "dev.leemh.charok.VoiceCommandTest",
+      "tests": "3",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0",
+      "timestamp": "2026-11-15T05:59:57",
+      "hostname": "runnervmccnms",
+      "time": "0.003"
+    },
+    {
+      "name": "dev.leemh.charok.RecorderTest",
+      "tests": "20",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0",
+      "timestamp": "2026-11-15T05:59:49",
+      "hostname": "runnervmccnms",
+      "time": "0.075"
+    }
+  ],
+  "general_android_device_suite": {
+    "name": "dev.leemh.charok.RecorderDeviceTest",
+    "tests": "8",
+    "failures": "0",
+    "errors": "0",
+    "skipped": "0",
+    "time": "53.36",
+    "timestamp": "2026-11-15T06:03:16",
+    "hostname": "localhost"
+  },
+  "general_android_process_recovery": {
+    "sessionId": "704884d0-09f7-413a-8757-f2991c585340",
+    "oldPid": 2639,
+    "newPid": 2715,
+    "phase": "INTERRUPTED",
+    "notes": 2,
+    "observationsUnchanged": true,
+    "input": "TEST"
+  },
+  "mac_pleos_device_validation": "8 isolated instrumentation methods, all passed; not a single combined suite",
+  "mac_process_kill_retested_this_version": false,
+  "video_recorded": false
+}

@@ -1,0 +1,49 @@
+{
+  "run_id": 43707910220,
+  "job_id": 132792906387,
+  "commit": "ce4990558b0afb943b3a6a9ccb1a2f0140175b0c",
+  "conclusion": "success",
+  "jvm": {
+    "tests": 40,
+    "failures": 0,
+    "errors": 0
+  },
+  "android_general_device": {
+    "tests": 16,
+    "failures": 0,
+    "errors": 0
+  },
+  "separate_new_pid_restore": "passed",
+  "artifact_id": 14159438002,
+  "artifact_name": "chalog-apks-and-evidence",
+  "archive_sha256": "cf6032b90f478f311da4a6f4bbc82f792282ea8f7a6b2782fd16a6466bcbc1c3",
+  "github_digest_matches": true,
+  "apk_checks": [
+    {
+      "path": "app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk",
+      "sha256": "833df62984ff465c0a4721331e5c47f691406dfcf21ff74b2bedc14ecbe754ff",
+      "package": "package: name='dev.leemh.charok.test' versionCode='' versionName='' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'",
+      "signature_verified": true,
+      "metadata_matches": true,
+      "signing_purpose": "development/test"
+    },
+    {
+      "path": "app/build/outputs/apk/debug/app-debug.apk",
+      "sha256": "26c562e0a4dccd467ba30df3d33881e606bd5be33a0ae2868f284bf2277b1cef",
+      "package": "package: name='dev.leemh.charok' versionCode='8' versionName='0.3.2' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'",
+      "signature_verified": true,
+      "metadata_matches": true,
+      "signing_purpose": "development/test"
+    },
+    {
+      "path": "app/build/outputs/apk/release/app-release-unsigned.apk",
+      "sha256": "c66dbba982a5fe782a3e48842964ee14a351129dd032fb13d6789e814269de11",
+      "package": "package: name='dev.leemh.charok' versionCode='8' versionName='0.3.2' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'",
+      "signature_verified": false,
+      "metadata_matches": true,
+      "signing_purpose": "unsigned release"
+    }
+  ],
+  "installed_on_mac": false,
+  "reason": "Mac keeps its existing development signer and data; CI signer is different."
+}

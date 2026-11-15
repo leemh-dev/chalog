@@ -1,0 +1,7 @@
+{
+  "after_devices": "List of devices attached\n\n",
+  "method": "adb emu kill",
+  "native_test_route_stopped": true,
+  "data_deleted": false,
+  "video_recorded": false
+}

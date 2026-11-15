@@ -1,0 +1,42 @@
+[
+  {
+    "code": "e7a4a6e",
+    "issue": "Forced portrait letterboxed the application instead of selecting a right window",
+    "resolution": "Removed screenOrientation; native OS manual resize/swap rechecked. Automatic right placement remains unverified."
+  },
+  {
+    "code": "e7a4a6e",
+    "issue": "Device test tried to scroll a fixed header close button",
+    "resolution": "Use a direct click for that fixed header."
+  },
+  {
+    "code": "e7a4a6e",
+    "issue": "Separate test recipient crashed because Kotlin runtime was supplied only by the target APK",
+    "resolution": "Standalone test recipient rewritten in Java; cross-UID file read and sibling denial passed."
+  },
+  {
+    "code": "bc4c56b",
+    "issue": "TEST fixture treated initial unknown motion as driving before Activity foreground completed",
+    "resolution": "Wait for known TEST gear before toggling and setting consent; final suite passed."
+  },
+  {
+    "code": "ee776fb",
+    "issue": "Pleos DocumentsUIStubWithResult returned a cancelled result; no visible export feedback while parked",
+    "resolution": "Handle no-document result, show dedicated report status, add device regression covering cancellation/missing picker."
+  },
+  {
+    "code": "ee776fb",
+    "issue": "Consent label did not toggle the checkbox; brief status notification was not visually established as a heads-up banner",
+    "resolution": "Make the whole consent row toggleable. Request normal short text toasts when the dashboard is hidden, alongside the notification; actual toast rendering is still unconfirmed on this Pleos."
+  },
+  {
+    "code": "7ad2e81",
+    "issue": "Mac duplicate-start test counted the 100-row history page after DB exceeded 100 rows",
+    "resolution": "Use read-only SELECT COUNT(*) over the actual SQLite table. Preserve all existing records."
+  },
+  {
+    "code": "7ad2e81",
+    "issue": "CI warning test timed out after clicking OFF while the new warning card changed the button layout",
+    "resolution": "Wait for published lamp state and Compose layout; check ENGINE by type instead of first item. Runtime behavior is rechecked in CI and Pleos."
+  }
+]

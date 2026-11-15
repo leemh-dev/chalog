@@ -1,0 +1,5 @@
+--------- beginning of system
+11-14 19:47:50.290   962  1333 E NotificationService: Package enqueue rate is 5.309456. Shedding 10|dev.leemh.charok|41|null|1010174. package=dev.leemh.charok
+11-14 19:48:53.886   962  1020 E NotificationService: Package enqueue rate is 5.6454263. Shedding 10|dev.leemh.charok|41|null|1010174. package=dev.leemh.charok
+11-14 19:49:33.957   962  1020 E NotificationService: Package enqueue rate is 6.4457455. Shedding 10|dev.leemh.charok|41|null|1010174. package=dev.leemh.charok
+11-14 19:49:39.450   962  4568 E NotificationService: Package enqueue rate is 5.014927. Shedding 10|dev.leemh.charok|41|null|1010174. package=dev.leemh.charok

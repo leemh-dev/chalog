@@ -1,0 +1,27 @@
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: FATAL EXCEPTION: main
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: Process: ai.umos.homescreen, PID: 3101
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: java.lang.IllegalArgumentException: Listener for taskId=1000056 already exists
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: 	at com.android.wm.shell.ShellTaskOrganizer.addListenerForTaskId(ShellTaskOrganizer.java:314)
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: 	at ai.umos.homescreen.data.task.TaskViewManager.handleMultiWindowTaskAppeared(TaskViewManager.kt:385)
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: 	at ai.umos.homescreen.data.task.TaskViewManager.access$handleMultiWindowTaskAppeared(TaskViewManager.kt:52)
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: 	at ai.umos.homescreen.data.task.TaskViewManager$taskStackListener$1$onTaskCreated$1.onAppeared(TaskViewManager.kt:186)
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: 	at ai.umos.homescreen.ui.taskview.ConnectTaskView.onTaskAppeared(ConnectTaskView.kt:88)
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: 	at com.android.wm.shell.taskview.TaskViewTaskController.lambda$onTaskAppeared$8(TaskViewTaskController.java:324)
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: 	at com.android.wm.shell.taskview.TaskViewTaskController.$r8$lambda$IAiGc1AOefh-3dOKFVUo6laBE4Y(Unknown Source:0)
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: 	at com.android.wm.shell.taskview.TaskViewTaskController$$ExternalSyntheticLambda12.runWithTransaction(Unknown Source:6)
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: 	at com.android.wm.shell.common.SyncTransactionQueue.onTransactionReceived(SyncTransactionQueue.java:152)
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: 	at com.android.wm.shell.common.SyncTransactionQueue.-$$Nest$monTransactionReceived(Unknown Source:0)
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: 	at com.android.wm.shell.common.SyncTransactionQueue$SyncCallback.lambda$onTransactionReady$0(SyncTransactionQueue.java:218)
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: 	at com.android.wm.shell.common.SyncTransactionQueue$SyncCallback.$r8$lambda$1P-HhEm_NRvixCxZSwrmsTe4hqc(Unknown Source:0)
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: 	at com.android.wm.shell.common.SyncTransactionQueue$SyncCallback$$ExternalSyntheticLambda0.run(Unknown Source:6)
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: 	at android.os.Handler.handleCallback(Handler.java:958)
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: 	at android.os.Handler.dispatchMessage(Handler.java:99)
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: 	at android.os.Looper.loopOnce(Looper.java:205)
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: 	at android.os.Looper.loop(Looper.java:294)
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: 	at android.app.ActivityThread.main(ActivityThread.java:8194)
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: 	at java.lang.reflect.Method.invoke(Native Method)
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:552)
+11-14 19:47:38.132  3101  3101 E AndroidRuntime: 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:971)
+11-14 19:47:42.979  3175  3175 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+11-14 19:47:50.562 14769 14769 I AndroidRuntime: VM exiting with result code 0.
+11-14 19:48:42.541  7763  7763 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<

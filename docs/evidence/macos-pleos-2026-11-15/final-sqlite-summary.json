@@ -1,0 +1,63 @@
+{
+  "integrity": "ok",
+  "export_matches_sqlite": true,
+  "recovery_same_id": true,
+  "sessions": [
+    {
+      "id": "69338406-495a-4101-b078-7948184cb0ba",
+      "mode": "TEST",
+      "phase": "INTERRUPTED",
+      "observations": 8,
+      "notes": 0
+    },
+    {
+      "id": "e65c52bb-e93b-4013-96e8-6bd4d5997708",
+      "mode": "TEST",
+      "phase": "SAVED",
+      "observations": 4,
+      "notes": 0
+    },
+    {
+      "id": "7358234d-f392-4eff-a4ef-fd239adabf93",
+      "mode": "TEST",
+      "phase": "SAVED",
+      "observations": 0,
+      "notes": 0
+    },
+    {
+      "id": "20ae1783-6003-46b7-82d7-33c11282de46",
+      "mode": "TEST",
+      "phase": "SAVED",
+      "observations": 4,
+      "notes": 0
+    },
+    {
+      "id": "4599bed9-d227-49dc-9ee4-95cbc0970baa",
+      "mode": "TEST",
+      "phase": "SAVED",
+      "observations": 16,
+      "notes": 2
+    },
+    {
+      "id": "60aa5812-e983-4c66-8a91-129115f80225",
+      "mode": "TEST",
+      "phase": "INTERRUPTED",
+      "observations": 40,
+      "notes": 2
+    },
+    {
+      "id": "c9d91802-d01f-4ccb-af91-2d6e41144d03",
+      "mode": "TEST",
+      "phase": "SAVED",
+      "observations": 136,
+      "notes": 2
+    },
+    {
+      "id": "2b07e5fb-eebf-4495-87b6-6414901a74a8",
+      "mode": "TEST",
+      "phase": "SAVED",
+      "observations": 172,
+      "notes": 2
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+[
+  {
+    "path": "screens/02-corrected-restored.png",
+    "caption": "0.3.1 update: saved record retained; no automatic collection",
+    "sha256": "78833f73ab6977c6ab372a555f69280850c856a7d1473ee5d8cac45509afa23f",
+    "capture": "actual Pleos screencap or Android UiAutomation screenshot",
+    "modified": false
+  },
+  {
+    "path": "screens/gleo-test-background-recording.png",
+    "caption": "TEST Broadcast starts recording with no dashboard; toast rendering not confirmed",
+    "sha256": "00eae4c2996d33673793e6307f3cbbaf0fe2b2e3f42cde9da8a1795fa3f83205",
+    "capture": "actual Pleos screencap or Android UiAutomation screenshot",
+    "modified": false
+  },
+  {
+    "path": "screens/gleo-test-background-saved.png",
+    "caption": "TEST Broadcast stops and saves without showing the dashboard",
+    "sha256": "00eae4c2996d33673793e6307f3cbbaf0fe2b2e3f42cde9da8a1795fa3f83205",
+    "capture": "actual Pleos screencap or Android UiAutomation screenshot",
+    "modified": false
+  },
+  {
+    "path": "screens/03-native-route.png",
+    "caption": "Native navigation 340 m route started through normal UI; public charging POI, not a CHALOG SDK request",
+    "sha256": "5796b99f711d27a35c55ad91b1acfca6763df5984924f7cd30a067dc913494b3",
+    "capture": "actual Pleos screencap or Android UiAutomation screenshot",
+    "modified": false
+  },
+  {
+    "path": "screens/04-consent-no-collection.png",
+    "caption": "Explicit TEST voice consent enabled; collection remains off until a command",
+    "sha256": "0afe83841ad8753be3052781623656314d18e9b5e7bf73014a2912bfe046fae0",
+    "capture": "actual Pleos screencap or Android UiAutomation screenshot",
+    "modified": false
+  },
+  {
+    "path": "screens/08-recording-right.png",
+    "caption": "Native vehicle area left, native route center, CHALOG right; OS manual window placement",
+    "sha256": "8e60009c29b060b3ff495e40388e7d0a13a0c59d929010dc36d26719ad729b11",
+    "capture": "actual Pleos screencap or Android UiAutomation screenshot",
+    "modified": false
+  },
+  {
+    "path": "screens/09-background-notification.png",
+    "caption": "TEST mark action and ongoing recording in native notification tray",
+    "sha256": "3cceb1772775d113d241a1e39156607f6f21b34a821584f4a5bb15b8d5b1ca82",
+    "capture": "actual Pleos screencap or Android UiAutomation screenshot",
+    "modified": false
+  },
+  {
+    "path": "screens/10-saved-notification.png",
+    "caption": "Actual saved result in the manually opened native notification tray, not an automatic toast",
+    "sha256": "5710044ec74655b67c75aa76be1319ebf0c808e9dc2e426b3e119cc1da152a27",
+    "capture": "actual Pleos screencap or Android UiAutomation screenshot",
+    "modified": false
+  },
+  {
+    "path": "screens/11-saved-native.png",
+    "caption": "After manual TEST stop: native route remains; no dashboard",
+    "sha256": "bdd9f2843bffd6325f64830dda33d62d26a9fc18fc83449c78a6743859739263",
+    "capture": "actual Pleos screencap or Android UiAutomation screenshot",
+    "modified": false
+  },
+  {
+    "path": "screens/12-consultation.png",
+    "caption": "Saved TEST consultation, observed warning lamps and missing-data status",
+    "sha256": "843f1e0c476a24ec335c365a62666916b74a6d3087cc3e0d8d14a27614b3e164",
+    "capture": "actual Pleos screencap or Android UiAutomation screenshot",
+    "modified": false
+  },
+  {
+    "path": "screens/report-save-feedback.png",
+    "caption": "Actual Pleos document stub returns no document; not-saved message is visible",
+    "sha256": "7eec6e12dc7b16bf4ce221d0a214adb7ff88d6de82c3365c24791bc4ccd63bad",
+    "capture": "actual Pleos screencap or Android UiAutomation screenshot",
+    "modified": false
+  },
+  {
+    "path": "screens/14-process-restored.png",
+    "caption": "ADB explicit OPEN after process recovery: existing interrupted TEST record shown; collection remains off, vehicle state unknown",
+    "sha256": "0baa032ca75a4292208fa2647ef8db9b0eae5a35d114f58089483882af645782",
+    "capture": "actual Pleos screencap or Android UiAutomation screenshot",
+    "modified": false
+  }
+]

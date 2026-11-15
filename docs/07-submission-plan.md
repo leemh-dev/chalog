@@ -67,7 +67,7 @@ Kotlin·Compose·Room을 사용해 기록 도메인과 SDK 어댑터를 분리�
 - [설계 시안과 조작 가능한 HTML](design/README.md)
 - [UX/UI 명세](08-ux-ui-spec.md), [시연·개발 우선순위](09-demo-delivery-plan.md)
 - [기술 검토](05-conversation-scenario-feasibility.md), [공식 근거 목록](evidence/planning-design/sources.md)
-- GitHub: https://github.com/leemh-dev/charok (현재 문서·시안이며 소스+APK 제출 수준 아님)
+- GitHub: https://github.com/leemh-dev/chalog (현재 문서·시안이며 소스+APK 제출 수준 아님)
 
 ## 8. 숏폼
 

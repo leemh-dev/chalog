@@ -1,0 +1,61 @@
+{
+  "before_records": 118,
+  "after_records": 119,
+  "all_existing_rows_exactly_unchanged": true,
+  "compared_fields": [
+    "id",
+    "startedAt",
+    "payload"
+  ],
+  "integrity": "ok",
+  "schema": 1,
+  "new_test_session": {
+    "id": "ade79a48-ba0d-47a4-a7ac-b9a80cb43ed1",
+    "phase": "SAVED",
+    "mode": "TEST",
+    "reason": "사용자 종료",
+    "triggerElapsed": 402829,
+    "endedAt": 1794738658525,
+    "notes": 2,
+    "bookmarks": 1,
+    "observations": 987,
+    "origin_counts": {
+      "TEST": 987
+    },
+    "pretrigger_ms": 59831,
+    "lamp_values": [
+      [
+        "telltale:ENGINE",
+        "ON"
+      ],
+      [
+        "telltale:TPMS",
+        "BLINK"
+      ],
+      [
+        "telltale:ENGINE",
+        "OFF"
+      ],
+      [
+        "telltale:TPMS",
+        "BLINK"
+      ]
+    ],
+    "note_origins": [
+      "TEST"
+    ]
+  },
+  "background_observations": [
+    643,
+    812
+  ],
+  "no_dashboard_during_background_interval": true,
+  "observations_frozen_after_save_and_restart": true,
+  "old_pid": 24273,
+  "new_pid": 2091,
+  "restart": "Process already absent after normal panel close (pidof rc1); no force-stop was executed. Explicit OPEN then launched COLD.",
+  "no_automatic_collection_after_restart": true,
+  "foreground_service_at_end": false,
+  "dashboard_at_end": false,
+  "app_sha256": "c6eb42e1418bc0bf081682e1b5e3394ab13eff580d213e6be301265a9d77c2e7"
+}

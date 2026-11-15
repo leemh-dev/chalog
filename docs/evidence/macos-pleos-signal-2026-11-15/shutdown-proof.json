@@ -1,0 +1,8 @@
+{
+  "method": "adb -s emulator-5560 emu kill",
+  "response": "OK: killing emulator, bye bye; OK",
+  "after_devices": "List of devices attached\n\n",
+  "active_recording_before_shutdown": false,
+  "data_deleted": false,
+  "video_recorded": false
+}

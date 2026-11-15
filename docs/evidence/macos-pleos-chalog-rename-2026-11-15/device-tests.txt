@@ -1,0 +1,401 @@
+Sixteen isolated Android instrumentation runs on Pleos (explicit TEST input) with a 5-second task-listener settling interval. Database preserved between all runs.
+
+RecorderDeviceTest#warningLightsSurviveSaveReopenAndReport
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.chalog.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=warningLightsSurviveSaveReopenAndReport
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=warningLightsSurviveSaveReopenAndReport
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 8.178
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+RecorderDeviceTest#drivingLocksDetailsButAllowsStop
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.chalog.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=drivingLocksDetailsButAllowsStop
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=drivingLocksDetailsButAllowsStop
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 4.982
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+RecorderDeviceTest#failedSaveRetriesSameIdWithoutNewSession
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.chalog.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=failedSaveRetriesSameIdWithoutNewSession
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=failedSaveRetriesSameIdWithoutNewSession
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 5.894
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+RecorderDeviceTest#closingDashboardKeepsServiceAndReopeningKeepsId
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.chalog.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=closingDashboardKeepsServiceAndReopeningKeepsId
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=closingDashboardKeepsServiceAndReopeningKeepsId
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 8.21
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+RecorderDeviceTest#notificationStartsPreparedRecordInBackgroundOnlyOnce
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.chalog.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=notificationStartsPreparedRecordInBackgroundOnlyOnce
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=notificationStartsPreparedRecordInBackgroundOnlyOnce
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 8.941
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+RecorderDeviceTest#recreationAndBackgroundKeepRecordingUntilNotificationStop
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.chalog.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=recreationAndBackgroundKeepRecordingUntilNotificationStop
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=recreationAndBackgroundKeepRecordingUntilNotificationStop
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 10.666
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+RecorderDeviceTest#rapidCommandsKeepTheSameSession
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.chalog.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=rapidCommandsKeepTheSameSession
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=rapidCommandsKeepTheSameSession
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 4.298
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+RecorderDeviceTest#recordsBookmarksAndPersistsRealDatabase
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.chalog.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=recordsBookmarksAndPersistsRealDatabase
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=recordsBookmarksAndPersistsRealDatabase
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 8.946
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+RecorderDeviceTest#staleNotificationCannotStartTheNextPreparation
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.chalog.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=staleNotificationCannotStartTheNextPreparation
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=staleNotificationCannotStartTheNextPreparation
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 9.145
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+GleoBroadcastDeviceTest#renamedAndLegacyOpenKeepSavedRecordWithoutStartingCollection
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.chalog.GleoBroadcastDeviceTest:
+INSTRUMENTATION_STATUS: test=renamedAndLegacyOpenKeepSavedRecordWithoutStartingCollection
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=renamedAndLegacyOpenKeepSavedRecordWithoutStartingCollection
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 5.445
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+GleoBroadcastDeviceTest#broadcastStartsWithoutPreparationAndStopsWithoutOpeningPanel
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.chalog.GleoBroadcastDeviceTest:
+INSTRUMENTATION_STATUS: test=broadcastStartsWithoutPreparationAndStopsWithoutOpeningPanel
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=broadcastStartsWithoutPreparationAndStopsWithoutOpeningPanel
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 14.101
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+GleoBroadcastDeviceTest#broadcastRejectsMissingConsentAndMalformedParameters
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.chalog.GleoBroadcastDeviceTest:
+INSTRUMENTATION_STATUS: test=broadcastRejectsMissingConsentAndMalformedParameters
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=broadcastRejectsMissingConsentAndMalformedParameters
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 2.074
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+GleoBroadcastDeviceTest#broadcastDoesNotReplaceFailedRecordAndRetryKeepsId
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.chalog.GleoBroadcastDeviceTest:
+INSTRUMENTATION_STATUS: test=broadcastDoesNotReplaceFailedRecordAndRetryKeepsId
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=broadcastDoesNotReplaceFailedRecordAndRetryKeepsId
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 3.638
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+GleoBroadcastDeviceTest#selectedReportCanBeReadByGrantedExternalTestRecipientOnly
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.chalog.GleoBroadcastDeviceTest:
+INSTRUMENTATION_STATUS: test=selectedReportCanBeReadByGrantedExternalTestRecipientOnly
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=selectedReportCanBeReadByGrantedExternalTestRecipientOnly
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 4.311
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+GleoBroadcastDeviceTest#unprivilegedExternalAppCannotStartRecording
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.chalog.GleoBroadcastDeviceTest:
+INSTRUMENTATION_STATUS: test=unprivilegedExternalAppCannotStartRecording
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=unprivilegedExternalAppCannotStartRecording
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 4.364
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+GleoBroadcastDeviceTest#fileSaveCancellationOrMissingPickerShowsFeedbackWithoutLosingRecord
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.chalog.GleoBroadcastDeviceTest:
+INSTRUMENTATION_STATUS: test=fileSaveCancellationOrMissingPickerShowsFeedbackWithoutLosingRecord
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.chalog.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=fileSaveCancellationOrMissingPickerShowsFeedbackWithoutLosingRecord
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 9.581
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1

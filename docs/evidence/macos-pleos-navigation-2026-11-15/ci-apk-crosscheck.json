@@ -1,0 +1,35 @@
+{
+  "artifact_id": 14151963753,
+  "zip_sha256": "678abf5dee68cce963378ad8f482782a6d9ff297323ddd5bea78902d693224fd",
+  "zip_matches_github_digest": true,
+  "apks": [
+    {
+      "path": "app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk",
+      "sha256": "a3051059f559f00a03a388d040c4b3884c552d7bd4a4154dbef7f1a7ca904c7c",
+      "hash_matches": true,
+      "package_matches": true,
+      "signature_rc": 0,
+      "signer_sha256": "e3a815a76002e20c3a073b69aa69883cc98cbabf25850844477ef24444d3083d",
+      "development_signed": true
+    },
+    {
+      "path": "app/build/outputs/apk/debug/app-debug.apk",
+      "sha256": "0a7fb223b48cdbc298b5f24dbc623e85927df3528c45aaf7962e745d9b1605e0",
+      "hash_matches": true,
+      "package_matches": true,
+      "signature_rc": 0,
+      "signer_sha256": "e3a815a76002e20c3a073b69aa69883cc98cbabf25850844477ef24444d3083d",
+      "development_signed": true
+    },
+    {
+      "path": "app/build/outputs/apk/release/app-release-unsigned.apk",
+      "sha256": "df3b7747edca60bb044900c9e135853eda9b8471351acdb6b65d25d2ee7200e4",
+      "hash_matches": true,
+      "package_matches": true,
+      "signature_rc": 1,
+      "signer_sha256": null,
+      "development_signed": false
+    }
+  ],
+  "installed_on_mac": false
+}

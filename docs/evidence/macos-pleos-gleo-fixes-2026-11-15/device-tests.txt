@@ -1,0 +1,376 @@
+Fifteen isolated Android instrumentation runs on Pleos (explicit TEST input) with a 5-second task-listener settling interval. Database preserved between all runs.
+
+RecorderDeviceTest#warningLightsSurviveSaveReopenAndReport
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=warningLightsSurviveSaveReopenAndReport
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=warningLightsSurviveSaveReopenAndReport
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 6.724
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+RecorderDeviceTest#drivingLocksDetailsButAllowsStop
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=drivingLocksDetailsButAllowsStop
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=drivingLocksDetailsButAllowsStop
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 4.836
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+RecorderDeviceTest#failedSaveRetriesSameIdWithoutNewSession
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=failedSaveRetriesSameIdWithoutNewSession
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=failedSaveRetriesSameIdWithoutNewSession
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 5.429
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+RecorderDeviceTest#closingDashboardKeepsServiceAndReopeningKeepsId
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=closingDashboardKeepsServiceAndReopeningKeepsId
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=closingDashboardKeepsServiceAndReopeningKeepsId
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 7.144
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+RecorderDeviceTest#notificationStartsPreparedRecordInBackgroundOnlyOnce
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=notificationStartsPreparedRecordInBackgroundOnlyOnce
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=notificationStartsPreparedRecordInBackgroundOnlyOnce
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 8.522
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+RecorderDeviceTest#recreationAndBackgroundKeepRecordingUntilNotificationStop
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=recreationAndBackgroundKeepRecordingUntilNotificationStop
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=recreationAndBackgroundKeepRecordingUntilNotificationStop
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 9.129
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+RecorderDeviceTest#rapidCommandsKeepTheSameSession
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=rapidCommandsKeepTheSameSession
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=rapidCommandsKeepTheSameSession
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 3.996
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+RecorderDeviceTest#recordsBookmarksAndPersistsRealDatabase
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=recordsBookmarksAndPersistsRealDatabase
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=recordsBookmarksAndPersistsRealDatabase
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 7.675
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+RecorderDeviceTest#staleNotificationCannotStartTheNextPreparation
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=staleNotificationCannotStartTheNextPreparation
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=staleNotificationCannotStartTheNextPreparation
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 7.134
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+GleoBroadcastDeviceTest#broadcastStartsWithoutPreparationAndStopsWithoutOpeningPanel
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.GleoBroadcastDeviceTest:
+INSTRUMENTATION_STATUS: test=broadcastStartsWithoutPreparationAndStopsWithoutOpeningPanel
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=broadcastStartsWithoutPreparationAndStopsWithoutOpeningPanel
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 14.69
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+GleoBroadcastDeviceTest#broadcastRejectsMissingConsentAndMalformedParameters
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.GleoBroadcastDeviceTest:
+INSTRUMENTATION_STATUS: test=broadcastRejectsMissingConsentAndMalformedParameters
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=broadcastRejectsMissingConsentAndMalformedParameters
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 2.583
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+GleoBroadcastDeviceTest#broadcastDoesNotReplaceFailedRecordAndRetryKeepsId
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.GleoBroadcastDeviceTest:
+INSTRUMENTATION_STATUS: test=broadcastDoesNotReplaceFailedRecordAndRetryKeepsId
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=broadcastDoesNotReplaceFailedRecordAndRetryKeepsId
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 3.416
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+GleoBroadcastDeviceTest#selectedReportCanBeReadByGrantedExternalTestRecipientOnly
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.GleoBroadcastDeviceTest:
+INSTRUMENTATION_STATUS: test=selectedReportCanBeReadByGrantedExternalTestRecipientOnly
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=selectedReportCanBeReadByGrantedExternalTestRecipientOnly
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 3.933
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+GleoBroadcastDeviceTest#unprivilegedExternalAppCannotStartRecording
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.GleoBroadcastDeviceTest:
+INSTRUMENTATION_STATUS: test=unprivilegedExternalAppCannotStartRecording
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=unprivilegedExternalAppCannotStartRecording
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 3.831
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+GleoBroadcastDeviceTest#fileSaveCancellationOrMissingPickerShowsFeedbackWithoutLosingRecord
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.GleoBroadcastDeviceTest:
+INSTRUMENTATION_STATUS: test=fileSaveCancellationOrMissingPickerShowsFeedbackWithoutLosingRecord
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.GleoBroadcastDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=fileSaveCancellationOrMissingPickerShowsFeedbackWithoutLosingRecord
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 8.561
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1

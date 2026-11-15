@@ -1,0 +1,7 @@
+{
+  "method": "adb emu kill",
+  "after_devices": "List of devices attached\n\n",
+  "recording_stopped_before_shutdown": true,
+  "data_deleted": false,
+  "video_recorded": false
+}

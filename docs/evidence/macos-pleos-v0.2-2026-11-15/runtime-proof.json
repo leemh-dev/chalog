@@ -1,0 +1,16 @@
+{
+  "background": {
+    "input": "TEST",
+    "installed_apk_sha256": "578202acd485ac019179ba7e97e3b410a7d6883ff1cddfce0d45fd1cd99d9716",
+    "matches_built_apk": true,
+    "foreground_service": true,
+    "dashboard_activity_in_history": false
+  },
+  "saved": {
+    "input": "TEST",
+    "installed_apk_sha256": "578202acd485ac019179ba7e97e3b410a7d6883ff1cddfce0d45fd1cd99d9716",
+    "matches_built_apk": true,
+    "foreground_service": false,
+    "dashboard_activity_in_history": false
+  }
+}

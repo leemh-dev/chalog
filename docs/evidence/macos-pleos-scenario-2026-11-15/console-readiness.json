@@ -1,0 +1,57 @@
+{
+  "gear": {
+    "bridge_ready": false,
+    "input_mode": "http-g29",
+    "actual_topic": "SDV_MOTION_GEAR_BASE_GEARBASE_ACTUAL_GEAR",
+    "supported_gears": [
+      "Park",
+      "Reverse",
+      "Neutral",
+      "Drive"
+    ],
+    "actual": null
+  },
+  "controls": {
+    "speed_kph": 0,
+    "accelerator_pct": 0,
+    "brake_pct": 0,
+    "steering_deg": 0,
+    "source": "default",
+    "timestamp_ms": 0,
+    "source_timestamp": 0,
+    "source_location": "",
+    "input_mode": "http-g29",
+    "emulator_active": false,
+    "input_active": false,
+    "dds_ready": {
+      "speed": false,
+      "accelerator": false,
+      "brake": false,
+      "brake_pressed": false,
+      "steering": false,
+      "all": false
+    },
+    "topics": {
+      "speed": "SDV_MOTION_DRIVING_INFO_DRIVINGINFO_ACTUAL_SPEED",
+      "accelerator": "SDV_MOTION_ACCELERATOR_BASE_ACCELERATORBASE_ACTUAL_PEDAL",
+      "brake": "SDV_MOTION_BRAKE_BASE_BRAKEBASE_ACTUAL_PEDAL",
+      "brake_pressed": "SDV_MOTION_BRAKE_BASE_BRAKEBASE_ACTUAL_PEDAL_PRESSED",
+      "steering": "SDV_MOTION_STEERING_WHEEL_BASE_STEERINGWHEELBASE_ACTUAL_ANGLE",
+      "desired_steering": "SDV_MOTION_STEERING_WHEEL_BASE_STEERINGWHEELBASE_DESIRED_ANGLE"
+    },
+    "limits": {
+      "speed_kph": [
+        0,
+        240
+      ],
+      "pedal_pct": [
+        0,
+        100
+      ],
+      "steering_deg": [
+        -540,
+        540
+      ]
+    }
+  }
+}

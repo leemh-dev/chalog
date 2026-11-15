@@ -1,0 +1,9 @@
+{
+  "finished": {
+    "input": "TEST",
+    "installed_apk_sha256": "ddde9c843aa32d0ad484f91aeb6c7581c449bad04dbea0554f5dcb86ed466071",
+    "matches_built_apk": true,
+    "foreground_service": false,
+    "dashboard_activity_in_history": false
+  }
+}

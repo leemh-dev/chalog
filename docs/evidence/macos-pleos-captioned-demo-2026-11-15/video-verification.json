@@ -1,0 +1,201 @@
+{
+  "all_frames_decoded" : true,
+  "audio_tracks" : 0,
+  "chapter_checks" : [
+    {
+      "actual_seconds" : 2.2916666666666665,
+      "expected_subtitle" : "정차 상태의 TEST 입력에서 차량 상태 기록에 동의합니다.",
+      "expected_title" : "시나리오 01 · 기록 준비",
+      "frame" : "chapter-01.png",
+      "requested_seconds" : 2.3125,
+      "subtitle_ocr" : "정차 상태의 TEST 입력에서 차량 상태 기록에 동의합니다.",
+      "subtitle_ocr_matches" : true,
+      "title_ocr" : "시나리오 01 • 기록 준비",
+      "title_ocr_matches" : true
+    },
+    {
+      "actual_seconds" : 8.125,
+      "expected_subtitle" : "기록 준비를 켜면 실제 받은 최근 최대 60초를 보존합니다.\n없는 과거 데이터는 만들어 넣지 않습니다.",
+      "expected_title" : "시나리오 01 · 기록 준비",
+      "frame" : "chapter-02.png",
+      "requested_seconds" : 8.125,
+      "subtitle_ocr" : "기록 준비를 켜면 실제 받은 최근 최대 60초를 보존합니다. 없는 과거 데이터는 만들어 넣지 않습니다.",
+      "subtitle_ocr_matches" : true,
+      "title_ocr" : "시나리오 01 • 기록 준비",
+      "title_ocr_matches" : true
+    },
+    {
+      "actual_seconds" : 15.708333333333334,
+      "expected_subtitle" : "차록 화면을 닫고 순정 내비를 유지합니다.\n준비와 기록은 백그라운드에서 이어집니다.",
+      "expected_title" : "시나리오 02 · 백그라운드 기록 시작",
+      "frame" : "chapter-03.png",
+      "requested_seconds" : 15.729166666666666,
+      "subtitle_ocr" : "차록 화면을 닫고 순정 내비를 유지합니다. 준비와 기록은 백그라운드에서 이어집니다.",
+      "subtitle_ocr_matches" : true,
+      "title_ocr" : "시나리오 02 • 백그라운드 기록 시작",
+      "title_ocr_matches" : true
+    },
+    {
+      "actual_seconds" : 26.458333333333332,
+      "expected_subtitle" : "알림에서 TEST 기록을 시작합니다. 준비 대기는 일부 생략했습니다.\n실제 직전 59.831초가 같은 기록에 포함됐습니다.",
+      "expected_title" : "시나리오 02 · 백그라운드 기록 시작",
+      "frame" : "chapter-04.png",
+      "requested_seconds" : 26.479166666666664,
+      "subtitle_ocr" : "알림에서 TEST 기록을 시작합니다. 준비 대기는 일부 생략했습니다. 실제 직전 59.831초가 같은 기록에 포함됐습니다.",
+      "subtitle_ocr_matches" : true,
+      "title_ocr" : "시나리오 02 • 백그라운드 기록 시작",
+      "title_ocr_matches" : true
+    },
+    {
+      "actual_seconds" : 38,
+      "expected_subtitle" : "TEST 내용을 입력하려고 차록을 직접 열었습니다.\n오른쪽 창 배치는 OS에서 수동으로 조정했습니다.",
+      "expected_title" : "시나리오 03 · 설명과 경고등 기록",
+      "frame" : "chapter-05.png",
+      "requested_seconds" : 38,
+      "subtitle_ocr" : "TEST 내용을 입력하려고 차록을 직접 열었습니다. 오른쪽 창 배치는 OS에서 수동으로 조정했습니다.",
+      "subtitle_ocr_matches" : true,
+      "title_ocr" : "시나리오 03 • 설명과 경고등 기록",
+      "title_ocr_matches" : true
+    },
+    {
+      "actual_seconds" : 50,
+      "expected_subtitle" : "TEST 버튼으로 운전자 설명과 경고등을 입력합니다.\n엔진 경고등 점등과 타이어 공기압 경고등 점멸이 표시됩니다.",
+      "expected_title" : "시나리오 03 · 설명과 경고등 기록",
+      "frame" : "chapter-06.png",
+      "requested_seconds" : 50,
+      "subtitle_ocr" : "TEST 버튼으로 운전자 설명과 경고등을 입력합니다. 엔진 경고등 점등과 타이어 공기압 경고등 점멸이 표시됩니다.",
+      "subtitle_ocr_matches" : true,
+      "title_ocr" : "시나리오 03 • 설명과 경고등 기록",
+      "title_ocr_matches" : true
+    },
+    {
+      "actual_seconds" : 62.75,
+      "expected_subtitle" : "소등 이력도 남깁니다.\n수신이 끊기면 정상으로 바꾸지 않고 미확인으로 표시합니다.",
+      "expected_title" : "시나리오 03 · 설명과 경고등 기록",
+      "frame" : "chapter-07.png",
+      "requested_seconds" : 62.75,
+      "subtitle_ocr" : "소등 이력도 남깁니다. 수신이 끊기면 정상으로 바꾸지 않고 미확인으로 표시합니다.",
+      "subtitle_ocr_matches" : true,
+      "title_ocr" : "시나리오 03 • 설명과 경고등 기록",
+      "title_ocr_matches" : true
+    },
+    {
+      "actual_seconds" : 71.375,
+      "expected_subtitle" : "관측 이력을 보존하며 고장 진단으로 표현하지 않습니다.",
+      "expected_title" : "시나리오 03 · 설명과 경고등 기록",
+      "frame" : "chapter-08.png",
+      "requested_seconds" : 71.375,
+      "subtitle_ocr" : "관측 이력을 보존하며 고장 진단으로 표현하지 않습니다.",
+      "subtitle_ocr_matches" : true,
+      "title_ocr" : "시나리오 03 • 설명과 경고등 기록",
+      "title_ocr_matches" : true
+    },
+    {
+      "actual_seconds" : 78.5,
+      "expected_subtitle" : "화면을 닫아도 기록은 계속됩니다.\n내비 화면을 유지한 채 알림에서 조작합니다.",
+      "expected_title" : "시나리오 04 · 순간 표시와 저장",
+      "frame" : "chapter-09.png",
+      "requested_seconds" : 78.5,
+      "subtitle_ocr" : "화면을 닫아도 기록은 계속됩니다. 내비 화면을 유지한 채 알림에서 조작합니다.",
+      "subtitle_ocr_matches" : true,
+      "title_ocr" : "시나리오 04 • 순간 표시와 저장",
+      "title_ocr_matches" : true
+    },
+    {
+      "actual_seconds" : 87.708333333333329,
+      "expected_subtitle" : "알림의 ‘지금이야’로 같은 기록에 순간을 표시합니다.\n직접 펼친 알림센터의 실제 결과입니다.",
+      "expected_title" : "시나리오 04 · 순간 표시와 저장",
+      "frame" : "chapter-10.png",
+      "requested_seconds" : 87.729166666666657,
+      "subtitle_ocr" : "알림의 '지금이야'로 같은 기록에 순간을 표시합니다. 직접 펼친 알림센터의 실제 결과입니다.",
+      "subtitle_ocr_matches" : true,
+      "title_ocr" : "시나리오 04 • 순간 표시와 저장",
+      "title_ocr_matches" : true
+    },
+    {
+      "actual_seconds" : 95.916666666666671,
+      "expected_subtitle" : "‘종료·저장’을 누르면 수집을 멈추고 같은 기록을 저장합니다.",
+      "expected_title" : "시나리오 04 · 순간 표시와 저장",
+      "frame" : "chapter-11.png",
+      "requested_seconds" : 95.9375,
+      "subtitle_ocr" : "'종료•저장'을 누르면 수집을 멈추고 같은 기록을 저장합니다.",
+      "subtitle_ocr_matches" : true,
+      "title_ocr" : "시나리오 04 • 순간 표시와 저장",
+      "title_ocr_matches" : true
+    },
+    {
+      "actual_seconds" : 103.875,
+      "expected_subtitle" : "저장 완료 알림을 확인했습니다.\n대시보드는 자동으로 열리지 않고 관측은 987건에서 멈췄습니다.",
+      "expected_title" : "시나리오 04 · 순간 표시와 저장",
+      "frame" : "chapter-12.png",
+      "requested_seconds" : 103.89583333333334,
+      "subtitle_ocr" : "저장 완료 알림을 확인했습니다. 대시보드는 자동으로 열리지 않고 관측은 987건에서 멈췄습니다.",
+      "subtitle_ocr_matches" : true,
+      "title_ocr" : "시나리오 04 • 순간 표시와 저장",
+      "title_ocr_matches" : true
+    },
+    {
+      "actual_seconds" : 113.75,
+      "expected_subtitle" : "사용자가 차록을 직접 열어 저장 기록을 확인합니다.\n오른쪽 창은 OS에서 수동 배치했습니다.",
+      "expected_title" : "시나리오 05 · 다시 열어 상담 확인",
+      "frame" : "chapter-13.png",
+      "requested_seconds" : 113.75,
+      "subtitle_ocr" : "사용자가 차록을 직접 열어 저장 기록을 확인합니다. 오른쪽 창은 OS에서 수동 배치했습니다.",
+      "subtitle_ocr_matches" : true,
+      "title_ocr" : "시나리오 05 • 다시 열어 상담 확인",
+      "title_ocr_matches" : true
+    },
+    {
+      "actual_seconds" : 125.79166666666667,
+      "expected_subtitle" : "설명 1건·순간 표시 1건·경고등 2종·관측 987건을 확인합니다.\nDB에 저장된 같은 기록과 대조했습니다.",
+      "expected_title" : "시나리오 05 · 다시 열어 상담 확인",
+      "frame" : "chapter-14.png",
+      "requested_seconds" : 125.8125,
+      "subtitle_ocr" : "설명 1건•순간 표시 1건•경고등 2종•관측 987건을 확인합니다. DB에 저장된 같은 기록과 대조했습니다.",
+      "subtitle_ocr_matches" : true,
+      "title_ocr" : "시나리오 05 • 다시 열어 상담 확인",
+      "title_ocr_matches" : true
+    },
+    {
+      "actual_seconds" : 138.125,
+      "expected_subtitle" : "앱을 닫고 새 프로세스로 다시 실행합니다.\n기존 기록을 지우거나 새로 만들지 않습니다.",
+      "expected_title" : "시나리오 06 · 재실행 후 기록 보존",
+      "frame" : "chapter-15.png",
+      "requested_seconds" : 138.14583333333331,
+      "subtitle_ocr" : "앱을 닫고 새 프로세스로 다시 실행합니다. 기존 기록을 지우거나 새로 만들지 않습니다.",
+      "subtitle_ocr_matches" : true,
+      "title_ocr" : "시나리오 06 • 재실행 후 기록 보존",
+      "title_ocr_matches" : true
+    },
+    {
+      "actual_seconds" : 147.41666666666666,
+      "expected_subtitle" : "같은 저장 기록이 복원되고 수집은 자동 재개되지 않습니다.\n차량 상태가 미확인이면 상세 보기는 잠깁니다.",
+      "expected_title" : "시나리오 06 · 재실행 후 기록 보존",
+      "frame" : "chapter-16.png",
+      "requested_seconds" : 147.41666666666666,
+      "subtitle_ocr" : "같은 저장 기록이 복원되고 수집은 자동 재개되지 않습니다. 차량 상태가 미확인이면 상세 보기는 잠깁니다.",
+      "subtitle_ocr_matches" : true,
+      "title_ocr" : "시나리오 06 • 재실행 후 기록 보존",
+      "title_ocr_matches" : true
+    },
+    {
+      "actual_seconds" : 155.29166666666666,
+      "expected_subtitle" : "실제 Pleos에서 검증한 TEST 흐름입니다.\n실제 Gleo 음성·차량 SDK·마이크 연동 성공 영상은 아닙니다.",
+      "expected_title" : "시나리오 06 · 재실행 후 기록 보존",
+      "frame" : "chapter-17.png",
+      "requested_seconds" : 155.29166666666666,
+      "subtitle_ocr" : "실제 Pleos에서 검증한 TEST 흐름입니다. 실제 Gleo 음성•차량 SDK•마이크 연동 성공 영상은 아닙니다.",
+      "subtitle_ocr_matches" : true,
+      "title_ocr" : "시나리오 06 • 재실행 후 기록 보존",
+      "title_ocr_matches" : true
+    }
+  ],
+  "decoded_frames" : 3820,
+  "duration_seconds" : 159.16666666666666,
+  "height" : 1280,
+  "nominal_fps" : 24,
+  "note" : "OCR differences require visual review; they are not silently marked passed.",
+  "strictly_increasing_timestamps" : true,
+  "subtitle_font_glyph_check" : true,
+  "width" : 1920
+}

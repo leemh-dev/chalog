@@ -1,0 +1,26 @@
+{
+  "input": "ADB explicit Activity action, NOT Gleo speech",
+  "precondition": "no recording preparation; real input mode; foreground service absent",
+  "requests": [
+    {
+      "action": "START_SYMPTOM_RECORD",
+      "stdout": "Starting: Intent { act=START_SYMPTOM_RECORD cmp=dev.leemh.charok/.GleoActivity (has extras) }\nStatus: ok\nLaunchState: COLD\nActivity: dev.leemh.charok/.GleoActivity\nTotalTime: 1382\nWaitTime: 1387\nComplete\n",
+      "stderr": ""
+    },
+    {
+      "action": "ADD_SYMPTOM_NOTE",
+      "stdout": "Starting: Intent { act=ADD_SYMPTOM_NOTE cmp=dev.leemh.charok/.GleoActivity (has extras) }\nStatus: ok\nLaunchState: COLD\nActivity: dev.leemh.charok/.GleoActivity\nTotalTime: 581\nWaitTime: 592\nComplete\n",
+      "stderr": ""
+    },
+    {
+      "action": "END_SYMPTOM_RECORD",
+      "stdout": "Starting: Intent { act=END_SYMPTOM_RECORD cmp=dev.leemh.charok/.GleoActivity (has extras) }\nStatus: ok\nLaunchState: COLD\nActivity: dev.leemh.charok/.GleoActivity\nTotalTime: 545\nWaitTime: 567\nComplete\n",
+      "stderr": ""
+    },
+    {
+      "action": "OPEN_CHAROK_RECORDS",
+      "stdout": "No activity found\n",
+      "stderr": ""
+    }
+  ]
+}

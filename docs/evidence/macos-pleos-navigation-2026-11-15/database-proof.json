@@ -1,0 +1,15 @@
+{
+  "before_records": 66,
+  "after_records": 66,
+  "all_existing_rows_exactly_equal": true,
+  "compared_fields": [
+    "id",
+    "startedAt",
+    "payload"
+  ],
+  "new_sessions_created": 0,
+  "sqlite_integrity": "ok",
+  "schema_before": 1,
+  "schema_after": 1,
+  "raw_database_published": false
+}

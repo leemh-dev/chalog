@@ -1,0 +1,75 @@
+{
+  "code_commit": "ef85516e89bd74e50dc23038fbcd52b0bfaf55cb",
+  "run_url": "https://github.com/leemh-dev/charok/actions/runs/43650320801",
+  "environment": "GitHub disposable general Android API34 x86_64; not Pleos",
+  "input": "TEST, not microphone or real vehicle",
+  "suites": [
+    {
+      "name": "dev.leemh.charok.VoiceCommandTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "dev.leemh.charok.RoomStoreTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "dev.leemh.charok.RecorderTest",
+      "tests": "20",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "dev.leemh.charok.RecorderDeviceTest",
+      "tests": "5",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ],
+  "lint_errors": 0,
+  "process_recovery": "seed + host force-stop + fresh PID verify; seed intentionally terminated, not two completed JUnit methods",
+  "screens": [
+    {
+      "file": "screens/01-prepared-test.png",
+      "sha256": "df026491b73120e88367c1abcdf7f2cc8825a2a207ed3205ff8e3a5f666dd0fb",
+      "capture": "native Compose root; system status/navigation bars excluded"
+    },
+    {
+      "file": "screens/02-recording-test.png",
+      "sha256": "533e7dd50753fd80d2838c75a0d1d06a7515f07bec45d3ae9e7eb64da3eb256b",
+      "capture": "native Compose root; system status/navigation bars excluded"
+    },
+    {
+      "file": "screens/03-marked-test.png",
+      "sha256": "8f614084a211e9a3abd8862b99fe7d4ce1505565fd5e09c03a6f97987d4cdce7",
+      "capture": "native Compose root; system status/navigation bars excluded"
+    },
+    {
+      "file": "screens/04-saved-test.png",
+      "sha256": "6fd567ccb7212a4aa49b13f5f18d9220e5dd794b45aa2ca2222f136274b4133b",
+      "capture": "native Compose root; system status/navigation bars excluded"
+    },
+    {
+      "file": "screens/05-consultation-test.png",
+      "sha256": "e40cba5fa6b86e8f7e4114e899cbf4f8ad6d07cc7f86336b96fe84e81b46180f",
+      "capture": "native Compose root; system status/navigation bars excluded"
+    },
+    {
+      "file": "screens/06-save-failed-test.png",
+      "sha256": "27581ee43c957b21f2cd7abbcfc14c9c8a1ddf6ecef96c7153c8060335cac00c",
+      "capture": "native Compose root; system status/navigation bars excluded"
+    },
+    {
+      "file": "screens/07-driving-lock-test.png",
+      "sha256": "db8c9d4e8155db189023d3e70b6f72c5a9460a160b9352350b790dd6de46bcfe",
+      "capture": "native Compose root; system status/navigation bars excluded"
+    }
+  ]
+}

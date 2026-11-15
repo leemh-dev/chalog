@@ -1,0 +1,281 @@
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=drivingLocksDetailsButAllowsStop
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stack=java.lang.AssertionError: Failed to inject touch input.
+Reason: Expected exactly '1' node but could not find any node that satisfies: (TestTag = 'stop')
+
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrDie(SemanticsNodeInteraction.kt:178)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrDie$default(SemanticsNodeInteraction.kt:150)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchSemanticsNode(SemanticsNodeInteraction.kt:84)
+	at androidx.compose.ui.test.ActionsKt.performTouchInput(Actions.kt:368)
+	at androidx.compose.ui.test.Actions_androidKt.performClickImpl(Actions.android.kt:20)
+	at androidx.compose.ui.test.ActionsKt.performClick(Actions.kt:51)
+	at dev.leemh.charok.RecorderDeviceTest.drivingLocksDetailsButAllowsStop(RecorderDeviceTest.kt:70)
+
+INSTRUMENTATION_STATUS: stream=
+Error in drivingLocksDetailsButAllowsStop(dev.leemh.charok.RecorderDeviceTest):
+java.lang.AssertionError: Failed to inject touch input.
+Reason: Expected exactly '1' node but could not find any node that satisfies: (TestTag = 'stop')
+
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrDie(SemanticsNodeInteraction.kt:178)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrDie$default(SemanticsNodeInteraction.kt:150)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchSemanticsNode(SemanticsNodeInteraction.kt:84)
+	at androidx.compose.ui.test.ActionsKt.performTouchInput(Actions.kt:368)
+	at androidx.compose.ui.test.Actions_androidKt.performClickImpl(Actions.android.kt:20)
+	at androidx.compose.ui.test.ActionsKt.performClick(Actions.kt:51)
+	at dev.leemh.charok.RecorderDeviceTest.drivingLocksDetailsButAllowsStop(RecorderDeviceTest.kt:70)
+
+INSTRUMENTATION_STATUS: test=drivingLocksDetailsButAllowsStop
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=failedSaveRetriesSameIdWithoutNewSession
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=2
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stack=androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 15000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:431)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:306)
+	at dev.leemh.charok.RecorderDeviceTest.prepare(RecorderDeviceTest.kt:31)
+	at dev.leemh.charok.RecorderDeviceTest.failedSaveRetriesSameIdWithoutNewSession(RecorderDeviceTest.kt:61)
+
+INSTRUMENTATION_STATUS: stream=
+Error in failedSaveRetriesSameIdWithoutNewSession(dev.leemh.charok.RecorderDeviceTest):
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 15000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:431)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:306)
+	at dev.leemh.charok.RecorderDeviceTest.prepare(RecorderDeviceTest.kt:31)
+	at dev.leemh.charok.RecorderDeviceTest.failedSaveRetriesSameIdWithoutNewSession(RecorderDeviceTest.kt:61)
+
+INSTRUMENTATION_STATUS: test=failedSaveRetriesSameIdWithoutNewSession
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=closingDashboardKeepsServiceAndReopeningKeepsId
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=3
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stack=java.lang.IllegalStateException: No compose hierarchies found in the app. Possible reasons include: (1) the Activity that calls setContent did not launch; (2) setContent was not called; (3) setContent was called before the ComposeTestRule ran. If setContent is called by the Activity, make sure the Activity is launched after the ComposeTestRule runs
+	at androidx.compose.ui.test.TestContext.getAllSemanticsNodes$ui_test_release(TestOwner.kt:87)
+	at androidx.compose.ui.test.TestContext.getAllSemanticsNodes$ui_test_release$default(TestOwner.kt:81)
+	at androidx.compose.ui.test.SemanticsNodeInteractionCollection.fetchSemanticsNodes(SemanticsNodeInteraction.kt:256)
+	at androidx.compose.ui.test.SemanticsNodeInteractionCollection.fetchSemanticsNodes$default(SemanticsNodeInteraction.kt:249)
+	at dev.leemh.charok.RecorderDeviceTest.has(RecorderDeviceTest.kt:27)
+	at dev.leemh.charok.RecorderDeviceTest.access$has(RecorderDeviceTest.kt:17)
+	at dev.leemh.charok.RecorderDeviceTest$prepare$1.invoke(RecorderDeviceTest.kt:31)
+	at dev.leemh.charok.RecorderDeviceTest$prepare$1.invoke(RecorderDeviceTest.kt:31)
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:424)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:306)
+	at dev.leemh.charok.RecorderDeviceTest.prepare(RecorderDeviceTest.kt:31)
+	at dev.leemh.charok.RecorderDeviceTest.closingDashboardKeepsServiceAndReopeningKeepsId(RecorderDeviceTest.kt:129)
+
+INSTRUMENTATION_STATUS: stream=
+Error in closingDashboardKeepsServiceAndReopeningKeepsId(dev.leemh.charok.RecorderDeviceTest):
+java.lang.IllegalStateException: No compose hierarchies found in the app. Possible reasons include: (1) the Activity that calls setContent did not launch; (2) setContent was not called; (3) setContent was called before the ComposeTestRule ran. If setContent is called by the Activity, make sure the Activity is launched after the ComposeTestRule runs
+	at androidx.compose.ui.test.TestContext.getAllSemanticsNodes$ui_test_release(TestOwner.kt:87)
+	at androidx.compose.ui.test.TestContext.getAllSemanticsNodes$ui_test_release$default(TestOwner.kt:81)
+	at androidx.compose.ui.test.SemanticsNodeInteractionCollection.fetchSemanticsNodes(SemanticsNodeInteraction.kt:256)
+	at androidx.compose.ui.test.SemanticsNodeInteractionCollection.fetchSemanticsNodes$default(SemanticsNodeInteraction.kt:249)
+	at dev.leemh.charok.RecorderDeviceTest.has(RecorderDeviceTest.kt:27)
+	at dev.leemh.charok.RecorderDeviceTest.access$has(RecorderDeviceTest.kt:17)
+	at dev.leemh.charok.RecorderDeviceTest$prepare$1.invoke(RecorderDeviceTest.kt:31)
+	at dev.leemh.charok.RecorderDeviceTest$prepare$1.invoke(RecorderDeviceTest.kt:31)
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:424)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:306)
+	at dev.leemh.charok.RecorderDeviceTest.prepare(RecorderDeviceTest.kt:31)
+	at dev.leemh.charok.RecorderDeviceTest.closingDashboardKeepsServiceAndReopeningKeepsId(RecorderDeviceTest.kt:129)
+
+INSTRUMENTATION_STATUS: test=closingDashboardKeepsServiceAndReopeningKeepsId
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=notificationStartsPreparedRecordInBackgroundOnlyOnce
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=4
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stack=androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 15000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:431)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:306)
+	at dev.leemh.charok.RecorderDeviceTest.prepare(RecorderDeviceTest.kt:31)
+	at dev.leemh.charok.RecorderDeviceTest.notificationStartsPreparedRecordInBackgroundOnlyOnce(RecorderDeviceTest.kt:104)
+
+INSTRUMENTATION_STATUS: stream=
+Error in notificationStartsPreparedRecordInBackgroundOnlyOnce(dev.leemh.charok.RecorderDeviceTest):
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 15000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:431)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:306)
+	at dev.leemh.charok.RecorderDeviceTest.prepare(RecorderDeviceTest.kt:31)
+	at dev.leemh.charok.RecorderDeviceTest.notificationStartsPreparedRecordInBackgroundOnlyOnce(RecorderDeviceTest.kt:104)
+
+INSTRUMENTATION_STATUS: test=notificationStartsPreparedRecordInBackgroundOnlyOnce
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=recreationAndBackgroundKeepRecordingUntilNotificationStop
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=5
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stack=androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 15000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:431)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:306)
+	at dev.leemh.charok.RecorderDeviceTest.prepare(RecorderDeviceTest.kt:31)
+	at dev.leemh.charok.RecorderDeviceTest.recreationAndBackgroundKeepRecordingUntilNotificationStop(RecorderDeviceTest.kt:76)
+
+INSTRUMENTATION_STATUS: stream=
+Error in recreationAndBackgroundKeepRecordingUntilNotificationStop(dev.leemh.charok.RecorderDeviceTest):
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 15000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:431)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:306)
+	at dev.leemh.charok.RecorderDeviceTest.prepare(RecorderDeviceTest.kt:31)
+	at dev.leemh.charok.RecorderDeviceTest.recreationAndBackgroundKeepRecordingUntilNotificationStop(RecorderDeviceTest.kt:76)
+
+INSTRUMENTATION_STATUS: test=recreationAndBackgroundKeepRecordingUntilNotificationStop
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=rapidCommandsKeepTheSameSession
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=6
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stack=androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 15000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:431)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:306)
+	at dev.leemh.charok.RecorderDeviceTest.prepare(RecorderDeviceTest.kt:31)
+	at dev.leemh.charok.RecorderDeviceTest.rapidCommandsKeepTheSameSession(RecorderDeviceTest.kt:150)
+
+INSTRUMENTATION_STATUS: stream=
+Error in rapidCommandsKeepTheSameSession(dev.leemh.charok.RecorderDeviceTest):
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 15000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:431)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:306)
+	at dev.leemh.charok.RecorderDeviceTest.prepare(RecorderDeviceTest.kt:31)
+	at dev.leemh.charok.RecorderDeviceTest.rapidCommandsKeepTheSameSession(RecorderDeviceTest.kt:150)
+
+INSTRUMENTATION_STATUS: test=rapidCommandsKeepTheSameSession
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stream=
+INSTRUMENTATION_STATUS: test=recordsBookmarksAndPersistsRealDatabase
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=7
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=7
+INSTRUMENTATION_STATUS: stack=androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 15000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:431)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:306)
+	at dev.leemh.charok.RecorderDeviceTest.prepare(RecorderDeviceTest.kt:31)
+	at dev.leemh.charok.RecorderDeviceTest.recordsBookmarksAndPersistsRealDatabase(RecorderDeviceTest.kt:44)
+
+INSTRUMENTATION_STATUS: stream=
+Error in recordsBookmarksAndPersistsRealDatabase(dev.leemh.charok.RecorderDeviceTest):
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 15000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:431)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:306)
+	at dev.leemh.charok.RecorderDeviceTest.prepare(RecorderDeviceTest.kt:31)
+	at dev.leemh.charok.RecorderDeviceTest.recordsBookmarksAndPersistsRealDatabase(RecorderDeviceTest.kt:44)
+
+INSTRUMENTATION_STATUS: test=recordsBookmarksAndPersistsRealDatabase
+INSTRUMENTATION_STATUS_CODE: -2
+INSTRUMENTATION_RESULT: stream=
+
+Time: 102.328
+There were 7 failures:
+1) drivingLocksDetailsButAllowsStop(dev.leemh.charok.RecorderDeviceTest)
+java.lang.AssertionError: Failed to inject touch input.
+Reason: Expected exactly '1' node but could not find any node that satisfies: (TestTag = 'stop')
+
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrDie(SemanticsNodeInteraction.kt:178)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchOneOrDie$default(SemanticsNodeInteraction.kt:150)
+	at androidx.compose.ui.test.SemanticsNodeInteraction.fetchSemanticsNode(SemanticsNodeInteraction.kt:84)
+	at androidx.compose.ui.test.ActionsKt.performTouchInput(Actions.kt:368)
+	at androidx.compose.ui.test.Actions_androidKt.performClickImpl(Actions.android.kt:20)
+	at androidx.compose.ui.test.ActionsKt.performClick(Actions.kt:51)
+	at dev.leemh.charok.RecorderDeviceTest.drivingLocksDetailsButAllowsStop(RecorderDeviceTest.kt:70)
+2) failedSaveRetriesSameIdWithoutNewSession(dev.leemh.charok.RecorderDeviceTest)
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 15000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:431)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:306)
+	at dev.leemh.charok.RecorderDeviceTest.prepare(RecorderDeviceTest.kt:31)
+	at dev.leemh.charok.RecorderDeviceTest.failedSaveRetriesSameIdWithoutNewSession(RecorderDeviceTest.kt:61)
+3) closingDashboardKeepsServiceAndReopeningKeepsId(dev.leemh.charok.RecorderDeviceTest)
+java.lang.IllegalStateException: No compose hierarchies found in the app. Possible reasons include: (1) the Activity that calls setContent did not launch; (2) setContent was not called; (3) setContent was called before the ComposeTestRule ran. If setContent is called by the Activity, make sure the Activity is launched after the ComposeTestRule runs
+	at androidx.compose.ui.test.TestContext.getAllSemanticsNodes$ui_test_release(TestOwner.kt:87)
+	at androidx.compose.ui.test.TestContext.getAllSemanticsNodes$ui_test_release$default(TestOwner.kt:81)
+	at androidx.compose.ui.test.SemanticsNodeInteractionCollection.fetchSemanticsNodes(SemanticsNodeInteraction.kt:256)
+	at androidx.compose.ui.test.SemanticsNodeInteractionCollection.fetchSemanticsNodes$default(SemanticsNodeInteraction.kt:249)
+	at dev.leemh.charok.RecorderDeviceTest.has(RecorderDeviceTest.kt:27)
+	at dev.leemh.charok.RecorderDeviceTest.access$has(RecorderDeviceTest.kt:17)
+	at dev.leemh.charok.RecorderDeviceTest$prepare$1.invoke(RecorderDeviceTest.kt:31)
+	at dev.leemh.charok.RecorderDeviceTest$prepare$1.invoke(RecorderDeviceTest.kt:31)
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:424)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:306)
+	at dev.leemh.charok.RecorderDeviceTest.prepare(RecorderDeviceTest.kt:31)
+	at dev.leemh.charok.RecorderDeviceTest.closingDashboardKeepsServiceAndReopeningKeepsId(RecorderDeviceTest.kt:129)
+4) notificationStartsPreparedRecordInBackgroundOnlyOnce(dev.leemh.charok.RecorderDeviceTest)
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 15000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:431)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:306)
+	at dev.leemh.charok.RecorderDeviceTest.prepare(RecorderDeviceTest.kt:31)
+	at dev.leemh.charok.RecorderDeviceTest.notificationStartsPreparedRecordInBackgroundOnlyOnce(RecorderDeviceTest.kt:104)
+5) recreationAndBackgroundKeepRecordingUntilNotificationStop(dev.leemh.charok.RecorderDeviceTest)
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 15000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:431)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:306)
+	at dev.leemh.charok.RecorderDeviceTest.prepare(RecorderDeviceTest.kt:31)
+	at dev.leemh.charok.RecorderDeviceTest.recreationAndBackgroundKeepRecordingUntilNotificationStop(RecorderDeviceTest.kt:76)
+6) rapidCommandsKeepTheSameSession(dev.leemh.charok.RecorderDeviceTest)
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 15000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:431)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:306)
+	at dev.leemh.charok.RecorderDeviceTest.prepare(RecorderDeviceTest.kt:31)
+	at dev.leemh.charok.RecorderDeviceTest.rapidCommandsKeepTheSameSession(RecorderDeviceTest.kt:150)
+7) recordsBookmarksAndPersistsRealDatabase(dev.leemh.charok.RecorderDeviceTest)
+androidx.compose.ui.test.ComposeTimeoutException: Condition still not satisfied after 15000 ms
+	at androidx.compose.ui.test.AndroidComposeUiTestEnvironment$AndroidComposeUiTestImpl.waitUntil(ComposeUiTest.android.kt:431)
+	at androidx.compose.ui.test.junit4.AndroidComposeTestRule.waitUntil(AndroidComposeTestRule.android.kt:306)
+	at dev.leemh.charok.RecorderDeviceTest.prepare(RecorderDeviceTest.kt:31)
+	at dev.leemh.charok.RecorderDeviceTest.recordsBookmarksAndPersistsRealDatabase(RecorderDeviceTest.kt:44)
+
+FAILURES!!!
+Tests run: 7,  Failures: 7
+
+
+INSTRUMENTATION_CODE: -1

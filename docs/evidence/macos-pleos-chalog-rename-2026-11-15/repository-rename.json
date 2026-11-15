@@ -1,0 +1,12 @@
+{
+  "repository_id": 1458180705,
+  "previous": "leemh-dev/charok",
+  "current": "leemh-dev/chalog",
+  "old_url_resolves_to_same_repository": true,
+  "branch": "feat/charok-recorder",
+  "pr": 2,
+  "merged": false,
+  "local_directory": "/Volumes/Myeonghun 2TB/DochagjariDev/chalog",
+  "previous_directory_compatibility_symlink": "/Volumes/Myeonghun 2TB/DochagjariDev/charok",
+  "existing_evidence_unchanged": true
+}

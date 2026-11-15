@@ -1,0 +1,30 @@
+[
+  {
+    "path": "screens/01-warning-on-right.png",
+    "sha256": "5f622810f4958db1bf539e526903d076c0da114aa41b506e42422ae484e5fb0a",
+    "kind": "actual Pleos screencap",
+    "input": "TEST",
+    "modified": false
+  },
+  {
+    "path": "screens/02-saved-warning-right.png",
+    "sha256": "25e7113c8a2b7bce4cf7e91f8be78f8b34e01b3d5535fa89262bebed5f34e7ed",
+    "kind": "actual Pleos screencap",
+    "input": "TEST",
+    "modified": false
+  },
+  {
+    "path": "screens/03-consultation-warning-right.png",
+    "sha256": "1328270edffc7faf5085d137eb565c0ce973173fbafb06c40422f5f2c8fc6900",
+    "kind": "actual Pleos screencap",
+    "input": "TEST",
+    "modified": false
+  },
+  {
+    "path": "screens/04-closed-nav.png",
+    "sha256": "56b8a68d1d541f0dd1532654a677b35187aeffdde26ae8f4ac35c3c373311025",
+    "kind": "actual Pleos screencap",
+    "input": "TEST",
+    "modified": false
+  }
+]

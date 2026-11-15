@@ -1,0 +1,13 @@
+{
+  "before_count": 119,
+  "after_count": 119,
+  "all_previous_rows_equal_id_startedAt_payload": true,
+  "original_rows_sha256": "48cbadde573e0ae054fff6d43f886c3290f48bd8a0721064f996f31d0cf6aa24",
+  "schema_version": 1,
+  "room_identity_hash_unchanged": "2a202cc988389110feba88e951cbe78f",
+  "integrity_check": "ok",
+  "new_rows": 0,
+  "new_rows_all_TEST": true,
+  "new_phases": {},
+  "raw_database_published": false
+}

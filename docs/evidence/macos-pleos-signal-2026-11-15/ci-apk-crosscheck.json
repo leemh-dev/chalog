@@ -1,0 +1,40 @@
+{
+  "run_id": 43683208769,
+  "artifact_id": 14149009486,
+  "zip_sha256": "13d624d97c770b86a12e70105b1a302cca69a8e771f218aa9df4821572b665d2",
+  "zip_matches_api_digest": true,
+  "files": [
+    {
+      "path": "app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk",
+      "sha256": "9ae3a47b85a79e2669fedc10d87e49d388f4b8da441fc039325eb73fe5046f7e",
+      "hash_matches_metadata": true,
+      "package_matches_metadata": true,
+      "signature_rc": 0,
+      "certificate_sha256": "ac54cfd233d2a2bc7eea3d4e51ea07b936ad5692c3687fca9e66e38b7488df64",
+      "certificate_matches_metadata": true,
+      "signing_purpose": "development/test"
+    },
+    {
+      "path": "app/build/outputs/apk/debug/app-debug.apk",
+      "sha256": "643a4dece8c539f55f5286ce2d861aa57f898f1a7769b5be89eda817f822ebe8",
+      "hash_matches_metadata": true,
+      "package_matches_metadata": true,
+      "signature_rc": 0,
+      "certificate_sha256": "ac54cfd233d2a2bc7eea3d4e51ea07b936ad5692c3687fca9e66e38b7488df64",
+      "certificate_matches_metadata": true,
+      "signing_purpose": "development/test"
+    },
+    {
+      "path": "app/build/outputs/apk/release/app-release-unsigned.apk",
+      "sha256": "08103dd1f61db9e7b3213750697f40c7f7d2ae456e64ab97d073c6b0f9adf193",
+      "hash_matches_metadata": true,
+      "package_matches_metadata": true,
+      "signature_rc": 1,
+      "certificate_sha256": null,
+      "certificate_matches_metadata": false,
+      "signing_purpose": "unsigned release"
+    }
+  ],
+  "installed_on_mac": false,
+  "note": "Mac updated using existing Mac development signer; CI signer differs."
+}

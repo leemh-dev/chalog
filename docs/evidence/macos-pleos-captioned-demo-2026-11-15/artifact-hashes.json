@@ -1,0 +1,92 @@
+[
+  {
+    "path": "capture-proof.json",
+    "bytes": 461,
+    "sha256": "8a04bc5451f6893f9fcaf2b4e88e625d004535f334f38de22cdf3ff98bf08029"
+  },
+  {
+    "path": "chalog-verified-scenarios-ko.json",
+    "bytes": 6772,
+    "sha256": "7277138a05e328a8270c69e7fdedaf7b7bbf6129115b5c4f7baa30b89db549fa"
+  },
+  {
+    "path": "chalog-verified-scenarios-ko.mp4",
+    "bytes": 12051034,
+    "sha256": "f971125698c14a3e205448bed27fce5920e19e94a50bd03558d625918b99c406"
+  },
+  {
+    "path": "chalog-verified-scenarios-ko.srt",
+    "bytes": 3390,
+    "sha256": "cecd4c2e3caad480c0743aa06c90c235d3c101657fbe4b64da8f4827f1b5e373"
+  },
+  {
+    "path": "demo-data-proof.json",
+    "bytes": 1391,
+    "sha256": "53ae97a66a4fb0b0d9f3caa55ba88019b7ea09ed5d4b9a18b6ab16a2c6c4c776"
+  },
+  {
+    "path": "frames/action-100.png",
+    "bytes": 425717,
+    "sha256": "db805ebdbf2015f109b5d7b7086a9d362451ba0b6a27fad0916da7392a296055"
+  },
+  {
+    "path": "frames/action-89.png",
+    "bytes": 423066,
+    "sha256": "d43d6ccac4673567ddace12875db5e39697bcc62dac42bbbcc1871818c76eb69"
+  },
+  {
+    "path": "frames/chapter-01.png",
+    "bytes": 491248,
+    "sha256": "f69338bc831c2988b46ea06131d92e92a0608b5523be3737e9507d69a89824b4"
+  },
+  {
+    "path": "frames/chapter-07.png",
+    "bytes": 521856,
+    "sha256": "42ef9eb5690fd9fe924cf062dc1a02a4a125d204221007bf03ac247e9ed00fdc"
+  },
+  {
+    "path": "frames/chapter-08.png",
+    "bytes": 503646,
+    "sha256": "7745020d51b937bcdd4419b90133105421b4410886946954137ab6de76dd2037"
+  },
+  {
+    "path": "frames/chapter-12.png",
+    "bytes": 452988,
+    "sha256": "176e522beaf94bddd67115f57d93e6d45b51b499e65093aa73832c74a861139f"
+  },
+  {
+    "path": "frames/chapter-14.png",
+    "bytes": 546880,
+    "sha256": "6560e36d228b27c4a8b7216d3386716da4765097050d69a48ac2e4ade4eefd7c"
+  },
+  {
+    "path": "frames/chapter-17.png",
+    "bytes": 483326,
+    "sha256": "b8fcbfddf74bb66f82ff9bd0423363757ffd5a7fa03b1da2646005b839a9647f"
+  },
+  {
+    "path": "installed-proof.json",
+    "bytes": 362,
+    "sha256": "ae17239d8fd3140d198d52c32e58e2463b43a7d83d1cf997d0293e151eece430"
+  },
+  {
+    "path": "readiness.json",
+    "bytes": 663,
+    "sha256": "00a3752d5617bf18f1aca4ba83e1822eb36bef0d6dd8d41cebd4923a2902c135"
+  },
+  {
+    "path": "shutdown-proof.json",
+    "bytes": 146,
+    "sha256": "9f5e90093b000b9ab573a199a94ec05e86c759839028c2bbfcc9d8eb1d9462c5"
+  },
+  {
+    "path": "video-verification.json",
+    "bytes": 11214,
+    "sha256": "14fb56e4bd1ba0c72e20841e4576bf70fc9aab1fac80882aea9568b6d1d9ed9d"
+  },
+  {
+    "path": "visual-review.json",
+    "bytes": 953,
+    "sha256": "2ba073e3905a064c6dc210db89b800e2ef0fcbb04af169a94655f4cec29c3fa6"
+  }
+]

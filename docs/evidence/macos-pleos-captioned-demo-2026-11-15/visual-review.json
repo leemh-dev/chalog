@@ -1,0 +1,29 @@
+{
+  "all_frames_decoded": 3820,
+  "title_ocr_passed": 17,
+  "subtitle_ocr_passed": 17,
+  "utf8_srt_cues_matched": 17,
+  "all_hangul_glyphs_available": true,
+  "subtitle_bounds_checked_before_render": true,
+  "visual_review_frames": [
+    "chapter-01.png",
+    "chapter-07.png",
+    "chapter-12.png",
+    "chapter-14.png",
+    "chapter-17.png",
+    "action-89.png",
+    "action-100.png"
+  ],
+  "observed": [
+    "Scenario heading at upper left outside actual screen",
+    "Korean captions readable in a separate lower band",
+    "App buttons, navigation and vehicle area not covered by captions",
+    "Actual moment notification visible at 89 seconds",
+    "Actual saved notification visible at 100 seconds",
+    "Saved consultation content matches TEST DB",
+    "Restarted saved record retains 987 observations and motion-unknown detail lock"
+  ],
+  "synthetic_success_screens": false,
+  "actual_gleo_voice_verified": false,
+  "video_is_silent": true
+}

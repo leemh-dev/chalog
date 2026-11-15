@@ -1,0 +1,218 @@
+{
+  "manual-start": {
+    "count": 104,
+    "integrity": "ok",
+    "latest": {
+      "id": "fe6aaf30-3f0d-4ce1-99ab-c38ebf4356f4",
+      "phase": "RECORDING",
+      "mode": "TEST",
+      "reason": "",
+      "triggerElapsed": 750322,
+      "endedAt": null,
+      "notes": 0,
+      "bookmarks": 0,
+      "observations": 252,
+      "origin_counts": {
+        "TEST": 252
+      },
+      "pretrigger_ms": 59815,
+      "lamp_values": [],
+      "note_origins": []
+    },
+    "dashboard_in_history": false,
+    "resumed_activity_lines": [
+      "topResumedActivity=ActivityRecord{fa1e753 u10 ai.umos.maps.android.navigation.app/.MainActivity t1000159}",
+      "topResumedActivity=ActivityRecord{86d58ea u10 ai.umos.drivingview/.DrivingViewActivity t1000158}",
+      "topResumedActivity=ActivityRecord{5aeb593 u10 ai.umos.homescreen/.HomeActivity t1000156}"
+    ],
+    "foreground_service": true
+  },
+  "manual-background-before": {
+    "count": 104,
+    "integrity": "ok",
+    "latest": {
+      "id": "fe6aaf30-3f0d-4ce1-99ab-c38ebf4356f4",
+      "phase": "RECORDING",
+      "mode": "TEST",
+      "reason": "",
+      "triggerElapsed": 750322,
+      "endedAt": null,
+      "notes": 1,
+      "bookmarks": 0,
+      "observations": 485,
+      "origin_counts": {
+        "TEST": 485
+      },
+      "pretrigger_ms": 59815,
+      "lamp_values": [
+        [
+          "telltale:ENGINE",
+          "ON"
+        ],
+        [
+          "telltale:TPMS",
+          "BLINK"
+        ],
+        [
+          "telltale:ENGINE",
+          "OFF"
+        ],
+        [
+          "telltale:TPMS",
+          "BLINK"
+        ]
+      ],
+      "note_origins": [
+        "TEST"
+      ]
+    },
+    "dashboard_in_history": false,
+    "resumed_activity_lines": [
+      "topResumedActivity=ActivityRecord{fa1e753 u10 ai.umos.maps.android.navigation.app/.MainActivity t1000159}",
+      "topResumedActivity=ActivityRecord{86d58ea u10 ai.umos.drivingview/.DrivingViewActivity t1000158}",
+      "topResumedActivity=ActivityRecord{5aeb593 u10 ai.umos.homescreen/.HomeActivity t1000156}"
+    ],
+    "foreground_service": true
+  },
+  "manual-background-after": {
+    "count": 104,
+    "integrity": "ok",
+    "latest": {
+      "id": "fe6aaf30-3f0d-4ce1-99ab-c38ebf4356f4",
+      "phase": "RECORDING",
+      "mode": "TEST",
+      "reason": "",
+      "triggerElapsed": 750322,
+      "endedAt": null,
+      "notes": 2,
+      "bookmarks": 1,
+      "observations": 539,
+      "origin_counts": {
+        "TEST": 539
+      },
+      "pretrigger_ms": 59815,
+      "lamp_values": [
+        [
+          "telltale:ENGINE",
+          "ON"
+        ],
+        [
+          "telltale:TPMS",
+          "BLINK"
+        ],
+        [
+          "telltale:ENGINE",
+          "OFF"
+        ],
+        [
+          "telltale:TPMS",
+          "BLINK"
+        ]
+      ],
+      "note_origins": [
+        "TEST"
+      ]
+    },
+    "dashboard_in_history": false,
+    "resumed_activity_lines": [
+      "topResumedActivity=ActivityRecord{fa1e753 u10 ai.umos.maps.android.navigation.app/.MainActivity t1000159}",
+      "topResumedActivity=ActivityRecord{86d58ea u10 ai.umos.drivingview/.DrivingViewActivity t1000158}",
+      "topResumedActivity=ActivityRecord{5aeb593 u10 ai.umos.homescreen/.HomeActivity t1000156}"
+    ],
+    "foreground_service": true
+  },
+  "manual-saved": {
+    "count": 104,
+    "integrity": "ok",
+    "latest": {
+      "id": "fe6aaf30-3f0d-4ce1-99ab-c38ebf4356f4",
+      "phase": "SAVED",
+      "mode": "TEST",
+      "reason": "사용자 종료",
+      "triggerElapsed": 750322,
+      "endedAt": 1794736552800,
+      "notes": 2,
+      "bookmarks": 1,
+      "observations": 547,
+      "origin_counts": {
+        "TEST": 547
+      },
+      "pretrigger_ms": 59815,
+      "lamp_values": [
+        [
+          "telltale:ENGINE",
+          "ON"
+        ],
+        [
+          "telltale:TPMS",
+          "BLINK"
+        ],
+        [
+          "telltale:ENGINE",
+          "OFF"
+        ],
+        [
+          "telltale:TPMS",
+          "BLINK"
+        ]
+      ],
+      "note_origins": [
+        "TEST"
+      ]
+    },
+    "dashboard_in_history": false,
+    "resumed_activity_lines": [
+      "topResumedActivity=ActivityRecord{fa1e753 u10 ai.umos.maps.android.navigation.app/.MainActivity t1000159}",
+      "topResumedActivity=ActivityRecord{86d58ea u10 ai.umos.drivingview/.DrivingViewActivity t1000158}",
+      "topResumedActivity=ActivityRecord{5aeb593 u10 ai.umos.homescreen/.HomeActivity t1000156}"
+    ],
+    "foreground_service": false
+  },
+  "manual-stable": {
+    "count": 104,
+    "integrity": "ok",
+    "latest": {
+      "id": "fe6aaf30-3f0d-4ce1-99ab-c38ebf4356f4",
+      "phase": "SAVED",
+      "mode": "TEST",
+      "reason": "사용자 종료",
+      "triggerElapsed": 750322,
+      "endedAt": 1794736552800,
+      "notes": 2,
+      "bookmarks": 1,
+      "observations": 547,
+      "origin_counts": {
+        "TEST": 547
+      },
+      "pretrigger_ms": 59815,
+      "lamp_values": [
+        [
+          "telltale:ENGINE",
+          "ON"
+        ],
+        [
+          "telltale:TPMS",
+          "BLINK"
+        ],
+        [
+          "telltale:ENGINE",
+          "OFF"
+        ],
+        [
+          "telltale:TPMS",
+          "BLINK"
+        ]
+      ],
+      "note_origins": [
+        "TEST"
+      ]
+    },
+    "dashboard_in_history": false,
+    "resumed_activity_lines": [
+      "topResumedActivity=ActivityRecord{fa1e753 u10 ai.umos.maps.android.navigation.app/.MainActivity t1000159}",
+      "topResumedActivity=ActivityRecord{86d58ea u10 ai.umos.drivingview/.DrivingViewActivity t1000158}",
+      "topResumedActivity=ActivityRecord{5aeb593 u10 ai.umos.homescreen/.HomeActivity t1000156}"
+    ],
+    "foreground_service": false
+  }
+}

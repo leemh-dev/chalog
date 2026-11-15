@@ -1,0 +1,201 @@
+Successful outputs from eight isolated instrumentation methods on the final 091a4e2 APK. The first three passed before a transient Compose-root failure; the remaining five passed when resumed with a 5-second settling interval. Failure logs are retained separately. Database preserved between all runs. This is not a single complete Pleos suite invocation.
+
+drivingLocksDetailsButAllowsStop
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=drivingLocksDetailsButAllowsStop
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=drivingLocksDetailsButAllowsStop
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 8.992
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+failedSaveRetriesSameIdWithoutNewSession
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=failedSaveRetriesSameIdWithoutNewSession
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=failedSaveRetriesSameIdWithoutNewSession
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 10.289
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+closingDashboardKeepsServiceAndReopeningKeepsId
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=closingDashboardKeepsServiceAndReopeningKeepsId
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=closingDashboardKeepsServiceAndReopeningKeepsId
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 32.913
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+notificationStartsPreparedRecordInBackgroundOnlyOnce
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=notificationStartsPreparedRecordInBackgroundOnlyOnce
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=notificationStartsPreparedRecordInBackgroundOnlyOnce
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 11.059
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+recreationAndBackgroundKeepRecordingUntilNotificationStop
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=recreationAndBackgroundKeepRecordingUntilNotificationStop
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=recreationAndBackgroundKeepRecordingUntilNotificationStop
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 9.504
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+rapidCommandsKeepTheSameSession
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=rapidCommandsKeepTheSameSession
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=rapidCommandsKeepTheSameSession
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 3.971
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+recordsBookmarksAndPersistsRealDatabase
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=recordsBookmarksAndPersistsRealDatabase
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=recordsBookmarksAndPersistsRealDatabase
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 7.976
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1
+
+staleNotificationCannotStartTheNextPreparation
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=
+dev.leemh.charok.RecorderDeviceTest:
+INSTRUMENTATION_STATUS: test=staleNotificationCannotStartTheNextPreparation
+INSTRUMENTATION_STATUS_CODE: 1
+INSTRUMENTATION_STATUS: class=dev.leemh.charok.RecorderDeviceTest
+INSTRUMENTATION_STATUS: current=1
+INSTRUMENTATION_STATUS: id=AndroidJUnitRunner
+INSTRUMENTATION_STATUS: numtests=1
+INSTRUMENTATION_STATUS: stream=.
+INSTRUMENTATION_STATUS: test=staleNotificationCannotStartTheNextPreparation
+INSTRUMENTATION_STATUS_CODE: 0
+INSTRUMENTATION_RESULT: stream=
+
+Time: 7.703
+
+OK (1 test)
+
+
+INSTRUMENTATION_CODE: -1

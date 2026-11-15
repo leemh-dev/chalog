@@ -1,0 +1,14 @@
+{
+  "session_id": "fe6aaf30-3f0d-4ce1-99ab-c38ebf4356f4",
+  "json_equals_stored_session": true,
+  "input": "TEST",
+  "notes": 2,
+  "bookmarks": 1,
+  "observations": 547,
+  "txt_sha256": "c97c622cc4f98f1ca3bd761eca7f3813732dde9b44e45d13ee830c4276ba43cf",
+  "json_sha256": "b0a0dab3ee66d86f2677d7b29eecaefecb025534dec7ac0d73ee3e374e8a33c5",
+  "external_separate_test_uid_read_verified": true,
+  "unselected_sibling_read_denied": true,
+  "actual_service_center_receipt_verified": false,
+  "system_document_save": "Pleos DocumentsUIStubWithResult returns no document; visible not-saved feedback verified"
+}

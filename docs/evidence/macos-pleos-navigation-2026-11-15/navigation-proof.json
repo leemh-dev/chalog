@@ -1,0 +1,24 @@
+{
+  "environment": "Mac M1 8GB / external SSD / Pleos 2.1.0 ARM64 / one CharokPleosMac AVD / 2560x1440 density160",
+  "input": "native navigation UI; emulator default location; public charging POI; not a real user trip",
+  "native_package": "ai.umos.maps.android.navigation.app",
+  "native_search": "passed: charging list and POI markers",
+  "native_route": "passed: route started, 340m / 3 minutes, turn instruction, destination pin and route line",
+  "native_route_stopped": "passed via native stop guidance button",
+  "host_basemap": "roads/buildings absent",
+  "swiftshader_basemap": "not resolved; map later black; ColorBuffer errors; rejected and returned to host",
+  "charok_navihelper_request": "not exercised; vehicle unknown lock preserved",
+  "audio_and_actual_driving": "not tested; no-audio / stationary emulator",
+  "error_interpretation": {
+    "unauthorized": "EV charging operator-list endpoint; not proof of map tile authentication failure",
+    "nmea": "checksum mismatch observed; root cause not established",
+    "graphics": "GL 0x501 in native process; not sufficient alone to identify blank-basemap cause",
+    "native_apk_inspection": "ordinary adb read Permission denied; no bypass"
+  },
+  "confirmed_root_cause": null,
+  "software_mode_persisted": false,
+  "data_deleted": false,
+  "authentication_bypassed": false,
+  "video_recorded": false,
+  "host_restored_first_activity_start": "am start -W timeout after 13.4s during post-boot startup; later actual UI rendered, app PID live, zero FATAL EXCEPTION in app PID log"
+}

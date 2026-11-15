@@ -1,0 +1,19 @@
+{
+  "code_commit": "8c8f793a87f70946c98636acea6d3914f13f90e1",
+  "version": "0.3.1/7",
+  "jvm_tests": {
+    "tests": 39,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint_errors": 0,
+  "lint_warnings": 14,
+  "avd_stopped_during_build": true,
+  "debug_test_unsigned_release_built": true,
+  "build_success": true,
+  "installed_app_binary_unchanged": true,
+  "app_sha256": "c6eb42e1418bc0bf081682e1b5e3394ab13eff580d213e6be301265a9d77c2e7",
+  "previous_app_code_commit": "7ad2e81605048915a6670885eecabf5978199ea4",
+  "final_test_fixture_only_change": true
+}

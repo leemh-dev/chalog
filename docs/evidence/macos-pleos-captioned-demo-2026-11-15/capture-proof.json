@@ -1,0 +1,16 @@
+{
+  "frames": 1194,
+  "all_frame_hashes_verified": true,
+  "source_duration_seconds": 493.3362486362457,
+  "effective_fps": 2.4182289529663996,
+  "median_capture_gap_seconds": 0.3813142776489258,
+  "maximum_capture_gap_seconds": 1.3161885738372803,
+  "dimensions": [
+    2560,
+    1440
+  ],
+  "audio": false,
+  "chronological_cuts": true,
+  "synthetic_ui": false,
+  "source_manifest_sha256": "ec7c101a37e57f8528622a877543a0638e3c5f82171bd74cf530eeaa5d10bf3c"
+}

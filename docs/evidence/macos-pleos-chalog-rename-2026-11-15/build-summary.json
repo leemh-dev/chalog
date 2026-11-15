@@ -1,0 +1,13 @@
+{
+  "commit": "ce4990558b0afb943b3a6a9ccb1a2f0140175b0c",
+  "version": "0.3.2",
+  "versionCode": 8,
+  "build": "SUCCESS",
+  "jvm_tests": 40,
+  "jvm_failures": 0,
+  "jvm_errors": 0,
+  "lint_errors": 0,
+  "lint_warnings": 14,
+  "local_build_avd_off": true,
+  "schema_identity_hash": "2a202cc988389110feba88e951cbe78f"
+}

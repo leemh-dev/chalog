@@ -1,0 +1,25 @@
+{
+  "kind": "AI-generated design proposal; not runtime evidence",
+  "files": [
+    {
+      "file": "flow.png",
+      "bytes": 1709271,
+      "sha256": "9951f7accc411b52345be6c15dd034e878b7f208391a8766da4d37b2654d8ff7"
+    },
+    {
+      "file": "panel-a-signal.png",
+      "bytes": 1571885,
+      "sha256": "5f25091152b2d75f3127a7f6959ec8a96e68982ef03f149961eaa0d8f71ded47"
+    },
+    {
+      "file": "panel-b-archive.png",
+      "bytes": 1582494,
+      "sha256": "cbe54c56f243a1d67a2bb3b5094b5368b0b8fad7270b8eac527edc1f2cdae6da"
+    },
+    {
+      "file": "panel-c-flow.png",
+      "bytes": 1610839,
+      "sha256": "f9219c0f8d0cfe6557f3bdc29ab08928cd6c86a57d9142415a4eeabeeb07fd78"
+    }
+  ]
+}
