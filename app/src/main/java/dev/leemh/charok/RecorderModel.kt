@@ -2,7 +2,11 @@ package dev.leemh.charok
 
 import android.app.Application
 import android.content.Intent
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import androidx.core.content.ContextCompat
+import androidx.core.app.NotificationManagerCompat
 import android.os.SystemClock
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
@@ -22,7 +26,9 @@ data class RecorderUi(val ready: Boolean = false, val mode: InputMode = InputMod
     val phase: Phase = Phase.IDLE, val session: Session? = null, val bufferSeconds: Long = 0,
     val parked: Boolean = false, val gear: String = "미확인", val busy: Boolean = false,
     val message: String = "차량 연결 대기", val speech: String = "마이크 꺼짐", val nav: String = "내비 요청 없음",
-    val notice: String? = null, val backgroundRunning: Boolean = false, val locationConsent: Boolean = false, val history: List<Session> = emptyList(), val failNextSave: Boolean = false)
+    val notice: String? = null, val backgroundRunning: Boolean = false, val starting: Boolean = false,
+    val voiceEnabled: Boolean = false, val startFailure: Boolean = false,
+    val locationConsent: Boolean = false, val history: List<Session> = emptyList(), val failNextSave: Boolean = false)
 
 class RecorderModel(app: Application) : AndroidViewModel(app) {
     private val worker = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
@@ -39,6 +45,10 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
     private var foreground = false
     private var serviceRunning = false
     private var preparationRequested = false
+    private val voiceConsent = VoiceConsent(app)
+    private data class PendingVoiceStart(val note: String, val replies: MutableList<(String, String) -> Unit>)
+    private var pendingVoiceStart: PendingVoiceStart? = null
+    private var voiceDeadline: Job? = null
     private fun collectingAllowed() = foreground || serviceRunning
     private var generation = 0
     private var gear: String? = null
@@ -87,11 +97,17 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
         }
     }
     private fun parked() = isParked(gear, gearAt, clock.elapsed()) && speed?.let { it.isFinite() && kotlin.math.abs(it) < 0.1 } == true && speedAt?.let { clock.elapsed() - it in 0..3000 } == true
+    private fun motionKnown() = gear != null && gearAt?.let { clock.elapsed() - it in 0..3000 } == true &&
+        speed?.isFinite() == true && speedAt?.let { clock.elapsed() - it in 0..3000 } == true
+    private fun voiceEnabled() = if (mutable.value.mode == InputMode.TEST) BuildConfig.DEBUG && voiceConsent.testEnabled else voiceConsent.realEnabled
+    private fun notificationsAllowed() = (Build.VERSION.SDK_INT < 33 || ContextCompat.checkSelfPermission(getApplication(), Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) &&
+        NotificationManagerCompat.from(getApplication()).areNotificationsEnabled()
     private fun publish(message: String? = null) {
         mutable.value = mutable.value.copy(ready = loaded, phase = recorder.phase, session = recorder.session,
             bufferSeconds = recorder.bufferedMs() / 1000, parked = parked(), gear = gear ?: "미확인", busy = false,
             message = if (recorder.phase == Phase.SAVE_FAILED) recorder.storageError else message ?: mutable.value.message,
-            failNextSave = failNext, backgroundRunning = serviceRunning)
+            failNextSave = failNext, backgroundRunning = serviceRunning,
+            starting = pendingVoiceStart != null, voiceEnabled = voiceEnabled())
     }
     fun foreground() = launch {
         foreground = true
@@ -112,16 +128,26 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
         withContext(Dispatchers.Main) { signals?.close(); signals = null; speech?.close() }
     }
     fun serviceStarted() = launch {
-        if (!preparationRequested) return@launch
+        if (!preparationRequested) {
+            withContext(Dispatchers.Main) { getApplication<Application>().stopService(Intent(getApplication(), RecordingService::class.java)) }
+            return@launch
+        }
         preparationRequested = false
         serviceRunning = true
         testTelltales.reset()
-        withContext(Dispatchers.Main) { signals?.resetTelltales() }
-        recorder.arm(mutable.value.mode)
-        withContext(Dispatchers.Main) { signals?.setLocation(mutable.value.locationConsent) }
-        publish(message = "다른 화면에서도 기록 준비를 이어갑니다")
+        if (pendingVoiceStart != null) {
+            connect()
+            completeVoiceStartIfReady()
+            publish(message = if (pendingVoiceStart != null) "요청하신 기록을 위해 차량 상태를 확인합니다" else "요청하신 기록을 시작했습니다")
+        } else {
+            withContext(Dispatchers.Main) { signals?.resetTelltales() }
+            recorder.arm(mutable.value.mode)
+            withContext(Dispatchers.Main) { signals?.setLocation(mutable.value.locationConsent) }
+            publish(message = "다른 화면에서도 기록 준비를 이어갑니다")
+        }
     }
     fun serviceStopped() = launch {
+        finishVoiceRequest("fail", "The recording service stopped before recording could start.")
         preparationRequested = false
         serviceRunning = false
         if (loaded) recorder.stop("기록 서비스 종료", interrupted = true)
@@ -140,6 +166,7 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
                 if (collectingAllowed() && generation == token && mutable.value.mode == InputMode.PLEOS) {
                     if (observation.field == "gear") { gear = if (observation.available) observation.value else null; gearAt = observation.elapsed }
                     if (observation.field == "speed") { speed = if (observation.available) observation.value.toDoubleOrNull() else null; speedAt = observation.elapsed }
+                    completeVoiceStartIfReady()
                     recorder.observe(observation)
                     if (observation.field in listOf("gear", "speed") && !observation.available) {
                         recorder.stop("차량 상태 연결/권한 손실", interrupted = true)
@@ -152,7 +179,7 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
         }
     }
     fun chooseMode(mode: InputMode) = launch {
-        check(loaded && recorder.phase !in listOf(Phase.RECORDING, Phase.ARMED, Phase.SAVE_FAILED))
+        check(loaded && pendingVoiceStart == null && recorder.phase !in listOf(Phase.RECORDING, Phase.ARMED, Phase.SAVE_FAILED))
         // TEST is a separate, explicit development input; never evidence of being parked in a real car.
         mutable.value = mutable.value.copy(mode = mode, locationConsent = false)
         connect(); publish(message = if (mode == InputMode.TEST) "TEST 입력 선택 · 실제 차량 데이터 아님" else "Pleos 차량 상태 수신 대기")
@@ -161,8 +188,10 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
     fun notificationDenied() = launch { mutable.value = mutable.value.copy(notice = "진행 알림을 받으려면 차록의 알림 권한을 허용해 주세요. 기록 준비는 아직 꺼져 있습니다.") }
     fun arm(consent: Boolean) = launch {
         check(loaded && foreground && parked() && consent)
+        check(notificationsAllowed())
         if (preparationRequested || serviceRunning) return@launch
-        mutable.value = mutable.value.copy(notice = null)
+        saveVoiceConsent(true)
+        mutable.value = mutable.value.copy(notice = null, startFailure = false)
         preparationRequested = true
         try {
             withContext(Dispatchers.Main) {
@@ -174,6 +203,38 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
             publish()
         }
     }
+    private fun saveVoiceConsent(enabled: Boolean) {
+        if (mutable.value.mode == InputMode.TEST) {
+            voiceConsent.testEnabled = enabled && BuildConfig.DEBUG
+        } else voiceConsent.realEnabled = enabled
+    }
+    fun configureVoice(enabled: Boolean) = launch {
+        check(loaded && foreground && parked() && !preparationRequested && !serviceRunning)
+        if (enabled) check(notificationsAllowed())
+        saveVoiceConsent(enabled)
+        publish(message = if (enabled) "Gleo 음성 기록 설정 완료 · 호출 전에는 수집하지 않습니다" else "음성 기록 동의를 해제했습니다")
+    }
+    private fun finishVoiceRequest(status: String, message: String) {
+        val request = pendingVoiceStart ?: return
+        pendingVoiceStart = null
+        mutable.value = mutable.value.copy(startFailure = status == "fail" && recorder.phase != Phase.SAVE_FAILED)
+        voiceDeadline?.cancel(); voiceDeadline = null
+        request.replies.forEach { reply -> runCatching { reply(status, message) } }
+    }
+    private suspend fun completeVoiceStartIfReady() {
+        val request = pendingVoiceStart ?: return
+        if (!serviceRunning || !motionKnown()) return
+        if (!voiceEnabled() || !notificationsAllowed()) {
+            finishVoiceRequest("fail", "Recording consent or notification permission is unavailable.")
+            return
+        }
+        recorder.arm(mutable.value.mode)
+        recorder.start(request.note, if (mutable.value.mode == InputMode.TEST) Origin.TEST else Origin.GLEO_INTENT)
+        withContext(Dispatchers.Main) { signals?.setLocation(mutable.value.locationConsent) }
+        finishVoiceRequest(if (recorder.phase == Phase.RECORDING) "success" else "fail",
+            if (recorder.phase == Phase.RECORDING) commandSuccess("Recording has started.") else "Storage could not be confirmed. Retry saving the same record in Chalog.")
+    }
+    private fun commandSuccess(message: String) = if (mutable.value.mode == InputMode.TEST) "TEST input only. $message" else message
     fun locationConsent(enabled: Boolean) = launch {
         check(parked())
         mutable.value = mutable.value.copy(locationConsent = enabled)
@@ -227,27 +288,85 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
         publish(message = reply)
         if (source == Origin.PLEOS_STT) withContext(Dispatchers.Main) { speech?.say(if (recorder.phase == Phase.SAVE_FAILED) recorder.storageError else reply) }
     }
-    fun gleo(action: String, note: String, mark: Boolean, response: (String, String) -> Unit) = launch {
-        withContext(Dispatchers.Main) { speech?.close() }
-        if (!loaded || !collectingAllowed() || mutable.value.mode != InputMode.PLEOS) { response("fail", "Open Chalog in Pleos input mode first."); return@launch }
-        if (action == "START_SYMPTOM_RECORD" && recorder.phase !in listOf(Phase.ARMED, Phase.RECORDING)) {
-            response("fail", "Please enable recording preparation with consent while parked first."); return@launch
+    fun gleo(command: GleoCommand, response: (String, String) -> Unit): Job {
+        var replied = false
+        val reply: (String, String) -> Unit = { status, message ->
+            if (!replied) { replied = true; runCatching { response(status, message) } }
         }
-        if (action == "ADD_SYMPTOM_NOTE" && note.isBlank() && !mark) { response("asking", "What symptom would you like to add?"); return@launch }
-        if (action == "END_SYMPTOM_RECORD" && recorder.phase !in listOf(Phase.RECORDING, Phase.SAVED, Phase.INTERRUPTED)) { response("fail", "There is no active or saved record to stop."); return@launch }
-        try {
-            when (action) {
-                "START_SYMPTOM_RECORD" -> startNow(note, Origin.GLEO_INTENT)
-                "ADD_SYMPTOM_NOTE" -> recorder.note(note, Origin.GLEO_INTENT, mark)
-                "END_SYMPTOM_RECORD" -> finishNow()
-                else -> error("Unknown action")
+        return launch {
+            try {
+                check(loaded)
+                withContext(Dispatchers.Main) { speech?.close() }
+                val origin = if (mutable.value.mode == InputMode.TEST) Origin.TEST else Origin.GLEO_INTENT
+                when (command) {
+                    GleoCommand.Open -> reply("fail", "Use the explicit Chalog panel action to view records.")
+                    GleoCommand.Stop -> {
+                        // Stop never requires a fresh vehicle reading, consent or an Activity.
+                        finishVoiceRequest("fail", "The start request was cancelled by the driver.")
+                        preparationRequested = false
+                        finishNow()
+                        reply(if (recorder.phase == Phase.SAVE_FAILED) "fail" else "success",
+                            if (recorder.phase == Phase.SAVE_FAILED) "Collection stopped, but storage could not be confirmed. Retry saving the same record in Chalog."
+                            else commandSuccess("Recording is stopped. Any active record has been saved."))
+                    }
+                    is GleoCommand.Add -> {
+                        check(serviceRunning && recorder.phase == Phase.RECORDING)
+                        recorder.note(command.note.ifBlank { "지금이야" }, origin, command.mark)
+                        reply(if (recorder.phase == Phase.SAVE_FAILED) "fail" else "success",
+                            if (recorder.phase == Phase.SAVE_FAILED) "Storage could not be confirmed. Retry saving the same record in Chalog."
+                            else commandSuccess("The symptom event was saved."))
+                    }
+                    is GleoCommand.Start -> {
+                        if (!voiceEnabled()) {
+                            reply("fail", "Enable voice recording with consent in Chalog while parked first.")
+                        } else if (!notificationsAllowed()) {
+                            reply("fail", "Allow Chalog notifications while parked before starting a new record.")
+                        } else if (mutable.value.mode == InputMode.PLEOS && ContextCompat.checkSelfPermission(getApplication(), "android.car.permission.CAR_SPEED") != PackageManager.PERMISSION_GRANTED) {
+                            reply("fail", "Grant vehicle state permission in Chalog while parked first.")
+                        } else if (recorder.phase == Phase.SAVE_FAILED) {
+                            reply("fail", "A record still needs to be saved. Retry the same record in Chalog.")
+                        } else if (pendingVoiceStart != null) {
+                            if (pendingVoiceStart!!.replies.size < 8) pendingVoiceStart!!.replies.add(reply)
+                            else reply("fail", "A recording start request is already being processed.")
+                        } else if (serviceRunning && recorder.phase in listOf(Phase.ARMED, Phase.RECORDING)) {
+                            startNow(command.note, origin)
+                            reply(if (recorder.phase == Phase.RECORDING) "success" else "fail",
+                                if (recorder.phase == Phase.RECORDING) commandSuccess("Recording is active.") else "Storage could not be confirmed. Retry the same record in Chalog.")
+                        } else if (serviceRunning || preparationRequested) {
+                            reply("fail", "The previous recording service is finishing. Please try again shortly.")
+                        } else {
+                            // A received user command, never app/process startup, initiates collection.
+                            pendingVoiceStart = PendingVoiceStart(command.note, mutableListOf(reply))
+                            mutable.value = mutable.value.copy(startFailure = false)
+                            preparationRequested = true
+                            publish(message = "음성 요청을 받아 기록을 준비합니다")
+                            voiceDeadline = viewModelScope.launch(worker) {
+                                delay(4000)
+                                operation.withLock {
+                                    if (pendingVoiceStart != null) {
+                                        preparationRequested = false
+                                        finishVoiceRequest("fail", "Vehicle state or the recording service is unavailable. No new record was started.")
+                                        publish(message = "차량 상태를 확인하지 못해 기록을 시작하지 않았습니다")
+                                    }
+                                }
+                            }
+                            withContext(Dispatchers.Main) {
+                                ContextCompat.startForegroundService(getApplication(), Intent(getApplication(), RecordingService::class.java))
+                            }
+                        }
+                    }
+                }
+                publish()
+            } catch (_: Exception) {
+                if (pendingVoiceStart?.replies?.contains(reply) == true) {
+                    preparationRequested = false
+                    finishVoiceRequest("fail", "Android could not start the background recording service. No new record was started.")
+                } else reply("fail", "The record is not ready for this action.")
+                publish(message = "요청을 완료하지 못했습니다. 기록 상태와 권한을 확인하세요.")
             }
-            publish()
-            if (recorder.phase == Phase.SAVE_FAILED) response("fail", "Recording stopped because storage could not be confirmed. Please retry saving the same record.")
-            else if (action == "START_SYMPTOM_RECORD" && recorder.session?.notes?.isEmpty() == true) response("asking", "Recording has started. What symptom did you notice?")
-            else response("success", if (action == "END_SYMPTOM_RECORD") "Recording has stopped. Check the saved record in Chalog." else "The request was saved in Chalog.")
-        } catch (_: Exception) { response("fail", "The record is not ready for this action.") }
+        }
     }
+    fun reportDelivery(message: String) = launch { publish(message) }
     fun loadHistory() = launch { check(parked()); mutable.value = mutable.value.copy(history = store.list()); publish() }
     fun supplement(text: String) = launch { check(parked()); recorder.supplement(text); publish(message = "원문을 유지하고 사용자 보완을 저장했습니다") }
     fun openHistory(id: String) = launch { check(parked()); recorder.open(id); publish() }

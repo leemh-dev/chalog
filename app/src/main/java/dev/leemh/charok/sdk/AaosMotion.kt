@@ -34,7 +34,8 @@ class AaosMotion(private val context: Context, private val emit: (Observation) -
             try {
                 val value = m.getProperty<Any>(id, 0)
                 val number = value.value as? Number
-                if (value.status != CarPropertyValue.STATUS_AVAILABLE || number == null) { missing(field); continue }
+                if (value.status != CarPropertyValue.STATUS_AVAILABLE || number == null ||
+                    (field == "gear" && number.toInt() == 0) || !number.toDouble().isFinite()) { missing(field); continue }
                 val text = if (field == "gear") if (number.toInt() == 4) "PARK" else "GEAR_${number.toInt()}" else number.toDouble().toString()
                 if (active) emit(Observation(field, text, if (field == "speed") "m/s" else "enum", Origin.AAOS_PROPERTY,
                     SystemClock.elapsedRealtime(), System.currentTimeMillis()))

@@ -42,8 +42,8 @@ private val Palette = lightColorScheme(primary = SignalBlue, onPrimary = Color.W
 private fun at(time: Long) = SimpleDateFormat("HH:mm:ss", Locale.KOREA).format(Date(time))
 private fun date(time: Long) = SimpleDateFormat("M월 d일 · HH:mm", Locale.KOREA).format(Date(time))
 
-@Composable fun CharokScreen(model: RecorderModel, prepare: () -> Unit, hide: () -> Unit,
-    connectPleos: () -> Unit, share: (File) -> Unit) {
+@Composable fun CharokScreen(model: RecorderModel, prepare: () -> Unit, setupVoice: () -> Unit, hide: () -> Unit,
+    connectPleos: () -> Unit, saveReport: (File) -> Unit, share: (File) -> Unit) {
     val state by model.ui.collectAsStateWithLifecycle()
     var page by remember { mutableStateOf("main") }
     var consent by remember { mutableStateOf(false) }
@@ -54,7 +54,7 @@ private fun date(time: Long) = SimpleDateFormat("M월 d일 · HH:mm", Locale.KOR
     var writing by remember { mutableStateOf(false) }
     LaunchedEffect(state.mode) { consent = false }
     LaunchedEffect(state.phase) { if (state.phase == Phase.SAVE_FAILED) page = "main" }
-    val active = state.phase in listOf(Phase.ARMED, Phase.RECORDING, Phase.SAVE_FAILED)
+    val active = state.starting || state.phase in listOf(Phase.ARMED, Phase.RECORDING, Phase.SAVE_FAILED)
     MaterialTheme(colorScheme = Palette, typography = Typography(
         bodyLarge = TextStyle(fontFamily = FontFamily.SansSerif, fontSize = 18.sp, lineHeight = 27.sp),
         bodyMedium = TextStyle(fontFamily = FontFamily.SansSerif, fontSize = 18.sp, lineHeight = 27.sp),
@@ -126,6 +126,7 @@ private fun date(time: Long) = SimpleDateFormat("M월 d일 · HH:mm", Locale.KOR
                                     Check("위치를 포함해 내보내기", includeLocation, true) { includeLocation = it }
                                     Text("기본값은 위치 제외입니다. 설명에 개인정보가 없는지 확인해 주세요.", color = Muted)
                                     Action("보고서 생성·공유", "export") { model.export(includeLocation, share) }
+                                    Secondary("파일로 저장", "save-report") { model.export(includeLocation, saveReport) }
                                     Text("파일 생성과 정비소 수신은 별개입니다. 자동 예약·센터 접수·GDS는 연결되지 않았습니다.", color = Muted, fontSize = 16.sp)
                                 }
                                 "history" -> {
@@ -149,12 +150,17 @@ private fun date(time: Long) = SimpleDateFormat("M월 d일 · HH:mm", Locale.KOR
                                             Eyebrow("차량 증상 기록")
                                             Heading("이상했던 순간을 남기세요")
                                             Text("차량 상태와 운전자 설명을 함께 보관합니다.", color = Muted)
-                                            Info("내비 뒤에서 조용히 준비", "최근 최대 60초의 차량 상태를 준비하고,\n기록 과정은 알림으로 알려 드립니다.")
-                                            Check("차량 상태 기록 준비에 동의합니다", consent, state.parked) { consent = it }
+                                            if (state.starting) Info("음성 요청을 받았어요", "차량 상태를 확인하고 있습니다. 화면은 닫으셔도 됩니다.")
+                                            else if (state.voiceEnabled) Info("Gleo 음성 기록 사용 중", "호출할 때만 기록을 시작합니다.\n앱을 닫아도 다음 음성 요청을 받을 수 있습니다.")
+                                            else Info("한 번 설정하고, 말로 기록하세요", "정차 중 동의와 권한을 설정하면\n다음부터는 Gleo로 기록을 시작할 수 있습니다.")
+                                            Check("차량 상태 기록에 동의합니다", consent, state.parked && !state.starting) { consent = it }
                                             if (state.mode == InputMode.PLEOS) Check("위치도 함께 기록 (선택)", state.locationConsent, state.parked) { model.locationConsent(it) }
                                             state.notice?.let { Text(it, color = Amber, fontSize = 16.sp) }
-                                            Action("기록 준비 켜기", "arm", consent && state.parked && !state.backgroundRunning) { prepare() }
-                                            Text("소리 원음은 녹음하지 않습니다. 준비를 켜려면 정차 상태를 확인해야 합니다.", fontSize = 16.sp, lineHeight = 21.sp, color = Muted)
+                                            if (!state.voiceEnabled && (state.mode == InputMode.PLEOS || BuildConfig.DEBUG)) Action("음성 기록 사용 설정", "voice-setup", consent && state.parked && !active) { setupVoice() }
+                                            Action("기록 준비 켜기", "arm", consent && state.parked && !state.backgroundRunning && !state.starting) { prepare() }
+                                            Text("미리 준비하면 실제 수집한 최근 최대 60초를 함께 남깁니다. 음성으로 바로 시작한 기록에는 없는 과거를 채우지 않습니다. 원음은 녹음하지 않습니다.", fontSize = 16.sp, lineHeight = 21.sp, color = Muted)
+                                            if (state.voiceEnabled) TextButton(onClick = { model.configureVoice(false) }, enabled = state.parked && !active, modifier = Modifier.testTag("voice-disable")) { Text("음성 기록 사용 끄기") }
+                                            if (state.voiceEnabled) Secondary("내비로 돌아가기", "hide") { hide() }
                                             TextButton(onClick = { settings = !settings }, modifier = Modifier.testTag("input-settings")) { Text(if (settings) "입력 설정 접기 −" else "입력 설정 +") }
                                             if (settings) {
                                                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {

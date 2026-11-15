@@ -7,5 +7,5 @@ python3 scripts/adb_readiness.py --serial emulator-5554 --output artifacts/adb-r
 adb -s emulator-5554 shell wm size 900x1000
 adb -s emulator-5554 shell wm density 160
 python3 scripts/adb_readiness.py --serial emulator-5554 --output artifacts/pre-install-readiness.json
-./gradlew :app:connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=dev.leemh.charok.RecorderDeviceTest --console=plain
+./gradlew :app:connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=dev.leemh.charok.RecorderDeviceTest,dev.leemh.charok.GleoBroadcastDeviceTest --console=plain
 python3 scripts/process_recovery.py --serial emulator-5554 --dedicated-test-avd

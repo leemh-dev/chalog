@@ -30,6 +30,8 @@ class RecordingService : Service() {
     private var promoted = false
     private var previousPhase: Phase? = null
     private var previousNotes = 0
+    private var previousStarting = false
+    private var previousStartFailure = false
 
     override fun onCreate() {
         super.onCreate()
@@ -51,11 +53,11 @@ class RecordingService : Service() {
             return
         }
         scope.launch {
-            model.ui.distinctUntilChangedBy { Triple(it.backgroundRunning, it.phase, it.session?.notes?.size ?: 0) }.collectLatest { state ->
+            model.ui.distinctUntilChangedBy { listOf(it.backgroundRunning, it.starting, it.startFailure, it.phase, it.session?.notes?.size ?: 0) }.collectLatest { state ->
                 if (!state.backgroundRunning) return@collectLatest
                 // Android drops excessive enqueues. Coalesce rapid commands and keep the latest state.
                 delay((lastPublishedAt + 1000 - SystemClock.elapsedRealtime()).coerceAtLeast(0))
-                val title = when (state.phase) {
+                val title = if (state.starting) "차량 상태를 확인하고 있어요" else if (state.startFailure) "기록을 시작하지 못했어요" else when (state.phase) {
                     Phase.ARMED -> "기록 준비 중"
                     Phase.RECORDING -> "증상을 기록하고 있어요"
                     Phase.SAVED -> "기록을 저장했어요"
@@ -63,21 +65,23 @@ class RecordingService : Service() {
                     Phase.SAVE_FAILED -> "저장을 다시 확인해 주세요"
                     Phase.IDLE -> "기록 준비를 껐어요"
                 }
-                val active = state.phase in listOf(Phase.ARMED, Phase.RECORDING, Phase.SAVE_FAILED)
+                val active = state.starting || state.phase in listOf(Phase.ARMED, Phase.RECORDING, Phase.SAVE_FAILED)
                 val notes = state.session?.notes?.size ?: 0
-                val changed = previousPhase != state.phase || previousNotes != notes
+                val changed = previousPhase != state.phase || previousNotes != notes || previousStarting != state.starting || previousStartFailure != state.startFailure
                 if (changed) {
                     lastPublishedAt = SystemClock.elapsedRealtime()
-                    notifications.notify(ONGOING_ID, notification(state, title, ongoing = active))
+                    if (active) notifications.notify(ONGOING_ID, notification(state, title, ongoing = true))
                     val eventTitle = if (previousPhase == Phase.RECORDING && state.phase == Phase.RECORDING) {
                         if (state.session?.notes?.lastOrNull()?.bookmark == true) "방금 순간을 표시했어요" else "증상 설명을 남겼어요"
                     } else title
-                    notifications.notify(EVENT_ID, notification(state, eventTitle, ongoing = false, event = true))
+                    if (!state.starting) notifications.notify(EVENT_ID, notification(state, eventTitle, ongoing = false, event = true))
                 }
                 previousPhase = state.phase
                 previousNotes = notes
+                previousStarting = state.starting
+                previousStartFailure = state.startFailure
                 if (!active) {
-                    stopForeground(STOP_FOREGROUND_DETACH)
+                    stopForeground(STOP_FOREGROUND_REMOVE)
                     stopSelf()
                 }
             }
@@ -111,7 +115,7 @@ class RecordingService : Service() {
             flags = Intent.FLAG_ACTIVITY_SINGLE_TOP or Intent.FLAG_ACTIVITY_CLEAR_TOP
         }, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
         val input = if (state.mode == InputMode.TEST) "TEST 입력 · " else ""
-        val description = when (state.phase) {
+        val description = if (state.startFailure) "새 기록은 시작되지 않았습니다. 정차 후 연결과 권한을 확인하세요" else when (state.phase) {
             Phase.ARMED -> "최근 최대 60초를 준비합니다"
             Phase.RECORDING -> "내비를 보면서 계속 기록할 수 있어요"
             Phase.SAVE_FAILED -> "앱을 열어 같은 기록으로 다시 저장해 주세요"
@@ -123,7 +127,8 @@ class RecordingService : Service() {
             .setContentTitle(title)
             .setContentText(input + description)
             .setContentIntent(open)
-            .setCategory(NotificationCompat.CATEGORY_SERVICE)
+            .setCategory(if (event) NotificationCompat.CATEGORY_STATUS else NotificationCompat.CATEGORY_SERVICE)
+            .setPriority(if (event) NotificationCompat.PRIORITY_HIGH else NotificationCompat.PRIORITY_LOW)
             .setVisibility(NotificationCompat.VISIBILITY_PRIVATE)
             .setOngoing(ongoing)
             .setAutoCancel(!ongoing)

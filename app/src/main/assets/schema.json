@@ -1,11 +1,49 @@
 {
   "packageName": "dev.leemh.charok",
-  "appDescription": "Chalog records driver-reported intermittent symptoms with available vehicle observations for a service consultation.",
+  "appDescription": "Chalog records driver-reported vehicle symptoms and available vehicle observations in the background for later service consultation.",
   "invokeWord": "차록",
-    "version": "0.2.3",
+  "version": "0.3.0",
   "actionCalls": [
-    {"type":"function","function":{"component":"activity","name":"START_SYMPTOM_RECORD","description":"Starts a symptom record after recording preparation has been enabled by the driver.","parameters":{"type":"object","properties":{"note":{"type":"string","description":"The symptom description supplied by the driver."}},"required":[]}}},
-    {"type":"function","function":{"component":"activity","name":"ADD_SYMPTOM_NOTE","description":"Adds a driver symptom description or marks the current moment in the active record.","parameters":{"type":"object","properties":{"note":{"type":"string","description":"The symptom description supplied by the driver."},"markMoment":{"type":"boolean","description":"Whether the driver wants to mark the current symptom moment."}},"required":[]}}},
-    {"type":"function","function":{"component":"activity","name":"END_SYMPTOM_RECORD","description":"Stops observation collection and saves the active symptom record.","parameters":{"type":"object","properties":{},"required":[]}}}
+    {
+      "type": "function",
+      "function": {
+        "component": "service",
+        "name": "CONTROL_SYMPTOM_RECORD",
+        "description": "Starts a background symptom record or stops collection and saves the record. Requires prior driver consent.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "operation": {"type": "string", "enum": ["start", "stop"], "description": "Whether to start or stop recording."},
+            "note": {"type": "string", "description": "An optional symptom description supplied by the driver when starting."}
+          },
+          "required": ["operation"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "component": "service",
+        "name": "ADD_SYMPTOM_EVENT",
+        "description": "Adds a driver symptom description or marks the current moment in the active background record.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "note": {"type": "string", "description": "The symptom description supplied by the driver."},
+            "markMoment": {"type": "boolean", "description": "Whether to mark the current symptom moment."}
+          },
+          "required": []
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "component": "activity",
+        "name": "OPEN_CHAROK_RECORDS",
+        "description": "Opens the Chalog panel to view the current or saved record without starting recording.",
+        "parameters": {"type": "object", "properties": {}, "required": []}
+      }
+    }
   ]
 }
