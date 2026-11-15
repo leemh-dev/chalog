@@ -1,0 +1,13 @@
+{
+  "status": "DRAFT: applicant details, consent and signatures not completed; not submitted",
+  "official_source": "https://appdevchallenge.auto-hmg.io/downloads/contest-application-consent.docx",
+  "template_sha256": "07be893d58b0e96ab7788f0d189d6829f0e59a2cee4bc18cb90ec37eeda2f5fd",
+  "draft_sha256": "dc2fbdc8a37e051f2dcbeaef32a4a37471f7286a2a35c4d45ce6c41c91588194",
+  "filled_project_sections": 8,
+  "checks": [
+    "8 project sections reopened and matched",
+    "applicant and signature tables unchanged",
+    "no applicant identity added"
+  ],
+  "limitation": "Word page rendering and pagination not verified here; review in Word before signing/submitting"
+}

@@ -1,0 +1,253 @@
+{
+  "level": "browser UX simulation only",
+  "checks": [
+    "explicit TEST preparation consent",
+    "record → bookmark → saving → simulated saved",
+    "driving locks summary and direct scene access",
+    "export and center are explicitly disconnected",
+    "failure retry and close states",
+    "30 responsive layouts; driving views need no scroll; no JavaScript errors"
+  ],
+  "layouts": [
+    {
+      "viewportWidth": 1600,
+      "scene": "ready",
+      "scroll": 594,
+      "height": 594,
+      "width": 644,
+      "client": 644
+    },
+    {
+      "viewportWidth": 1600,
+      "scene": "armed",
+      "scroll": 594,
+      "height": 594,
+      "width": 644,
+      "client": 644
+    },
+    {
+      "viewportWidth": 1600,
+      "scene": "recording",
+      "scroll": 594,
+      "height": 594,
+      "width": 644,
+      "client": 644
+    },
+    {
+      "viewportWidth": 1600,
+      "scene": "marked",
+      "scroll": 594,
+      "height": 594,
+      "width": 644,
+      "client": 644
+    },
+    {
+      "viewportWidth": 1600,
+      "scene": "saved",
+      "scroll": 594,
+      "height": 594,
+      "width": 644,
+      "client": 644
+    },
+    {
+      "viewportWidth": 1600,
+      "scene": "handoff",
+      "scroll": 594,
+      "height": 594,
+      "width": 644,
+      "client": 644
+    },
+    {
+      "viewportWidth": 1600,
+      "scene": "export",
+      "scroll": 594,
+      "height": 594,
+      "width": 644,
+      "client": 644
+    },
+    {
+      "viewportWidth": 1600,
+      "scene": "center",
+      "scroll": 594,
+      "height": 594,
+      "width": 644,
+      "client": 644
+    },
+    {
+      "viewportWidth": 1600,
+      "scene": "failure",
+      "scroll": 594,
+      "height": 594,
+      "width": 644,
+      "client": 644
+    },
+    {
+      "viewportWidth": 1600,
+      "scene": "closed",
+      "scroll": 594,
+      "height": 594,
+      "width": 644,
+      "client": 644
+    },
+    {
+      "viewportWidth": 1000,
+      "scene": "ready",
+      "scroll": 650,
+      "height": 650,
+      "width": 487,
+      "client": 487
+    },
+    {
+      "viewportWidth": 1000,
+      "scene": "armed",
+      "scroll": 650,
+      "height": 650,
+      "width": 487,
+      "client": 487
+    },
+    {
+      "viewportWidth": 1000,
+      "scene": "recording",
+      "scroll": 650,
+      "height": 650,
+      "width": 487,
+      "client": 487
+    },
+    {
+      "viewportWidth": 1000,
+      "scene": "marked",
+      "scroll": 650,
+      "height": 650,
+      "width": 487,
+      "client": 487
+    },
+    {
+      "viewportWidth": 1000,
+      "scene": "saved",
+      "scroll": 650,
+      "height": 650,
+      "width": 487,
+      "client": 487
+    },
+    {
+      "viewportWidth": 1000,
+      "scene": "handoff",
+      "scroll": 650,
+      "height": 650,
+      "width": 487,
+      "client": 487
+    },
+    {
+      "viewportWidth": 1000,
+      "scene": "export",
+      "scroll": 650,
+      "height": 650,
+      "width": 487,
+      "client": 487
+    },
+    {
+      "viewportWidth": 1000,
+      "scene": "center",
+      "scroll": 650,
+      "height": 650,
+      "width": 487,
+      "client": 487
+    },
+    {
+      "viewportWidth": 1000,
+      "scene": "failure",
+      "scroll": 650,
+      "height": 650,
+      "width": 487,
+      "client": 487
+    },
+    {
+      "viewportWidth": 1000,
+      "scene": "closed",
+      "scroll": 650,
+      "height": 650,
+      "width": 487,
+      "client": 487
+    },
+    {
+      "viewportWidth": 430,
+      "scene": "ready",
+      "scroll": 640,
+      "height": 640,
+      "width": 404,
+      "client": 404
+    },
+    {
+      "viewportWidth": 430,
+      "scene": "armed",
+      "scroll": 640,
+      "height": 640,
+      "width": 404,
+      "client": 404
+    },
+    {
+      "viewportWidth": 430,
+      "scene": "recording",
+      "scroll": 640,
+      "height": 640,
+      "width": 404,
+      "client": 404
+    },
+    {
+      "viewportWidth": 430,
+      "scene": "marked",
+      "scroll": 640,
+      "height": 640,
+      "width": 404,
+      "client": 404
+    },
+    {
+      "viewportWidth": 430,
+      "scene": "saved",
+      "scroll": 640,
+      "height": 640,
+      "width": 404,
+      "client": 404
+    },
+    {
+      "viewportWidth": 430,
+      "scene": "handoff",
+      "scroll": 640,
+      "height": 640,
+      "width": 404,
+      "client": 404
+    },
+    {
+      "viewportWidth": 430,
+      "scene": "export",
+      "scroll": 640,
+      "height": 640,
+      "width": 404,
+      "client": 404
+    },
+    {
+      "viewportWidth": 430,
+      "scene": "center",
+      "scroll": 640,
+      "height": 640,
+      "width": 404,
+      "client": 404
+    },
+    {
+      "viewportWidth": 430,
+      "scene": "failure",
+      "scroll": 640,
+      "height": 640,
+      "width": 404,
+      "client": 404
+    },
+    {
+      "viewportWidth": 430,
+      "scene": "closed",
+      "scroll": 640,
+      "height": 640,
+      "width": 404,
+      "client": 404
+    }
+  ]
+}
