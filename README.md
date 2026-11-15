@@ -2,13 +2,15 @@
 
 **증상이 생긴 그 순간부터, 정비사와의 대화까지.**
 
+**[한글 자막 시연 영상 · 2분 39초](docs/evidence/macos-pleos-captioned-demo-2026-11-15/chalog-verified-scenarios-ko.mp4)** — 좌측 상단 시나리오6개·하단 한글 설명·실제 Mac Pleos TEST 화면. [영상·DB 검증](docs/20-captioned-scenario-demo.md).
+
 영문 브랜드는 **CHALOG**, 한글 서비스명은 **차록**입니다. ‘차 + log(기록)’를 조합한 이름으로, 함께 표기해 한글 이름을 일관되게 안내합니다.
 
 차록은 운전자가 느낀 이상 증상을 음성으로 표시하면, 실제 확보한 직전 1분부터 종료 명령까지의 차량 상태를 함께 보존하고 정비사와 검토할 수 있게 하는 서비스입니다.
 
-현재 **Android 0.3.1/7**입니다. 최초 동의와 매 기록 시작을 분리하고, 화면 없는 CONTROL/ADD Broadcast와 명시적 OPEN을 구현했습니다. 동의 행 조작·보고서 결과 안내를 고쳤고 SIGNAL 패널과 경고등 이력을 유지합니다. Mac Pleos 기기15개·별도 새 PID 복원과 JVM39개를 통과했습니다. 이번 수정 전 기록77개 전체를 보존했으며 최종 DB는118개·무결성ok입니다. [12개 시나리오별 재검증](docs/19-background-fixes-and-reverification.md) · [실제 화면·APK·DB 증거](docs/evidence/macos-pleos-gleo-fixes-2026-11-15/README.md).
+현재 **Android 0.3.1/7**입니다. 최초 동의와 매 기록 시작을 분리하고, 화면 없는 CONTROL/ADD Broadcast와 명시적 OPEN을 구현했습니다. 동의 행 조작·보고서 결과 안내를 고쳤고 SIGNAL 패널과 경고등 이력을 유지합니다. Mac Pleos 기기15개·별도 새 PID 복원과 JVM39개를 통과했습니다. 이번 수정 전 기록77개 전체를 보존했으며 시연 후 최종 DB는119개·무결성ok입니다. [12개 시나리오별 재검증](docs/19-background-fixes-and-reverification.md) · [실제 화면·APK·DB 증거](docs/evidence/macos-pleos-gleo-fixes-2026-11-15/README.md).
 
-제품 목표는 **Gleo로 화면 없이 기록·종료하고, ‘차록 열어줘’에만 우측 콘텐츠 영역을 표시**하는 것입니다. [개발 방향](docs/15-gleo-background-direction.md) · [선택된 SIGNAL 시안](docs/design/gleo-background/README.md). TEST Broadcast/저장/복원은 확인했지만 실제 Gleo 발화·등록, 차량 SDK·마이크·음악, 자동 우측 배치·차록에서 보내는 내비 목적지는 별도 차단/미검증입니다. 결과 알림은 알림센터에서 확인했고 짧은 토스트의 실제 노출은 미확인입니다. 이번에는 영상을 만들지 않았으며 다음 영상에는 [한국어 기능 자막](docs/09-demo-delivery-plan.md)을 넣습니다.
+제품 목표는 **Gleo로 화면 없이 기록·종료하고, ‘차록 열어줘’에만 우측 콘텐츠 영역을 표시**하는 것입니다. [개발 방향](docs/15-gleo-background-direction.md) · [선택된 SIGNAL 시안](docs/design/gleo-background/README.md). TEST Broadcast/저장/복원은 확인했지만 실제 Gleo 발화·등록, 차량 SDK·마이크·음악, 자동 우측 배치·차록에서 보내는 내비 목적지는 별도 차단/미검증입니다. 결과 알림은 알림센터에서 확인했고 짧은 토스트의 실제 노출은 미확인입니다. [한국어 기능 자막을 포함한 시연](docs/20-captioned-scenario-demo.md)을 완성했으며 TEST 입력과 검증 범위를 영상에 표시했습니다.
 
 순정 내비의 공개 장소 검색·340m 경로 안내·종료는 실제로 동작했습니다. 배경 지도는 여전히 비어 있습니다. Pleos 문서 저장 화면은 문서를 반환하지 않는 stub이므로 파일 저장 완료로 표시하지 않습니다. [브랜드·내비 조사](docs/17-chalog-and-navigation.md) · [수정 전 시나리오 검토](docs/18-service-scenario-review.md).
 

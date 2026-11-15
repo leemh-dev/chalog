@@ -1,0 +1,14 @@
+{
+  "version": "0.3.1/7",
+  "app_sha256": "c6eb42e1418bc0bf081682e1b5e3394ab13eff580d213e6be301265a9d77c2e7",
+  "matches_previously_tested_apk": true,
+  "reinstalled": false,
+  "capture_latencies_seconds": [
+    0.34281916699546855,
+    0.23523262499656994,
+    0.22688133300107438,
+    0.22747516699018888,
+    0.22667220799485222,
+    0.2175235419999808
+  ]
+}
