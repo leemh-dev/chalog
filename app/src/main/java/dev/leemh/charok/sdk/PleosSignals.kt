@@ -13,6 +13,7 @@ import dev.leemh.charok.core.*
 /** Read-only public API. One-second reads are sampled observations, not a continuous ECU log. */
 class PleosSignals(private val context: Context, private val emit: (Observation) -> Unit, private val status: (String) -> Unit) {
     private var vehicle: Vehicle? = null
+    private val telltales = PleosTelltales(context, { vehicle?.getSafety() }, emit)
     private var motion: AaosMotion? = null
     @Volatile private var active = false
     @Volatile private var steering = false
@@ -49,6 +50,7 @@ class PleosSignals(private val context: Context, private val emit: (Observation)
     fun poll(capture: Boolean) {
         if (!active) return
         motion?.poll()
+        telltales.poll(capture)
         val v = vehicle ?: return
         try {
             if (!capture) return
@@ -74,7 +76,9 @@ class PleosSignals(private val context: Context, private val emit: (Observation)
         } catch (_: Exception) { setLocation(false); status("위치 연결/권한 확인 필요") }
     }
     fun close() {
+        telltales.stopCapture()
         active = false; motion?.close(); motion = null; setLocation(false); steering = false; brake = false; seats = emptyList()
         runCatching { vehicle?.release() }; vehicle = null
     }
+    fun resetTelltales() = telltales.stopCapture()
 }

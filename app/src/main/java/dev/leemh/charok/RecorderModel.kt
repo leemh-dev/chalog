@@ -46,6 +46,7 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
     private var speed: Double? = null
     private var speedAt: Long? = null
     private var testParked = true
+    private val testTelltales = TelltaleSampler()
     private var signals: PleosSignals? = null
     private var speech: PleosSpeech? = null
     private var navigator: CenterNavigator? = null
@@ -114,6 +115,8 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
         if (!preparationRequested) return@launch
         preparationRequested = false
         serviceRunning = true
+        testTelltales.reset()
+        withContext(Dispatchers.Main) { signals?.resetTelltales() }
         recorder.arm(mutable.value.mode)
         withContext(Dispatchers.Main) { signals?.setLocation(mutable.value.locationConsent) }
         publish(message = "다른 화면에서도 기록 준비를 이어갑니다")
@@ -180,14 +183,24 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
     fun start(text: String = "", source: Origin = Origin.MANUAL) = launch { startNow(text, source); publish() }
     private fun startNow(text: String, source: Origin) { check(loaded && serviceRunning); recorder.start(text, source) }
     fun mark() = launch { recorder.note("지금이야", if (mutable.value.mode == InputMode.TEST) Origin.TEST else Origin.MANUAL, true); publish(message = "사용자가 표시한 순간을 저장했습니다") }
+    fun testWarningLights(action: String) = launch {
+        check(mutable.value.mode == InputMode.TEST && recorder.phase == Phase.RECORDING)
+        if (action == "missing") recorder.observe(Observation(TELLTALE_READ, "", "snapshot", Origin.TEST, clock.elapsed(), clock.wall(), false))
+        else {
+            require(action in listOf("on", "off"))
+            testTelltales.snapshot(listOf(LampSample("ENGINE", if (action == "on") "ON" else "OFF"),
+                LampSample("TPMS", "BLINK")), Origin.TEST, clock.elapsed(), clock.wall()).forEach(recorder::observe)
+        }
+        publish(message = "TEST 경고등 관측을 기록했습니다 · 실제 차량 데이터 아님")
+    }
     fun finish() = launch { finishNow(); publish(message = "관측 중지 · 저장 내용 재조회 완료") }
     private suspend fun finishNow() {
         mutable.value = mutable.value.copy(busy = true)
-        withContext(Dispatchers.Main) { speech?.close(); signals?.setLocation(false) }
+        withContext(Dispatchers.Main) { speech?.close(); signals?.setLocation(false); signals?.resetTelltales() }
         recorder.stop(); mutable.value = mutable.value.copy(speech = "마이크 꺼짐")
     }
     fun retry() = launch { mutable.value = mutable.value.copy(busy = true); recorder.retry(); publish() }
-    fun closeRecord() = launch { withContext(Dispatchers.Main) { speech?.close(); signals?.setLocation(false) }; recorder.close(); publish(message = "기록 준비 꺼짐 · 자동 재개하지 않습니다") }
+    fun closeRecord() = launch { withContext(Dispatchers.Main) { speech?.close(); signals?.setLocation(false); signals?.resetTelltales() }; recorder.close(); publish(message = "기록 준비 꺼짐 · 자동 재개하지 않습니다") }
     fun injectFailure() = launch {
         check(BuildConfig.DEBUG && mutable.value.mode == InputMode.TEST)
         failNext = true

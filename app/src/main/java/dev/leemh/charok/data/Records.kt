@@ -66,6 +66,10 @@ object ConsultationReport {
         appendLine("원음 녹음·고장 진단·업체 수신 확인은 포함하지 않습니다.")
         appendLine("\n사용자 설명과 순간 표시")
         s.notes.forEach { appendLine("${it.at} [${it.origin}] ${if (it.bookmark) "사용자 순간 표시: " else ""}${it.text}") }
+        appendLine("\n관측된 경고·표시등 / 기록 구간의 관측이며 현재 상태·고장 진단이 아닙니다")
+        val lamps = s.observedLamps()
+        if (lamps.isEmpty()) appendLine("${s.lampCoverage()} · 미수신은 정상 판정이 아닙니다.")
+        lamps.forEach { appendLine("${it.label} [${it.type}] · 최초 관측 ${it.firstLit.receivedAt} [${it.firstLit.origin}] · 마지막 확인 ${it.latest.receivedAt}: ${it.stateLabel}") }
         appendLine("\n실제 확보한 관측 / TEST는 실차 데이터가 아닙니다")
         s.observations.forEach { appendLine("${it.receivedAt} [${it.origin}] ${it.field}: ${if (it.available) it.value else "수신 불가"} ${it.unit}; sampleAt=${it.sampleAt ?: "미제공"}") }
         appendLine("\n받지 못한 필드/관측 사이 구간은 미확인입니다. 누락을 정상으로 판단하지 않습니다.")

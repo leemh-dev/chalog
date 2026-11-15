@@ -7,8 +7,8 @@ android {
         applicationId = "dev.leemh.charok"
         minSdk = 28
         targetSdk = 34
-        versionCode = 3
-        versionName = "0.2.1"
+        versionCode = 4
+        versionName = "0.2.2"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         kapt { arguments { arg("room.schemaLocation", "$projectDir/schemas") } }
     }

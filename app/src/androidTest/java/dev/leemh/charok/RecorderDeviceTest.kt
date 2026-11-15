@@ -66,6 +66,26 @@ class RecorderDeviceTest {
         assertTrue(ConsultationReport.text(saved).contains("TEST"))
         File(app.getExternalFilesDir(null), "evidence/session-proof.json").writeText(dev.leemh.charok.data.SessionCodec.encode(saved))
     }
+    @Test fun warningLightsSurviveSaveReopenAndReport() {
+        prepare(); tap("start"); await("test-lamps-on")
+        tap("test-lamps-on")
+        ui.waitUntil(10_000) { app.store.latest()?.observedLamps()?.size == 2 }
+        tap("test-lamps-off")
+        ui.waitUntil(10_000) { app.store.latest()?.observedLamps()?.firstOrNull()?.stateLabel == "소등 관측" }
+        ui.onNodeWithTag("stop").performClick(); await("details")
+        val saved = app.store.latest()!!
+        assertEquals(Phase.SAVED, saved.phase)
+        assertEquals(saved, app.store.get(saved.id))
+        assertEquals(listOf("OFF", "BLINK"), saved.observedLamps().map { it.latest.value })
+        ui.activityRule.scenario.recreate(); await("details")
+        assertEquals(saved.id, app.recorder.ui.value.session!!.id)
+        tap("details")
+        ui.onNodeWithText("엔진 경고등").performScrollTo().assertIsDisplayed()
+        ui.onNodeWithText("타이어 공기압 경고등").assertIsDisplayed()
+        capture("08-warning-lights-test")
+        assertTrue(ConsultationReport.text(saved).contains("소등 관측"))
+        File(app.getExternalFilesDir(null), "evidence/warning-session-proof.json").writeText(dev.leemh.charok.data.SessionCodec.encode(saved))
+    }
     @Test fun failedSaveRetriesSameIdWithoutNewSession() {
         prepare(); tap("start"); await("test-note")
         val id = app.store.latest()!!.id

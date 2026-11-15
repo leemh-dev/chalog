@@ -97,6 +97,7 @@ private fun date(time: Long) = SimpleDateFormat("M월 d일 · HH:mm", Locale.KOR
                                     state.session?.let { s ->
                                         Text("${date(s.startedAt)} · ${s.mode}", color = Muted)
                                         RecordQuote(s, true, expanded = true)
+                                        TelltaleCard(s, expanded = true)
                                         MomentPreview(s, limit = 200)
                                         if (s.notes.count { !it.bookmark } > 1) Info("추가 설명", s.notes.filterNot { it.bookmark }.drop(1).joinToString("\n\n") { "${it.text} · ${it.origin}" })
                                         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -180,6 +181,7 @@ private fun date(time: Long) = SimpleDateFormat("M월 d일 · HH:mm", Locale.KOR
                                             state.session?.let { s ->
                                                 RecordQuote(s, state.parked)
                                                 RecordNumbers(s)
+                                                if (state.parked) TelltaleCard(s)
                                                 if (state.parked) MomentPreview(s)
                                             }
                                             Secondary("내비로 돌아가기", "hide") { hide() }
@@ -201,6 +203,7 @@ private fun date(time: Long) = SimpleDateFormat("M월 d일 · HH:mm", Locale.KOR
                                             Text(date(s.startedAt), color = Muted, fontSize = 16.sp)
                                             RecordQuote(s, state.parked)
                                             RecordNumbers(s)
+                                            if (state.parked) TelltaleCard(s)
                                             if (state.parked) MomentPreview(s)
                                             if (s.reason.isNotBlank()) Text(s.reason, color = Muted, fontSize = 16.sp)
                                             Action("상담 카드 보기", "details", state.parked) { page = "details" }
@@ -224,6 +227,11 @@ private fun date(time: Long) = SimpleDateFormat("M월 d일 · HH:mm", Locale.KOR
                                         TextButton(onClick = { testTools = !testTools }, modifier = Modifier.testTag("test-tools")) { Text(if (testTools) "TEST 도구 접기 −" else "TEST 도구 +", color = Amber, fontSize = 16.sp) }
                                         if (testTools) {
                                             if (state.phase == Phase.RECORDING) Secondary("TEST: 핸들을 돌릴 때 앞쪽 소음", "test-note", state.parked) { model.voice("핸들을 돌릴 때 앞쪽에서 덜컥 소리가 나요") }
+                                            if (state.phase == Phase.RECORDING && state.parked) {
+                                                Secondary("TEST: 경고등 점등", "test-lamps-on") { model.testWarningLights("on") }
+                                                Secondary("TEST: 엔진 경고등 소등", "test-lamps-off") { model.testWarningLights("off") }
+                                                TextButton(onClick = { model.testWarningLights("missing") }, modifier = Modifier.testTag("test-lamps-missing")) { Text("TEST: 경고등 수신 끊김", color = Amber) }
+                                            }
                                             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                                                 TextButton(onClick = { model.toggleTestMotion() }, modifier = Modifier.testTag("motion")) { Text(if (state.parked) "TEST 주행으로" else "TEST 정차로", color = Amber) }
                                                 if (BuildConfig.DEBUG) TextButton(onClick = { model.injectFailure() }, modifier = Modifier.testTag("fail-save")) { Text("저장 실패 TEST", color = Amber) }
@@ -321,6 +329,41 @@ private fun duration(ms: Long): String {
                     if (index < shown.size - 1) HorizontalDivider(Modifier.padding(top = 8.dp), color = Line)
                 }
             }
+        }
+    }
+}
+
+@Composable private fun TelltaleCard(session: Session, expanded: Boolean = false) {
+    val lamps = remember(session) { session.observedLamps() }
+    Column(Modifier.fillMaxWidth().border(1.dp, Line, RoundedCornerShape(12.dp)).padding(16.dp).testTag("telltales"),
+        verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+            Text("관측된 경고·표시등", fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+            Spacer(Modifier.weight(1f))
+            Text(if (lamps.isEmpty()) "미확인" else "${lamps.size}종", fontSize = 16.sp, color = Muted)
+        }
+        if (lamps.isEmpty()) {
+            Text(session.lampCoverage(), fontSize = 18.sp, color = Muted)
+            Text("수신하지 못한 상태를 정상으로 판단하지 않습니다.", fontSize = 16.sp, color = Muted)
+        } else {
+            lamps.take(if (expanded) lamps.size else 3).forEach { lamp ->
+                Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                    Box(Modifier.size(38.dp).background(Color(0xFFFFF4E3), RoundedCornerShape(10.dp)), contentAlignment = Alignment.Center) {
+                        val icon = when (lamp.type) { "ENGINE" -> R.drawable.ic_lamp_engine; "TPMS" -> R.drawable.ic_lamp_tire; else -> null }
+                        if (icon != null) Icon(painterResource(icon), contentDescription = null, tint = Amber, modifier = Modifier.size(26.dp))
+                        else Text("!", fontSize = 23.sp, fontWeight = FontWeight.Bold, color = Amber)
+                    }
+                    Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(3.dp)) {
+                        Text(lamp.label, fontSize = 18.sp, fontWeight = FontWeight.Medium)
+                        val offset = lamp.firstLit.elapsed - session.triggerElapsed
+                        Text("${if (offset < 0) "준비 −" else "+"}${duration(kotlin.math.abs(offset))} · ${at(lamp.firstLit.receivedAt)} · ${lamp.firstLit.origin}", fontSize = 16.sp, color = Muted)
+                        if (expanded) Text("마지막 확인 ${at(lamp.latest.receivedAt)} · ${lamp.stateLabel}", fontSize = 16.sp, color = Muted)
+                    }
+                    if (!expanded) Text(lamp.stateLabel, fontSize = 16.sp, color = Muted)
+                }
+            }
+            if (!expanded && lamps.size > 3) Text("외 ${lamps.size - 3}종 · 상담 카드에서 전체 확인", fontSize = 16.sp, color = Muted)
+            Text("기록 구간의 관측입니다. 현재 상태·고장 진단이 아닙니다.", fontSize = 16.sp, color = Muted)
         }
     }
 }
