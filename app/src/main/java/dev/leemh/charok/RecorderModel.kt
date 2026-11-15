@@ -229,7 +229,7 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
     }
     fun gleo(action: String, note: String, mark: Boolean, response: (String, String) -> Unit) = launch {
         withContext(Dispatchers.Main) { speech?.close() }
-        if (!loaded || !collectingAllowed() || mutable.value.mode != InputMode.PLEOS) { response("fail", "Open Charok in Pleos input mode first."); return@launch }
+        if (!loaded || !collectingAllowed() || mutable.value.mode != InputMode.PLEOS) { response("fail", "Open Chalog in Pleos input mode first."); return@launch }
         if (action == "START_SYMPTOM_RECORD" && recorder.phase !in listOf(Phase.ARMED, Phase.RECORDING)) {
             response("fail", "Please enable recording preparation with consent while parked first."); return@launch
         }
@@ -245,7 +245,7 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
             publish()
             if (recorder.phase == Phase.SAVE_FAILED) response("fail", "Recording stopped because storage could not be confirmed. Please retry saving the same record.")
             else if (action == "START_SYMPTOM_RECORD" && recorder.session?.notes?.isEmpty() == true) response("asking", "Recording has started. What symptom did you notice?")
-            else response("success", if (action == "END_SYMPTOM_RECORD") "Recording has stopped. Check the saved record in Charok." else "The request was saved in Charok.")
+            else response("success", if (action == "END_SYMPTOM_RECORD") "Recording has stopped. Check the saved record in Chalog." else "The request was saved in Chalog.")
         } catch (_: Exception) { response("fail", "The record is not ready for this action.") }
     }
     fun loadHistory() = launch { check(parked()); mutable.value = mutable.value.copy(history = store.list()); publish() }
@@ -257,9 +257,9 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
         val report = if (includeLocation) selected else selected.copy(observations = selected.observations.filterNot { it.origin == Origin.PLEOS_LOCATION })
         val dir = File(getApplication<Application>().cacheDir, "reports").apply { mkdirs() }
         dir.listFiles()?.filter { clock.wall() - it.lastModified() > 86_400_000 }?.forEach { it.delete() }
-        val file = File(dir, "charok-${selected.id}.txt")
+        val file = File(dir, "chalog-${selected.id}.txt")
         file.writeText(ConsultationReport.text(report)); check(file.readText() == ConsultationReport.text(report))
-        File(dir, "charok-${selected.id}.json").writeText(SessionCodec.encode(report))
+        File(dir, "chalog-${selected.id}.json").writeText(SessionCodec.encode(report))
         publish(message = "보고서 파일 생성·재조회 완료 · 업체 수신 미확인")
         withContext(Dispatchers.Main) { done(file) }
     }

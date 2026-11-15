@@ -59,7 +59,7 @@ object SessionCodec {
 
 object ConsultationReport {
     fun text(s: Session): String = buildString {
-        appendLine("차록 · 정비 상담 기록"); appendLine("기록 ID: ${s.id}")
+        appendLine("차록 · CHALOG · 정비 상담 기록"); appendLine("기록 ID: ${s.id}")
         appendLine("입력 환경: ${s.mode} / 상태: ${s.phase}"); appendLine("시작 UTC epoch ms: ${s.startedAt}")
         appendLine("종료 UTC epoch ms: ${s.endedAt ?: "미확인: 마지막 checkpoint까지만 복원"}")
         appendLine("종료 사유: ${s.reason}")

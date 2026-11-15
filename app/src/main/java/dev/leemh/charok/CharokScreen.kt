@@ -67,6 +67,7 @@ private fun date(time: Long) = SimpleDateFormat("M월 d일 · HH:mm", Locale.KOR
                     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                         Image(painterResource(R.drawable.charok_icon), contentDescription = null, modifier = Modifier.size(32.dp))
                         Text("차록", modifier = Modifier.padding(start = 8.dp), fontSize = 21.sp, fontWeight = FontWeight.Bold)
+                        Text("CHALOG", modifier = Modifier.padding(start = 10.dp), fontSize = 16.sp, color = Muted, fontWeight = FontWeight.Medium)
                         Spacer(Modifier.weight(1f))
                         Badge(if ((state.session?.mode ?: state.mode) == InputMode.TEST) "TEST 입력" else "Pleos", (state.session?.mode ?: state.mode) == InputMode.TEST)
                         IconButton(onClick = hide, modifier = Modifier.testTag("dismiss-panel").semantics { contentDescription = "차록 화면 닫기" }) {
