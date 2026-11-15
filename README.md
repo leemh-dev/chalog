@@ -1,65 +1,101 @@
 # 차록 · CHALOG
 
-**증상이 생긴 그 순간부터, 정비사와의 대화까지.**
+[공모전 제출 안내](https://appdevchallenge.auto-hmg.io/guide/submission)의 README 필수 5개 항목에 맞춘 실행·검증 안내입니다.
 
-**[최신 한글 자막 시연 영상 · 2분 39초](docs/evidence/chalog-submission-demo-2026-11-15/chalog-verified-scenarios-ko.mp4)** — CHALOG 0.3.2 실제 Mac Pleos 재촬영, 좌측 상단 시나리오6개·하단 한글 설명17구간. [영상·DB·release 검사](docs/evidence/chalog-submission-demo-2026-11-15/README.md).
+## 1. 앱 이름 및 한 줄 소개
 
-**[심사용 release APK](apk/CHALOG_차록_release.apk)** · [설치·서명·해시](apk/README.md) · [공식 신청서 초안](docs/submission/chalog-application-draft.docx) · [제출 준비 안내](docs/22-submission-ready.md). 이전 [0.3.1 영상 원본](docs/evidence/macos-pleos-captioned-demo-2026-11-15/chalog-verified-scenarios-ko.mp4)은 그대로 보존했습니다.
+**차록(CHALOG)** — 차량에서 느낀 이상 징후와 관측 정보를 백그라운드에서 기록하고, 주차 후 정비 상담용 메모로 확인하는 차량용 앱입니다.
 
-영문 브랜드는 **CHALOG**, 한글 서비스명은 **차록**입니다. ‘차 + log(기록)’를 조합한 이름으로, 함께 표기해 한글 이름을 일관되게 안내합니다.
+영문명 CHALOG는 ‘차 + log(기록)’를 조합한 이름입니다. 한글 서비스명과 호출어는 ‘차록’을 사용합니다. 현재 버전은 **0.3.2 / versionCode 8**입니다.
 
-차록은 운전자가 느낀 이상 증상을 음성으로 표시하면, 실제 확보한 직전 1분부터 종료 명령까지의 차량 상태를 함께 보존하고 정비사와 검토할 수 있게 하는 서비스입니다.
+## 2. 실행 방법
 
-현재 **Android 0.3.2/8**입니다. 저장소·소스·클래스·리소스를 CHALOG로 통일했습니다. 기존 설치 ID와 DB는 유지하며 이전 실행 명령도 지원합니다. 이름 변경 때 JVM40개·Pleos 기기16개·새 PID 복원을 통과했습니다. 이번 재촬영 전133개 모든 기록을 보존했고, 영상·release검사 후 최종135개·무결성ok입니다. [이름 변경·검증](docs/21-chalog-rename.md) · [실제 화면·APK·DB 증거](docs/evidence/macos-pleos-chalog-rename-2026-11-15/README.md).
+저장소의 [이명훈_차록_release.apk](apk/이명훈_차록_release.apk)를 내려받아 Pleos Connect 에뮬레이터에 설치합니다. 아래는 실제 검증한 `emulator-5560`, Android 사용자 `10` 기준이며, 다른 환경에서는 연결된 기기와 사용자에 맞춥니다. 저장소 루트에서 실행합니다.
 
-아래는 직전 **Android 0.3.1/7** 검증 결과입니다. 최초 동의와 매 기록 시작을 분리하고, 화면 없는 CONTROL/ADD Broadcast와 명시적 OPEN을 구현했습니다. 동의 행 조작·보고서 결과 안내를 고쳤고 SIGNAL 패널과 경고등 이력을 유지합니다. Mac Pleos 기기15개·별도 새 PID 복원과 JVM39개를 통과했습니다. 이번 수정 전 기록77개 전체를 보존했으며 시연 후 최종 DB는119개·무결성ok입니다. [12개 시나리오별 재검증](docs/19-background-fixes-and-reverification.md) · [실제 화면·APK·DB 증거](docs/evidence/macos-pleos-gleo-fixes-2026-11-15/README.md).
+```sh
+adb devices -l
+python3 scripts/adb_readiness.py \
+  --adb "$(command -v adb)" \
+  --serial emulator-5560 \
+  --output /tmp/chalog-readiness.json &&
+adb -s emulator-5560 install --no-incremental -r 'apk/이명훈_차록_release.apk' &&
+adb -s emulator-5560 shell am start --user 10 -W \
+  -a OPEN_CHALOG_RECORDS -p dev.leemh.charok
+```
 
-제품 목표는 **Gleo로 화면 없이 기록·종료하고, ‘차록 열어줘’에만 우측 콘텐츠 영역을 표시**하는 것입니다. [개발 방향](docs/15-gleo-background-direction.md) · [선택된 SIGNAL 시안](docs/design/gleo-background/README.md). TEST Broadcast/저장/복원은 확인했지만 실제 Gleo 발화·등록, 차량 SDK·마이크·음악, 자동 우측 배치·차록에서 보내는 내비 목적지는 별도 차단/미검증입니다. 결과 알림은 알림센터에서 확인했고 짧은 토스트의 실제 노출은 미확인입니다. [최신 한국어 기능 자막 시연](docs/evidence/chalog-submission-demo-2026-11-15/README.md)을 완성했으며 TEST 입력과 검증 범위를 영상에 표시했습니다.
+준비 검사는 ADB 연결, Android 부팅 완료, package/activity 서비스를 확인합니다. 앱 아이콘을 눌러 실행할 수도 있습니다. `-r`은 기존 설치를 업데이트하며, 기존 앱을 제거하거나 데이터를 초기화하지 않습니다. 서명이 다른 기존 설치에는 강제로 덮어쓰지 않습니다. 설치 ID `dev.leemh.charok`과 DB `charok.db`는 기존 기록 호환을 위해 유지합니다.
 
-순정 내비의 공개 장소 검색·340m 경로 안내·종료는 실제로 동작했습니다. 배경 지도는 여전히 비어 있습니다. Pleos 문서 저장 화면은 문서를 반환하지 않는 stub이므로 파일 저장 완료로 표시하지 않습니다. [브랜드·내비 조사](docs/17-chalog-and-navigation.md) · [수정 전 시나리오 검토](docs/18-service-scenario-review.md).
+수동 TEST 흐름은 다음과 같습니다.
 
-## Android 실행
+1. **입력 설정 → TEST 선택**으로 전환하고 `TEST · P 확인` 상태를 확인합니다.
+2. **차량 상태 기록 동의 → 기록 준비 켜기 → 기록 시작**을 선택합니다. 이전 기록이 열려 있다면 ‘새 기록 준비’로 준비 화면에 돌아갑니다.
+3. **TEST 도구**에서 설명·경고등을 입력하거나 **지금이야**로 순간을 표시합니다.
+4. 앱 화면을 닫아도 알림에서 **지금이야 / 종료·저장**을 사용할 수 있습니다.
+5. 명시적으로 앱을 열어 저장 기록과 **상담 카드**를 확인합니다. 새 프로세스로 재실행해도 기록은 남고 수집은 자동 재개되지 않습니다.
 
-JDK17·Android SDK35에서 `./gradlew :app:testDebugUnitTest :app:lintDebug :app:assembleDebug :app:assembleDebugAndroidTest :app:assembleRelease`로 검사·빌드합니다. Gradle의 기본 release 산출물은 미서명입니다. 제출용 [apk/CHALOG_차록_release.apk](apk/CHALOG_차록_release.apk)는 그 release 빌드에 기존 Mac 개발 인증서로 서명한 실행 가능한 심사용 파일이며 debuggable=false입니다. 스토어 출시용 서명은 아닙니다. 실제 Pleos 설치·TEST 저장·새PID 복원과 이전134개행 보존을 별도로 확인했습니다.
+## 3. 테스트 환경 및 필요한 설정
 
-- 최신0.3.2 [성공 CI43707910220](https://github.com/leemh-dev/chalog/actions/runs/43707910220): JVM40·일반 Android 기기16·새 PID 복원. [증거와 APK 대조](docs/evidence/macos-pleos-chalog-rename-2026-11-15/README.md).
-- 이전 0.3.1 [성공 CI43701282754](https://github.com/leemh-dev/chalog/actions/runs/43701282754): JVM39·일반 Android 기기15건·새 PID 복원, [APK와 metadata artifact](https://github.com/leemh-dev/chalog/actions/runs/43701282754/artifacts/14157071359). [다운로드한 ZIP/APK·버전·개발 서명 대조](docs/evidence/macos-pleos-gleo-fixes-2026-11-15/ci-apk-crosscheck.json). Mac은 기존 개발 서명을 유지해 DB를 보존합니다.
-- 0.1 기준 [성공 CI43650320801](https://github.com/leemh-dev/chalog/actions/runs/43650320801) · [APK artifact](https://github.com/leemh-dev/chalog/actions/runs/43650320801/artifacts/14136300842): 앱 코드ef85516, JVM24·기기5건·새 PID 복원 성공. [해시/서명](docs/evidence/android-v0.1/apk-metadata.json)을 대조하세요.
-- [Mac Pleos 설치·실행·실제 화면 녹화 절차](docs/12-mac-pleos-handoff.md)
-- 기본은 Pleos 입력/운전 상태 미확인입니다. 수동 TEST는 **입력 설정 → TEST 선택 → 동의 → 기록 준비 켜기 → 기록 시작 → TEST 도구에서 설명/순간 → 종료 → 상담 카드**로 확인합니다. 음성 명령 진입 검사는 정차 중 명시적 음성 설정 후 별도 instrumentation으로 실행하며 실제 Gleo 발화 성공과 구분합니다.
-- 실제 앱은 차록 패널만 그립니다. 아래의 차량/내비 도식은 브라우저 설계 자료이며 앱 자체 기능이 아닙니다.
-- 현 단계 자동 예약·원음 녹음·GDS 자동 열람은 없습니다. 최신 제출용 DOCX는0.3.2 검증 범위를 반영했으며, 참가자 정보·동의·서명은 본인이 작성해야 합니다.
+| 항목 | 검증 환경·설정 |
+| --- | --- |
+| 실행 장비 | Mac M1, 메모리8GB, 외장SSD에 SDK·AVD·프로젝트 배치 |
+| Android | Android14(API34), ARM64(`arm64-v8a`) |
+| AVD | 기존 `CharokPleosMac` **1대** 사용, serial `emulator-5560`, 사용자10 |
+| 설치 도구 | Android SDK Platform-Tools의 ADB, 준비 검사에 Python3 사용 |
+| 앱 설정 | 수동 TEST 입력, 정차(P) 확인, 차량 상태 기록 동의, 차록 알림 허용 |
+| 소스 빌드 도구 | JDK17, Android SDK35, 저장소의 Gradle Wrapper |
 
-## 실제 앱 화면
+첫 실행의 기본 입력은 실제 Pleos이며 차량 상태를 확인하지 못하면 상세 보기·내보내기가 잠깁니다. 위 시연을 재현하려면 명시적으로 TEST를 선택합니다. TEST에는 실제 마이크 입력이 필요하지 않습니다. 실제 권한 요청은 Android 화면에서 처리합니다.
 
-Mac Pleos · CHALOG 0.3.2. 차록 입력은 TEST입니다. 차량정보 왼쪽 / 순정 내비 중앙 / CHALOG 오른쪽은 OS 수동 창 조작으로 확인했습니다.
+**검증 범위:** TEST 기록·백그라운드 알림 동작·경고등 이력·저장·새 PID 복원은 확인했습니다. 실제 Gleo 발화·등록, 실제 차량 SDK·마이크, 음악 재생, 자동 우측 창 배치, 차록의 내비 목적지 전달은 별도 검증 범위입니다. 짧은 자동 토스트는 미확인이고, 영상은 직접 펼친 알림센터를 보여 줍니다. 순정 내비의340m 경로 안내는 동작하지만 바탕지도는 비어 있습니다. 문서 선택기 stub을 실제 파일 내보내기 성공으로 표시하지 않습니다.
+
+## 4. Pleos Connect 에뮬레이터 버전과 화면 규격
+
+| 항목 | 개발·실행 검증에 사용한 값 |
+| --- | --- |
+| **Pleos Connect 에뮬레이터 버전** | **2.1.0** |
+| 시스템 이미지 | Android14(API34) Automotive, ARM64 |
+| **화면 해상도** | **2560 × 1440 pixels, 가로 화면** |
+| 화면 밀도 | 160dpi (`density160`) |
+| 화면 구성 | 왼쪽 차량정보 / 중앙 순정 내비 / 오른쪽 차록 패널 — OS에서 수동 배치 |
+
+차록은 앱에 할당된 패널만 그립니다. 차량정보와 순정 내비는 Pleos 시스템 화면입니다. 위 값은 실제 에뮬레이터 규격이며, 자막 시연 파일의1920×1280 영상 규격과 구분합니다. [실행·시나리오 증거](docs/evidence/chalog-submission-demo-2026-11-15/README.md) · [Mac 실행 인계](docs/12-mac-pleos-handoff.md).
+
+## 5. APK 파일 위치
+
+**저장소 루트 기준: [`apk/이명훈_차록_release.apk`](apk/이명훈_차록_release.apk)**
+
+개인 참가자명 ‘이명훈’, 앱 이름 ‘차록’을 사용해 공식 `팀명_앱이름_release.apk` 규격에 맞췄습니다. APK는 저장소에 직접 업로드했으므로 GitHub Releases 링크 대신 위 파일 경로를 제출합니다.
+
+| 항목 | 제출 APK |
+| --- | --- |
+| 빌드·버전 | **release**,0.3.2/8,`debuggable=false` |
+| 서명 | 기존 Mac 개발 인증서로 서명한 실행 가능한 심사용 APK |
+| 파일 크기 | 39,725,544bytes(약37.9MiB) |
+| SHA-256 | `b47b663a3a7fc52988691ab8acff59f18bda208ea668676afd63cb1463a51d3a` |
+| 실행 검사 | Pleos 설치 → TEST 설명·순간 표시 → 저장 → 새 PID 재실행 성공 |
+
+CI/Gradle의 기본 release 산출물은 미서명입니다. 위 제출 파일은 해당 release 빌드에 **별도로 개발 서명**한 APK이며, 스토어 출시용 인증서로 서명한 배포본은 아닙니다. 파일명 변경 전후 APK 내용·해시·서명은 같습니다. [APK 상세 안내](apk/README.md) · [해시·서명·실행 metadata](apk/apk-metadata.json).
+
+## 시연 영상과 제출 자료
+
+- [최신 CHALOG 0.3.2 한글 자막 영상 · 2분39초](docs/evidence/chalog-submission-demo-2026-11-15/chalog-verified-scenarios-ko.mp4) — 실제 Mac Pleos TEST 화면,6개시나리오·17개자막 구간. 전체3820프레임·한글OCR·저장/복원 검증 완료.
+- [공식 신청서 초안](docs/submission/chalog-application-draft.docx) · [제출 준비 안내](docs/22-submission-ready.md) — 참가자 정보·동의·서명은 본인이 작성합니다. 제출 메일에 저장소 URL과 최종 커밋 전체SHA를 기재합니다.
+- [이전0.3.1 영상 원본](docs/evidence/macos-pleos-captioned-demo-2026-11-15/chalog-verified-scenarios-ko.mp4) — 원본과 해시 보존.
 
 ![CHALOG 실제 TEST 기록·경고등과 순정 내비 안내](docs/evidence/chalog-submission-demo-2026-11-15/qa/chapter-06.png)
 
-[최신 영상17개 구간·release·DB 증거](docs/evidence/chalog-submission-demo-2026-11-15/README.md) · [경고등 처리 원칙](docs/16-warning-light-observations.md) · [Mac 다음 실행 프롬프트](docs/13-next-development-prompt.md)
+## 소스 빌드와 개발 이력
 
-## 최신 기획과 디자인
+```sh
+./gradlew :app:testDebugUnitTest :app:lintDebug :app:assembleDebug \
+  :app:assembleDebugAndroidTest :app:assembleRelease --console=plain
+```
 
-- [공모전 기획서 v0.3](docs/07-submission-plan.md)
-- [최신 공식 접수양식 CHALOG DOCX 초안](docs/submission/chalog-application-draft.docx) —5페이지 한글·배치 검사, 개인정보·동의·서명 미작성. [이전 기획 초안](docs/submission/charok-application-draft.docx)도 원본 보존합니다.
-- [화면 시안 및 실행 방법](docs/design/README.md) · [UX/UI 명세](docs/08-ux-ui-spec.md)
-- [시연·개발 단계와 다음 실행 프롬프트](docs/09-demo-delivery-plan.md)
+앱 코드ce49905는 [CI43707910220](https://github.com/leemh-dev/chalog/actions/runs/43707910220)의 JVM40개·일반 Android 기기16개·새PID 복원과 별도 Mac Pleos16개 검사를 통과했습니다. CI의 일반 Android 검사와 Pleos 검증을 구분합니다. 이번 영상·release검사 전133개 모든 기록을 보존했고 최종 DB는135개·무결성ok입니다. APK 파일명·제출 문서 정리에서는 앱 코드와 DB를 바꾸지 않았습니다.
 
-![차록 기록 화면 설계 시안 — 실제 Pleos 실행 아님](docs/design/recording.png)
-
-이번 시안은 차량·지도·음성·저장을 TEST로 표현합니다. 실제 Android·Pleos·마이크·DB 성공으로 간주하지 않습니다. 설계 이력은 docs/07~09에 보존하며, 현재 구현·검증은 docs/10~14·19와 위 실제 실행 증거를 따릅니다.
-
-## 문서
-
-- [기획서](docs/01-product-plan.md): 서비스 정의, 고객, 대표 시나리오, 화면, 데이터·저장·공유 원칙
-- [SDK와 정비 장비 연동 분석](docs/02-sdk-feasibility.md): 확인한 API·권한, 미지원/미확인 영역, 공식 근거
-- [단계별 개발·검증 계획](docs/03-development-plan.md): Cloud 구현과 Mac Pleos 검증, 시연·완료 기준
-- [대화형 전체 시나리오 기술 재검토](docs/05-conversation-scenario-feasibility.md)
-- [조사·의사결정 기록](docs/04-decision-log.md)
-- [문서 전체 목록](docs/README.md)
-
-## 핵심 흐름
-
-최초 정차·동의/권한 설정 → 수집 없이 대기 → 사용자 기록 명령 → 화면 없이 기록·설명·순간 표시 → 종료·동일 ID 저장/재조회·결과 알림 → 명시적 열기 → 정차 후 상담/선택 보고서
-
-사전 준비를 선택한 경우에만 실제 수집한 최대60초를 포함합니다. 바로 시작한 경우 없는 과거를 만들지 않습니다. 재실행 자체는 수집·마이크를 재개하지 않습니다. 실제 Gleo·차량·정비소 수신과 스캐너 조회는 별도 연동/검증 조건입니다.
+- [전체12개 서비스 시나리오 재검증](docs/19-background-fixes-and-reverification.md)
+- [CHALOG 이름 변경·설치 및 DB 호환 검증](docs/21-chalog-rename.md)
+- [Gleo 백그라운드 제품 방향](docs/15-gleo-background-direction.md) · [SIGNAL 디자인](docs/design/gleo-background/README.md)
+- [경고등 관측 원칙](docs/16-warning-light-observations.md) · [순정 내비 조사](docs/17-chalog-and-navigation.md)
+- [개발 기록](docs/10-development-log.md) · [검증 기록](docs/11-verification.md) · [다음 실행 절차](docs/13-next-development-prompt.md)
+- [기획·SDK 분석 등 전체 문서](docs/README.md) — 이전 기획서·시안·제출 초안도 이력으로 보존합니다.

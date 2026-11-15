@@ -1,13 +1,12 @@
 {
   "document": "chalog-application-draft.docx",
-  "sha256": "c775249b89d04b732d9d56b511ce6fd7975950e8983c4b9f232b3d2f048f47cd",
+  "sha256": "a43af1f2d3a1c137eb3915def298fe69812518e79dc033827f357a4d7a764a90",
   "official_template_sha256": "07be893d58b0e96ab7788f0d189d6829f0e59a2cee4bc18cb90ec37eeda2f5fd",
   "source": "https://appdevchallenge.auto-hmg.io/guide/submission",
   "project_answer_slots_filled": 8,
   "project_name_slots_filled": 3,
   "rendered_pages": 5,
   "all_pages_visually_reviewed": true,
-  "final_metadata_only_rerender_pixel_identical": true,
   "hangul_visible_without_missing_glyphs": true,
   "overlap_or_clipped_text_observed": false,
   "official_legal_and_consent_text_preserved": true,
@@ -21,5 +20,15 @@
   "personal_info_and_signature": "unfilled; participants must supply their own information, consent choices and signatures",
   "metadata_privacy": "official template editor name cleared from lastModifiedBy",
   "style_lint": "official template direct formatting retained; no generic normalization applied",
-  "render_font_fallback": "Malgun Gothic -> installed Apple SD Gothic Neo using task-local Fontconfig; DOCX declarations unchanged"
+  "render_font_fallback": "Malgun Gothic -> installed Apple SD Gothic Neo using task-local Fontconfig; DOCX declarations unchanged",
+  "latest_edit": "APK filename only: 이명훈_차록_release.apk",
+  "latest_edit_changed_zip_parts": [
+    "word/document.xml"
+  ],
+  "unchanged_pages_pixel_identical_to_previous": [
+    1,
+    2,
+    4,
+    5
+  ]
 }

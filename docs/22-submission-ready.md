@@ -7,7 +7,7 @@
 | 자료 | 파일 | 상태 |
 | --- | --- | --- |
 | 공식 신청서·기획서 | [chalog-application-draft.docx](submission/chalog-application-draft.docx) | 공식 양식8개 프로젝트 항목 작성,5페이지 한글/배치 검사, 개인정보·동의·서명은 미작성 |
-| 실행 APK | [CHALOG_차록_release.apk](../apk/CHALOG_차록_release.apk) | 0.3.2/8 release·debuggable=false·개발 서명, 실제 Pleos 설치/기록/저장/재실행 확인 |
+| 실행 APK | [이명훈_차록_release.apk](../apk/이명훈_차록_release.apk) | 0.3.2/8 release·debuggable=false·개발 서명, 실제 Pleos 설치/기록/저장/재실행 확인 |
 | 새 한글 자막 시연 | [2분39초 MP4](evidence/chalog-submission-demo-2026-11-15/chalog-verified-scenarios-ko.mp4) | 실제0.3.2 재촬영, 이전과 동일6개시나리오·17개구간,3820프레임/한글OCR17개검사 |
 | 자막·검증 | [SRT·영상·DB·release 증거](evidence/chalog-submission-demo-2026-11-15/README.md) | 저장739건·새PID복원·원본133개완전보존, release검사후총135개 |
 | 이전 영상 원본 | [0.3.1 MP4](evidence/macos-pleos-captioned-demo-2026-11-15/chalog-verified-scenarios-ko.mp4) | 수정하지 않음, 기존SHA-256 재대조 |
@@ -20,7 +20,7 @@
 
 1. DOCX의 개인/팀·참가 부문, 성명·연락처·인원·작성일을 본인 정보로 작성합니다. 프로젝트 소개 부분에는 개인 정보를 쓰지 않습니다.
 2. 개인정보 동의 여부와 본인 서명·서명일을 해당 참가자가 직접 작성합니다. 팀 참가 시 모든 팀원의 개별 동의·서명과 제출 이메일 참조(CC)가 필요합니다.
-3. 공식 APK 이름 규칙 `팀명_앱명_release.apk`에 맞춰 참가 팀명/개인 성명이 CHALOG와 다르면 파일명과 이메일/신청서의 안내를 함께 맞춥니다. APK 바이트/해시는 바뀌지 않습니다.
+3. 개인 참가자명 이명훈을 적용한 `apk/이명훈_차록_release.apk`를 사용합니다. 공식 `팀명_앱이름_release.apk` 규격과 일치하며 이전 파일과 APK 바이트·해시·서명은 같습니다.
 4. 이메일에 공개 저장소 URL, 최종 제출할 main 커밋 전체SHA, APK·영상 경로를 포함합니다. 영상·소스·APK는 선택 제출 참고자료이며 실제 검증 범위를 그대로 설명합니다.
 5. 개인정보와 서명이 들어간 최종 DOCX는 공개 GitHub에 올리지 않고 이메일에 첨부합니다. 서명 후 Word에서 페이지와 줄바꿈을 확인하고 마감 전에 발송합니다.
 
@@ -29,3 +29,7 @@
 ## 남아 있는 제품 검증 범위
 
 Gleo 실제 음성·정식 등록, 실제 차량 SDK·마이크, 자동 우측 창 배치·짧은 토스트, 차록의 순정 내비 목적지 전달, 실제 파일 내보내기·정비소 전송/예약은 별도 개발/검증 범위입니다. 제출 영상은 수동 TEST 입력과 실제 Pleos의 저장/복원 성공을 명확히 표시합니다. 순정 내비의 경로 안내는 동작하나 바탕지도는 비어 있습니다.
+
+## APK·README 제출 형식 정리
+
+개인 참가용 APK 파일명을 `이명훈_차록_release.apk`로 확정하고 루트 README에 공식 필수5개항목을 번호순으로 정리했습니다. Pleos Connect2.1.0·2560×1440가로화면·density160, 필요한 설정, 설치/TEST순서, 실제 제출 APK경로를 본문에 명시합니다. APK/앱코드/DB/영상은 변경하지 않고 경로·제출 문서·메일 초안·묶음을 일치시킵니다.
