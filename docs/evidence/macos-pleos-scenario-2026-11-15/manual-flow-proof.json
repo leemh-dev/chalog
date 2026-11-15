@@ -1,0 +1,45 @@
+{
+  "input": "explicit TEST preparation/buttons/notification actions; native navigation UI separately",
+  "manual_session_id": "baad6203-e816-4ac2-8842-a81e138defe8",
+  "background_observation_counts": [
+    256,
+    292
+  ],
+  "same_id_through_start_background_stop": true,
+  "pretrigger_ms": 59230,
+  "post_stop_observation_counts": [
+    763,
+    763
+  ],
+  "notes": 2,
+  "bookmarks": 1,
+  "final_phase": "SAVED",
+  "dashboard_present_while_recording": false,
+  "dashboard_present_after_stop": false,
+  "foreground_service_after_stop": false,
+  "unprepared_intent_calls_created_session": false,
+  "warning_states": [
+    [
+      "telltale:ENGINE",
+      "ON"
+    ],
+    [
+      "telltale:TPMS",
+      "BLINK"
+    ],
+    [
+      "telltale:ENGINE",
+      "OFF"
+    ],
+    [
+      "telltale:TPMS",
+      "BLINK"
+    ]
+  ],
+  "native_route_started_and_stopped_manually": true,
+  "actual_driving_simulated_via_console": false,
+  "gleo_speech_verified": false,
+  "music_playback_continuity_verified": false,
+  "short_heads_up_banner_verified": false,
+  "notification_tray_actions_and_saved_text_verified": true
+}

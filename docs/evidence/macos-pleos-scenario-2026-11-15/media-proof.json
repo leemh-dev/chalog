@@ -1,0 +1,9 @@
+{
+  "playback_state_lines": [
+    "state=PlaybackState {state=ERROR(7), position=0, buffered position=0, speed=0.0, updated=37423, actions=0, custom actions=[], active item id=-1, error=\ube14\ub8e8\ud22c\uc2a4 \uc624\ub514\uc624\uac00 \uc5f0\uacb0 \ud574\uc81c\ub428}"
+  ],
+  "audible_playback_tested": false,
+  "emulator_audio": "disabled per existing CoreAudio crash history",
+  "ui_observation": "native widget says no playing item; launcher exposes no playable music app in the inspected screen",
+  "result": "music continuity unverified"
+}

@@ -1,0 +1,17 @@
+{
+  "reinstalled": false,
+  "rebuilt": false,
+  "code_commit": "1ed571d9d0ab4cc8aad7dcd7aa51530fb504ee42",
+  "packages": [
+    {
+      "package": "dev.leemh.charok",
+      "sha256": "86f183b7ecff647a360e27d6c398bb46aa1e6d5e49085c6e123f2427205c7176",
+      "matches_metadata": true
+    },
+    {
+      "package": "dev.leemh.charok.test",
+      "sha256": "9d785b2e10897942bd57b9988d40edb2026fa6702e8a8fcd4e7594f6a943b67e",
+      "matches_metadata": true
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "baad6203-e816-4ac2-8842-a81e138defe8",
+  "json_matches_saved_database_exactly": true,
+  "all_observation_lines_found_in_text": true,
+  "all_notes_found": true,
+  "observations": 763,
+  "notes": 2,
+  "bookmarks": 1,
+  "input": "TEST",
+  "location_observations": 0,
+  "warning_read_failure_observed": true,
+  "new_report_filename_prefix": "chalog-",
+  "text_sha256": "25d4a95952993d3a044527c7ec1d56b2e7a214641bf8ec02f73893ceff8e4471",
+  "json_sha256": "6ca137eb6775fc3810f1af8cd18607769e1ec1fe427d84cee8207d2cbdf57397",
+  "external_recipient_selected": false,
+  "raw_observation_line_count": 763
+}

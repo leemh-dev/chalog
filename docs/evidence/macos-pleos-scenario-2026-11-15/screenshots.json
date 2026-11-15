@@ -1,0 +1,79 @@
+[
+  {
+    "path": "screens/02-consent-real-locked.png",
+    "caption": "Real input: unknown vehicle state; preparation locked",
+    "sha256": "5f02189a857cc48ffa2bfb18a570028f771eadfbd6f888b8bbe1af3ec9a4c638",
+    "capture": "actual Pleos adb screencap",
+    "modified": false
+  },
+  {
+    "path": "screens/04-test-preparing.png",
+    "caption": "Explicit TEST preparation with consent",
+    "sha256": "ed0db8f61216b9fc6eacbfcfccb7292cc467310d9a9658f0032922c6d06d9d41",
+    "capture": "actual Pleos adb screencap",
+    "modified": false
+  },
+  {
+    "path": "screens/07-prepared-notification.png",
+    "caption": "TEST start action in native notification tray",
+    "sha256": "fd711b0e2ebb5a23d66a404327cd540cb54c3da0dd97e5a28dce1eb55cf2887c",
+    "capture": "actual Pleos adb screencap",
+    "modified": false
+  },
+  {
+    "path": "screens/08-recording-native.png",
+    "caption": "TEST recording in background while native route guidance remains",
+    "sha256": "5628ce645ea87d81dfed42995110540f012103aac8ef90fa98db4ec6aa5dd0b2",
+    "capture": "actual Pleos adb screencap",
+    "modified": false
+  },
+  {
+    "path": "screens/09-warning-history.png",
+    "caption": "TEST warning ON/OFF/read failure; later state unknown",
+    "sha256": "6dbc7263cc05c3aa3feeb5949d44f6c570b66f1e6861205d77663f4587e38ca1",
+    "capture": "actual Pleos adb screencap",
+    "modified": false
+  },
+  {
+    "path": "screens/12-saved-notification.png",
+    "caption": "After notification stop: native route remains, dashboard absent",
+    "sha256": "3f0aff79dd71765633b03d52d5be96f6f39bb37f5fdc42989b6df97ca21b8e0b",
+    "capture": "actual Pleos adb screencap",
+    "modified": false
+  },
+  {
+    "path": "screens/13-saved-tray.png",
+    "caption": "Saved notification in tray; no automatic dashboard",
+    "sha256": "d38185d41dae1726f6aec920dd7fe2c07b521b49f9d5309bfaa4919fd840e0b0",
+    "capture": "actual Pleos adb screencap",
+    "modified": false
+  },
+  {
+    "path": "screens/14-saved-driving-lock.png",
+    "caption": "TEST driving: saved detail locked, original text masked",
+    "sha256": "2333e9c946f6a150a338fc5339dd42a505b7cc5c6da71467c64f70787c2af2de",
+    "capture": "actual Pleos adb screencap",
+    "modified": false
+  },
+  {
+    "path": "screens/15-consultation.png",
+    "caption": "TEST parked consultation; notes, bookmark, warnings and 763 observations",
+    "sha256": "96b4023cbd6749b777307999f9f7ce3a61ff01a539a6db5a28db16dfdeba0732",
+    "capture": "actual Pleos adb screencap",
+    "modified": false
+  },
+  {
+    "path": "screens/16-report-share-chooser.png",
+    "caption": "Report generated; no compatible recipient app available",
+    "sha256": "6b43c7f71416f1094b6b1067d085117ef503691ed9a33b9b27a58d9e6c151e6e",
+    "capture": "actual Pleos adb screencap",
+    "modified": false
+  },
+  {
+    "path": "screens/17-process-restored.png",
+    "caption": "Interrupted TEST record restored; real vehicle unknown; no resumed recording",
+    "sha256": "85f0c71fd81075e01eec58d81428453b04cd362d53fa79329f0c12fd27de9ef7",
+    "capture": "actual Pleos adb screencap",
+    "modified": false
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "before_records": 66,
+  "after_records": 77,
+  "existing_rows_exactly_unchanged": true,
+  "compared_fields": [
+    "id",
+    "startedAt",
+    "payload"
+  ],
+  "new_records": 11,
+  "new_records_all_explicit_TEST": true,
+  "new_phase_counts": {
+    "INTERRUPTED": 1,
+    "SAVED": 10
+  },
+  "integrity": "ok",
+  "schema_before": 1,
+  "schema_after": 1,
+  "raw_databases_published": false
+}

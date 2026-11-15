@@ -10,6 +10,8 @@
 
 다음 개발 방향은 **Gleo로 화면 없이 기록·종료하고, ‘차록 열어줘’에만 우측 콘텐츠 영역을 표시**하는 것입니다. [개발 방향](docs/15-gleo-background-direction.md) · [선택된 SIGNAL 시안](docs/design/gleo-background/README.md). 실제 차량 SDK·마이크·Gleo·자동 우측 배치·차록에서 보내는 내비 목적지 연동은 별도 차단/미검증입니다. 이번에는 영상 없이 스크린샷으로 확인했으며 다음 영상에는 [한국어 기능 자막](docs/09-demo-delivery-plan.md)을 넣습니다.
 
+**전체 서비스 흐름 검토:** TEST 기록 엔진은 실행 검증됐지만 Gleo 최초 시작·명시적 열기/우측 배치가 남아 있습니다. [12개 시나리오별 판정](docs/18-service-scenario-review.md) · [실제 Pleos 실행 증거](docs/evidence/macos-pleos-scenario-2026-11-15/README.md).
+
 ## Android 실행
 
 JDK17·Android SDK35에서 `./gradlew :app:testDebugUnitTest :app:lintDebug :app:assembleDebug :app:assembleDebugAndroidTest :app:assembleRelease`로 검사·빌드합니다. debug/test APK는 개발 서명이고 release는 미서명입니다. unsigned release는 실행 가능한 제출 APK가 아닙니다.
