@@ -1,5 +1,6 @@
 package dev.leemh.charok
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -15,6 +16,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontFamily
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import dev.leemh.charok.core.*
 import dev.leemh.charok.sdk.CenterTarget
@@ -23,15 +30,15 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-private val Ink = Color(0xFF172B29)
-private val Muted = Color(0xFF677772)
-private val Green = Color(0xFF176953)
-private val Wash = Color(0xFFF3F6F4)
-private val Line = Color(0xFFE3E9E5)
+private val Ink = Color(0xFF18243A)
+private val Muted = Color(0xFF667085)
+private val SignalBlue = Color(0xFF3158D5)
+private val Wash = Color(0xFFF4F6FA)
+private val Line = Color(0xFFE1E6EF)
 private val Amber = Color(0xFF8B5A13)
-private val Palette = lightColorScheme(primary = Green, onPrimary = Color.White, background = Color.White,
+private val Palette = lightColorScheme(primary = SignalBlue, onPrimary = Color.White, background = Color.White,
     surface = Color.White, surfaceVariant = Wash, onSurface = Ink, onSurfaceVariant = Muted,
-    outline = Color(0xFFA7B6AE), secondaryContainer = Color(0xFFE8F3ED), onSecondaryContainer = Green)
+    outline = Color(0xFFABB6CA), secondaryContainer = Color(0xFFEDF2FF), onSecondaryContainer = SignalBlue)
 private fun at(time: Long) = SimpleDateFormat("HH:mm:ss", Locale.KOREA).format(Date(time))
 private fun date(time: Long) = SimpleDateFormat("M월 d일 · HH:mm", Locale.KOREA).format(Date(time))
 
@@ -48,34 +55,38 @@ private fun date(time: Long) = SimpleDateFormat("M월 d일 · HH:mm", Locale.KOR
     LaunchedEffect(state.mode) { consent = false }
     LaunchedEffect(state.phase) { if (state.phase == Phase.SAVE_FAILED) page = "main" }
     val active = state.phase in listOf(Phase.ARMED, Phase.RECORDING, Phase.SAVE_FAILED)
-    MaterialTheme(colorScheme = Palette) {
+    MaterialTheme(colorScheme = Palette, typography = Typography(
+        bodyLarge = TextStyle(fontFamily = FontFamily.SansSerif, fontSize = 18.sp, lineHeight = 27.sp),
+        bodyMedium = TextStyle(fontFamily = FontFamily.SansSerif, fontSize = 18.sp, lineHeight = 27.sp),
+        labelLarge = TextStyle(fontFamily = FontFamily.SansSerif, fontSize = 18.sp, fontWeight = FontWeight.Medium))) {
         Surface(Modifier.fillMaxSize(), color = Color.White) {
             BoxWithConstraints {
                 val compact = maxWidth < 600.dp
-                Column(Modifier.fillMaxHeight().widthIn(max = 760.dp).fillMaxWidth().align(Alignment.TopCenter)
-                    .padding(horizontal = if (compact) 24.dp else 44.dp, vertical = 22.dp)) {
+                Column(Modifier.fillMaxHeight().widthIn(max = 720.dp).fillMaxWidth().align(Alignment.TopCenter)
+                    .padding(horizontal = if (compact) 24.dp else 30.dp, vertical = 16.dp)) {
                     Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                        Box(Modifier.size(36.dp).background(Green, RoundedCornerShape(12.dp)), contentAlignment = Alignment.Center) {
-                            Text("차", color = Color.White, fontSize = 20.sp, fontWeight = FontWeight.Bold)
-                        }
-                        Text("차록", modifier = Modifier.padding(start = 10.dp), fontSize = 24.sp, fontWeight = FontWeight.Bold)
+                        Image(painterResource(R.drawable.charok_icon), contentDescription = null, modifier = Modifier.size(32.dp))
+                        Text("차록", modifier = Modifier.padding(start = 8.dp), fontSize = 21.sp, fontWeight = FontWeight.Bold)
                         Spacer(Modifier.weight(1f))
                         Badge(if ((state.session?.mode ?: state.mode) == InputMode.TEST) "TEST 입력" else "Pleos", (state.session?.mode ?: state.mode) == InputMode.TEST)
+                        IconButton(onClick = hide, modifier = Modifier.testTag("dismiss-panel").semantics { contentDescription = "차록 화면 닫기" }) {
+                            Text("×", fontSize = 26.sp, color = Muted)
+                        }
                     }
-                    Spacer(Modifier.height(22.dp))
+                    Spacer(Modifier.height(8.dp))
                     if (!state.ready) {
                         LinearProgressIndicator(Modifier.fillMaxWidth())
                         Text("저장된 기록을 확인하고 있어요", Modifier.padding(top = 18.dp), color = Muted)
                     } else {
                         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                            TextButton(onClick = { page = "main" }) { Text("기록", color = if (page == "main") Green else Muted, fontSize = 16.sp, fontWeight = FontWeight.Bold) }
-                            TextButton(onClick = { model.loadHistory(); page = "history" }, enabled = state.parked && !active) { Text("보관함", fontSize = 16.sp) }
+                            TextButton(onClick = { page = "main" }) { Text("기록", color = if (page == "main") SignalBlue else Muted, fontSize = 18.sp, fontWeight = FontWeight.Bold) }
+                            TextButton(onClick = { model.loadHistory(); page = "history" }, enabled = state.parked && !active) { Text("보관함", fontSize = 18.sp) }
                             Spacer(Modifier.weight(1f))
                             if (page != "main") TextButton(onClick = { page = "main" }) { Text("기록 상태로") }
                         }
                         HorizontalDivider(color = Line)
                         if (state.busy) LinearProgressIndicator(Modifier.fillMaxWidth())
-                        Column(Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()).padding(vertical = 22.dp),
+                        Column(Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState()).padding(vertical = 20.dp),
                             verticalArrangement = Arrangement.spacedBy(16.dp)) {
                             if (page != "main" && !state.parked) {
                                 Heading("정차 후 확인해 주세요")
@@ -85,14 +96,15 @@ private fun date(time: Long) = SimpleDateFormat("M월 d일 · HH:mm", Locale.KOR
                                     Heading("정비 상담 카드")
                                     state.session?.let { s ->
                                         Text("${date(s.startedAt)} · ${s.mode}", color = Muted)
-                                        Info("운전자 설명", s.notes.filterNot { it.bookmark }.joinToString("\n\n") { "${it.text}\n${it.origin}" }.ifBlank { "아직 남긴 설명이 없어요" })
-                                        Info("표시한 순간", s.notes.filter { it.bookmark }.joinToString("\n") { "${at(it.at)} · ${it.text}" }.ifBlank { "표시한 순간이 없어요" })
+                                        RecordQuote(s, true, expanded = true)
+                                        MomentPreview(s, limit = 200)
+                                        if (s.notes.count { !it.bookmark } > 1) Info("추가 설명", s.notes.filterNot { it.bookmark }.drop(1).joinToString("\n\n") { "${it.text} · ${it.origin}" })
                                         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                                             Metric("차량 관측", "${s.observations.size}건", Modifier.weight(1f))
                                             Metric("수신 불가", "${s.observations.count { !it.available }}건", Modifier.weight(1f))
                                         }
-                                        Text("원음은 녹음하지 않았으며, 고장 원인을 진단한 자료가 아닙니다.\n${s.reason}", color = Muted, fontSize = 14.sp)
-                                        OutlinedTextField(note, { note = it.take(980) }, label = { Text("설명 보완 · 원문은 유지됩니다") }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(16.dp))
+                                        Text("원음은 녹음하지 않았으며, 고장 원인을 진단한 자료가 아닙니다.\n${s.reason}", color = Muted, fontSize = 16.sp)
+                                        OutlinedTextField(note, { note = it.take(980) }, label = { Text("설명 보완 · 원문은 유지됩니다") }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(12.dp))
                                         Secondary("보완 내용 저장", enabled = note.isNotBlank()) { model.supplement(note); note = "" }
                                         Action("보고서 내보내기") { page = "export" }
                                         Secondary("관측 타임라인") { page = "timeline" }
@@ -112,7 +124,7 @@ private fun date(time: Long) = SimpleDateFormat("M월 d일 · HH:mm", Locale.KOR
                                     Check("위치를 포함해 내보내기", includeLocation, true) { includeLocation = it }
                                     Text("기본값은 위치 제외입니다. 설명에 개인정보가 없는지 확인해 주세요.", color = Muted)
                                     Action("보고서 생성·공유", "export") { model.export(includeLocation, share) }
-                                    Text("파일 생성과 정비소 수신은 별개입니다. 자동 예약·센터 접수·GDS는 연결되지 않았습니다.", color = Muted, fontSize = 14.sp)
+                                    Text("파일 생성과 정비소 수신은 별개입니다. 자동 예약·센터 접수·GDS는 연결되지 않았습니다.", color = Muted, fontSize = 16.sp)
                                 }
                                 "history" -> {
                                     Heading("저장된 기록")
@@ -122,7 +134,7 @@ private fun date(time: Long) = SimpleDateFormat("M월 d일 · HH:mm", Locale.KOR
                                             Column(Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                                                 Text(date(s.startedAt), fontWeight = FontWeight.SemiBold)
                                                 Text(s.notes.firstOrNull { !it.bookmark }?.text ?: "차량 상태 기록", maxLines = 2)
-                                                Text("${s.mode} · ${s.observations.size}개 관측 · ${if (s.phase == Phase.SAVED) "저장 완료" else "중단 기록"}", color = Muted, fontSize = 13.sp)
+                                                Text("${s.mode} · ${s.observations.size}개 관측 · ${if (s.phase == Phase.SAVED) "저장 완료" else "중단 기록"}", color = Muted, fontSize = 16.sp)
                                             }
                                         }
                                     }
@@ -133,57 +145,64 @@ private fun date(time: Long) = SimpleDateFormat("M월 d일 · HH:mm", Locale.KOR
                                     when (state.phase) {
                                         Phase.IDLE -> {
                                             Eyebrow("차량 증상 기록")
-                                            Heading("이상했던 순간,\n놓치지 마세요")
-                                            Text("평소에는 내비를 보세요.\n필요한 순간만 차록이 함께 남길게요.", fontSize = 17.sp, lineHeight = 27.sp, color = Muted)
+                                            Heading("이상했던 순간을 남기세요")
+                                            Text("차량 상태와 운전자 설명을 함께 보관합니다.", color = Muted)
                                             Info("내비 뒤에서 조용히 준비", "최근 최대 60초의 차량 상태를 준비하고,\n기록 과정은 알림으로 알려 드립니다.")
                                             Check("차량 상태 기록 준비에 동의합니다", consent, state.parked) { consent = it }
                                             if (state.mode == InputMode.PLEOS) Check("위치도 함께 기록 (선택)", state.locationConsent, state.parked) { model.locationConsent(it) }
-                                            state.notice?.let { Text(it, color = Amber, fontSize = 14.sp) }
+                                            state.notice?.let { Text(it, color = Amber, fontSize = 16.sp) }
                                             Action("기록 준비 켜기", "arm", consent && state.parked && !state.backgroundRunning) { prepare() }
-                                            Text("소리 원음은 녹음하지 않습니다. 준비를 켜려면 정차 상태를 확인해야 합니다.", fontSize = 13.sp, lineHeight = 21.sp, color = Muted)
+                                            Text("소리 원음은 녹음하지 않습니다. 준비를 켜려면 정차 상태를 확인해야 합니다.", fontSize = 16.sp, lineHeight = 21.sp, color = Muted)
                                             TextButton(onClick = { settings = !settings }, modifier = Modifier.testTag("input-settings")) { Text(if (settings) "입력 설정 접기 −" else "입력 설정 +") }
                                             if (settings) {
                                                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                                                     OutlinedButton(onClick = { model.chooseMode(InputMode.TEST); settings = false }, modifier = Modifier.testTag("test-mode")) { Text("TEST 선택") }
                                                     OutlinedButton(onClick = { connectPleos(); settings = false }) { Text("Pleos 연결") }
                                                 }
-                                                Text("TEST는 개발용 입력이며 실제 차량 데이터가 아닙니다.", color = Amber, fontSize = 13.sp)
+                                                Text("TEST는 개발용 입력이며 실제 차량 데이터가 아닙니다.", color = Amber, fontSize = 16.sp)
                                             }
                                         }
                                         Phase.ARMED -> {
                                             Eyebrow("● 기록 준비 중")
-                                            Heading("내비를 보셔도\n준비는 계속됩니다")
+                                            Heading("기록할 준비가 됐어요")
                                             StatusCard("준비한 구간", "${state.bufferSeconds}", "초 / 최대 60초", "기록 시작 전까지의 차량 상태")
                                             Action("기록 시작", "start") { model.start(source = if (state.mode == InputMode.TEST) Origin.TEST else Origin.MANUAL) }
                                             Secondary("내비로 돌아가기", "hide") { hide() }
-                                            Text("알림에서도 기록을 시작할 수 있어요.", color = Muted, fontSize = 14.sp)
+                                            Text("알림에서도 기록을 시작할 수 있어요.", color = Muted, fontSize = 16.sp)
                                             TextButton(onClick = { model.closeRecord(); consent = false }) { Text("준비 끄기", color = Muted) }
                                         }
                                         Phase.RECORDING -> {
-                                            Eyebrow("● 기록 중")
-                                            Heading(if (state.session?.notes?.lastOrNull()?.bookmark == true) "방금 순간을\n표시했어요" else "운전에 집중하세요.\n차록이 남기고 있어요")
-                                            val s = state.session
-                                            StatusCard("저장 확인한 관측", "${s?.observations?.size ?: 0}", "건", "${s?.notes?.count { it.bookmark } ?: 0}개 순간 표시 · ${s?.startedAt?.let { at(it) } ?: ""} 시작")
-                                            s?.notes?.lastOrNull { !it.bookmark }?.let { Info("남긴 설명", it.text) }
+                                            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                                                Heading("지금 남기는 기록")
+                                                Spacer(Modifier.weight(1f))
+                                                Badge("● 기록 중", false)
+                                            }
+                                            state.session?.let { s ->
+                                                RecordQuote(s, state.parked)
+                                                RecordNumbers(s)
+                                                if (state.parked) MomentPreview(s)
+                                            }
                                             Secondary("내비로 돌아가기", "hide") { hide() }
                                             if (state.parked) {
                                                 TextButton(onClick = { writing = !writing }) { Text(if (writing) "설명 입력 접기 −" else "증상 설명 추가 +") }
                                                 if (writing) {
-                                                    OutlinedTextField(note, { note = it.take(1000) }, label = { Text("어떤 증상이 있었나요?") }, modifier = Modifier.fillMaxWidth().testTag("note"), shape = RoundedCornerShape(16.dp))
+                                                    OutlinedTextField(note, { note = it.take(1000) }, label = { Text("어떤 증상이 있었나요?") }, modifier = Modifier.fillMaxWidth().testTag("note"), shape = RoundedCornerShape(12.dp))
                                                     Secondary("설명 남기기", enabled = note.isNotBlank()) { model.voice(note, if (state.mode == InputMode.TEST) Origin.TEST else Origin.MANUAL); note = ""; writing = false }
                                                 }
                                             }
                                         }
                                         Phase.SAVED, Phase.INTERRUPTED -> {
-                                            Eyebrow(if (state.phase == Phase.SAVED) "✓ 저장 완료" else "중단된 기록 복원")
-                                            Heading("필요한 순간이\n안전하게 남았어요")
-                                            val s = state.session!!
-                                            Info("운전자 설명", s.notes.firstOrNull { !it.bookmark }?.text ?: "설명 없이 차량 상태를 기록했어요")
-                                            Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                                                Metric("차량 관측", "${s.observations.size}건", Modifier.weight(1f))
-                                                Metric("순간 표시", "${s.notes.count { it.bookmark }}개", Modifier.weight(1f))
+                                            Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                                                Heading("남겨둔 기록")
+                                                Spacer(Modifier.weight(1f))
+                                                Badge(if (state.phase == Phase.SAVED) "✓ 저장 완료" else "중단 복원", state.phase != Phase.SAVED)
                                             }
-                                            if (s.reason.isNotBlank()) Text(s.reason, color = Muted, fontSize = 14.sp)
+                                            val s = state.session!!
+                                            Text(date(s.startedAt), color = Muted, fontSize = 16.sp)
+                                            RecordQuote(s, state.parked)
+                                            RecordNumbers(s)
+                                            if (state.parked) MomentPreview(s)
+                                            if (s.reason.isNotBlank()) Text(s.reason, color = Muted, fontSize = 16.sp)
                                             Action("상담 카드 보기", "details", state.parked) { page = "details" }
                                             Secondary("새 기록 준비", "close") { model.closeRecord(); consent = false }
                                         }
@@ -199,10 +218,10 @@ private fun date(time: Long) = SimpleDateFormat("M월 d일 · HH:mm", Locale.KOR
                                             OutlinedButton(onClick = { model.listen() }) { Text("음성으로 말하기") }
                                             TextButton(onClick = { model.stopListening() }) { Text("마이크 끄기") }
                                         }
-                                        Text(state.speech, color = Muted, fontSize = 13.sp)
+                                        Text(state.speech, color = Muted, fontSize = 16.sp)
                                     }
                                     if (state.mode == InputMode.TEST) {
-                                        TextButton(onClick = { testTools = !testTools }, modifier = Modifier.testTag("test-tools")) { Text(if (testTools) "TEST 도구 접기 −" else "TEST 도구 +", color = Amber, fontSize = 13.sp) }
+                                        TextButton(onClick = { testTools = !testTools }, modifier = Modifier.testTag("test-tools")) { Text(if (testTools) "TEST 도구 접기 −" else "TEST 도구 +", color = Amber, fontSize = 16.sp) }
                                         if (testTools) {
                                             if (state.phase == Phase.RECORDING) Secondary("TEST: 핸들을 돌릴 때 앞쪽 소음", "test-note", state.parked) { model.voice("핸들을 돌릴 때 앞쪽에서 덜컥 소리가 나요") }
                                             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -216,59 +235,133 @@ private fun date(time: Long) = SimpleDateFormat("M월 d일 · HH:mm", Locale.KOR
                         }
                         if (state.phase == Phase.RECORDING) {
                             Row(Modifier.fillMaxWidth().padding(bottom = 14.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
-                                OutlinedButton(onClick = { model.mark() }, modifier = Modifier.weight(1f).heightIn(min = 58.dp).testTag("mark"), shape = RoundedCornerShape(16.dp)) { Text("지금이야", fontSize = 18.sp, fontWeight = FontWeight.SemiBold) }
-                                Button(onClick = { model.finish() }, modifier = Modifier.weight(1f).heightIn(min = 58.dp).testTag("stop"), shape = RoundedCornerShape(16.dp)) { Text("종료·저장", fontSize = 18.sp, fontWeight = FontWeight.SemiBold) }
+                                OutlinedButton(onClick = { model.mark() }, modifier = Modifier.weight(1f).heightIn(min = 52.dp).testTag("mark"), shape = RoundedCornerShape(12.dp)) { Text("지금이야", fontSize = 18.sp, fontWeight = FontWeight.SemiBold) }
+                                Button(onClick = { model.finish() }, modifier = Modifier.weight(1f).heightIn(min = 52.dp).testTag("stop"), shape = RoundedCornerShape(12.dp)) { Text("종료·저장", fontSize = 18.sp, fontWeight = FontWeight.SemiBold) }
                             }
                         }
                         HorizontalDivider(color = Line)
                         Row(Modifier.fillMaxWidth().padding(top = 12.dp), verticalAlignment = Alignment.CenterVertically) {
-                            Text(if (state.parked) "${state.mode} · P 확인" else if (state.gear == "DRIVE") "주행 중 · 상세 잠금" else "차량 상태 미확인 · 상세 잠금", color = if (state.parked) Muted else Amber, fontSize = 12.sp, modifier = Modifier.weight(1f))
-                            if (state.backgroundRunning) Text("백그라운드 유지", color = Green, fontSize = 12.sp)
+                            Text(if (state.parked) "${state.mode} · P 확인" else if (state.gear == "DRIVE") "주행 중 · 상세 잠금" else "차량 상태 미확인 · 상세 잠금", color = if (state.parked) Muted else Amber, fontSize = 16.sp, modifier = Modifier.weight(1f))
+                            if (state.backgroundRunning) Text("백그라운드 유지", color = SignalBlue, fontSize = 16.sp)
                         }
-                        if (!state.parked || state.phase == Phase.SAVE_FAILED) Text(state.message, color = Muted, fontSize = 12.sp, maxLines = 2, modifier = Modifier.padding(top = 6.dp))
+                        if (!state.parked || state.phase == Phase.SAVE_FAILED) Text(state.message, color = Muted, fontSize = 16.sp, maxLines = 2, modifier = Modifier.padding(top = 6.dp))
                     }
                 }
             }
         }
     }
 }
-@Composable private fun Heading(text: String) { Text(text, fontSize = 29.sp, fontWeight = FontWeight.Bold, lineHeight = 39.sp, letterSpacing = (-0.6).sp) }
-@Composable private fun Eyebrow(text: String, color: Color = Green) { Text(text, color = color, fontSize = 14.sp, fontWeight = FontWeight.SemiBold) }
+private fun duration(ms: Long): String {
+    val seconds = ms.coerceAtLeast(0) / 1000
+    return String.format(Locale.KOREA, "%02d:%02d", seconds / 60, seconds % 60)
+}
+
+@Composable private fun RecordQuote(session: Session, reveal: Boolean, expanded: Boolean = false) {
+    val description = if (reveal) session.notes.firstOrNull { !it.bookmark }?.text
+        ?: "설명 없이 차량 상태를 기록했어요" else "운전자 설명은 정차 후 확인할 수 있어요"
+    Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(14.dp)) {
+        Box(Modifier.width(3.dp).fillMaxHeight().background(SignalBlue, RoundedCornerShape(2.dp)))
+        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(6.dp)) {
+            Text("운전자 설명", color = Muted, fontSize = 16.sp)
+            Text(description, fontSize = 20.sp, lineHeight = 29.sp, fontWeight = FontWeight.Medium,
+                maxLines = if (expanded) Int.MAX_VALUE else if (reveal) 5 else 2, overflow = TextOverflow.Ellipsis)
+        }
+    }
+}
+
+@Composable private fun RecordNumbers(session: Session) {
+    val latest = maxOf(session.triggerElapsed, session.observations.lastOrNull()?.elapsed ?: 0,
+        session.notes.lastOrNull()?.elapsed ?: 0)
+    val elapsed = session.endedAt?.let { it - session.startedAt } ?: (latest - session.triggerElapsed)
+    Column(Modifier.fillMaxWidth().background(Wash, RoundedCornerShape(14.dp)).padding(20.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)) {
+        Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+            Column(Modifier.weight(1.25f), verticalArrangement = Arrangement.spacedBy(5.dp)) {
+                Text(if (session.endedAt == null) "마지막 확인 구간" else "기록 시간", color = Muted, fontSize = 16.sp)
+                Text(duration(elapsed), fontSize = 38.sp, lineHeight = 46.sp, fontWeight = FontWeight.SemiBold,
+                    letterSpacing = (-1).sp, modifier = Modifier.testTag("record-duration"))
+            }
+            Box(Modifier.width(1.dp).height(50.dp).background(Line))
+            Column(Modifier.weight(1f).padding(start = 22.dp), verticalArrangement = Arrangement.spacedBy(5.dp)) {
+                Text("표시한 순간", color = Muted, fontSize = 16.sp)
+                Text("${session.notes.count { it.bookmark }}", fontSize = 30.sp, lineHeight = 40.sp,
+                    fontWeight = FontWeight.SemiBold, color = SignalBlue)
+            }
+        }
+        HorizontalDivider(color = Line)
+        Text("차량 관측 ${session.observations.size}건 · ${session.mode}", color = Muted, fontSize = 16.sp)
+    }
+}
+
+@Composable private fun MomentPreview(session: Session, limit: Int = 3) {
+    val moments = session.notes.filter { it.bookmark }
+    val shown = moments.takeLast(limit)
+    Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        Row(Modifier.fillMaxWidth()) {
+            Text("표시한 순간", fontSize = 18.sp, fontWeight = FontWeight.SemiBold)
+            Spacer(Modifier.weight(1f))
+            Text(if (moments.size > limit) "최근 ${limit}개 / 전체 ${moments.size}개" else "기록 시작 기준", color = Muted, fontSize = 16.sp)
+        }
+        if (moments.isEmpty()) Text("아직 표시한 순간이 없어요", fontSize = 18.sp, color = Muted)
+        shown.forEachIndexed { index, moment ->
+            Row(Modifier.fillMaxWidth().height(IntrinsicSize.Min), horizontalArrangement = Arrangement.spacedBy(14.dp)) {
+                Column(Modifier.width(28.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                    Box(Modifier.size(28.dp).background(SignalBlue, RoundedCornerShape(14.dp)), contentAlignment = Alignment.Center) {
+                        Text("${(moments.size - shown.size) + index + 1}", fontSize = 16.sp, color = Color.White, fontWeight = FontWeight.Medium)
+                    }
+                    if (index < shown.size - 1) Box(Modifier.width(1.dp).weight(1f).background(Line))
+                }
+                Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(5.dp)) {
+                    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(14.dp)) {
+                        Text(duration(moment.elapsed - session.triggerElapsed), fontSize = 18.sp,
+                            fontWeight = FontWeight.SemiBold, color = SignalBlue)
+                        Text(moment.text.ifBlank { "순간 표시" }, fontSize = 18.sp, maxLines = if (limit > 3) Int.MAX_VALUE else 2, overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f))
+                    }
+                    Text("${at(moment.at)} · ${moment.origin}", color = Muted, fontSize = 16.sp)
+                    if (index < shown.size - 1) HorizontalDivider(Modifier.padding(top = 8.dp), color = Line)
+                }
+            }
+        }
+    }
+}
+
+@Composable private fun Heading(text: String) { Text(text, fontSize = 26.sp, fontWeight = FontWeight.SemiBold, lineHeight = 34.sp, letterSpacing = (-0.4).sp) }
+@Composable private fun Eyebrow(text: String, color: Color = SignalBlue) { Text(text, color = color, fontSize = 16.sp, fontWeight = FontWeight.SemiBold) }
 @Composable private fun Badge(text: String, test: Boolean) {
-    Text(text, color = if (test) Amber else Green, fontSize = 12.sp, fontWeight = FontWeight.SemiBold,
-        modifier = Modifier.background(if (test) Color(0xFFFFF4E3) else Color(0xFFEAF4EE), RoundedCornerShape(8.dp)).padding(horizontal = 10.dp, vertical = 6.dp))
+    Text(text, color = if (test) Amber else SignalBlue, fontSize = 16.sp, fontWeight = FontWeight.SemiBold,
+        modifier = Modifier.background(if (test) Color(0xFFFFF4E3) else Color(0xFFEDF2FF), RoundedCornerShape(8.dp)).padding(horizontal = 10.dp, vertical = 6.dp))
 }
 @Composable private fun Info(title: String, text: String) {
-    Column(Modifier.fillMaxWidth().background(Wash, RoundedCornerShape(18.dp)).padding(20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
-        Text(title, fontSize = 13.sp, color = Muted, fontWeight = FontWeight.Medium)
-        Text(text, fontSize = 16.sp, lineHeight = 25.sp)
+    Column(Modifier.fillMaxWidth().background(Wash, RoundedCornerShape(12.dp)).padding(18.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        Text(title, fontSize = 16.sp, color = Muted, fontWeight = FontWeight.Medium)
+        Text(text, fontSize = 18.sp, lineHeight = 27.sp)
     }
 }
 @Composable private fun StatusCard(label: String, value: String, unit: String, description: String) {
-    Column(Modifier.fillMaxWidth().background(Color(0xFFF0F7F2), RoundedCornerShape(22.dp)).border(1.dp, Color(0xFFDCEBE1), RoundedCornerShape(22.dp)).padding(24.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        Text(label, color = Green, fontSize = 14.sp)
+    Column(Modifier.fillMaxWidth().background(Color(0xFFF1F4FC), RoundedCornerShape(14.dp)).border(1.dp, Line, RoundedCornerShape(14.dp)).padding(20.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        Text(label, color = SignalBlue, fontSize = 16.sp)
         Row(verticalAlignment = Alignment.Bottom, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text(value, fontSize = 46.sp, fontWeight = FontWeight.SemiBold, color = Green)
-            Text(unit, Modifier.padding(bottom = 8.dp), color = Muted, fontSize = 14.sp)
+            Text(value, fontSize = 38.sp, fontWeight = FontWeight.SemiBold, color = SignalBlue)
+            Text(unit, Modifier.padding(bottom = 8.dp), color = Muted, fontSize = 16.sp)
         }
-        Text(description, color = Muted, fontSize = 13.sp)
+        Text(description, color = Muted, fontSize = 16.sp)
     }
 }
 @Composable private fun Metric(label: String, value: String, modifier: Modifier) {
-    Column(modifier.background(Wash, RoundedCornerShape(16.dp)).padding(18.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-        Text(label, color = Muted, fontSize = 13.sp); Text(value, fontSize = 23.sp, fontWeight = FontWeight.SemiBold)
+    Column(modifier.background(Wash, RoundedCornerShape(12.dp)).padding(18.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Text(label, color = Muted, fontSize = 16.sp); Text(value, fontSize = 24.sp, fontWeight = FontWeight.SemiBold)
     }
 }
 @Composable private fun Action(text: String, tag: String = text, enabled: Boolean = true, action: () -> Unit) {
-    Button(onClick = action, enabled = enabled, shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth().heightIn(min = 58.dp).testTag(tag)) { Text(text, fontSize = 17.sp, fontWeight = FontWeight.SemiBold) }
+    Button(onClick = action, enabled = enabled, shape = RoundedCornerShape(12.dp), modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp).testTag(tag)) { Text(text, fontSize = 18.sp, fontWeight = FontWeight.Medium) }
 }
 @Composable private fun Secondary(text: String, tag: String = text, enabled: Boolean = true, action: () -> Unit) {
-    OutlinedButton(onClick = action, enabled = enabled, shape = RoundedCornerShape(16.dp), modifier = Modifier.fillMaxWidth().heightIn(min = 54.dp).testTag(tag)) { Text(text, fontSize = 16.sp) }
+    OutlinedButton(onClick = action, enabled = enabled, shape = RoundedCornerShape(12.dp), modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp).testTag(tag)) { Text(text, fontSize = 18.sp) }
 }
 @Composable private fun Check(text: String, checked: Boolean, enabled: Boolean, change: (Boolean) -> Unit) {
     Row(verticalAlignment = Alignment.CenterVertically) {
         Checkbox(checked, change, enabled = enabled, modifier = Modifier.testTag(if (text.startsWith("차량")) "consent" else text))
-        Text(text, fontSize = 14.sp, lineHeight = 22.sp, color = if (enabled) Ink else Muted)
+        Text(text, fontSize = 16.sp, lineHeight = 22.sp, color = if (enabled) Ink else Muted)
     }
 }
 @Composable private fun CenterForm(state: RecorderUi, request: (CenterTarget) -> Unit) {
