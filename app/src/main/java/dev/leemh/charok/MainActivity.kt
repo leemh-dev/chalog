@@ -35,6 +35,7 @@ class MainActivity : ComponentActivity() {
     }
     private val saveReport = registerForActivityResult(ActivityResultContracts.CreateDocument("text/plain")) { uri ->
         val source = pendingReport; pendingReport = null
+        if (uri == null) model.reportDelivery("파일을 저장하지 않았습니다. 기존 기록은 보존됐습니다.")
         if (uri != null && source != null) lifecycleScope.launch {
             val saved = withContext(Dispatchers.IO) {
                 runCatching {

@@ -3,6 +3,7 @@ package dev.leemh.charok
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -19,6 +20,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -108,7 +110,7 @@ private fun date(time: Long) = SimpleDateFormat("M월 d일 · HH:mm", Locale.KOR
                                         Text("원음은 녹음하지 않았으며, 고장 원인을 진단한 자료가 아닙니다.\n${s.reason}", color = Muted, fontSize = 16.sp)
                                         OutlinedTextField(note, { note = it.take(980) }, label = { Text("설명 보완 · 원문은 유지됩니다") }, modifier = Modifier.fillMaxWidth(), shape = RoundedCornerShape(12.dp))
                                         Secondary("보완 내용 저장", enabled = note.isNotBlank()) { model.supplement(note); note = "" }
-                                        Action("보고서 내보내기") { page = "export" }
+                                        Action("보고서 내보내기") { model.reportDelivery(null); page = "export" }
                                         Secondary("관측 타임라인") { page = "timeline" }
                                         Secondary("센터 위치로 길 안내") { page = "center" }
                                     }
@@ -127,6 +129,10 @@ private fun date(time: Long) = SimpleDateFormat("M월 d일 · HH:mm", Locale.KOR
                                     Text("기본값은 위치 제외입니다. 설명에 개인정보가 없는지 확인해 주세요.", color = Muted)
                                     Action("보고서 생성·공유", "export") { model.export(includeLocation, share) }
                                     Secondary("파일로 저장", "save-report") { model.export(includeLocation, saveReport) }
+                                    state.reportStatus?.let {
+                                        Text(it, color = Ink, fontSize = 16.sp, modifier = Modifier.fillMaxWidth()
+                                            .background(Wash, RoundedCornerShape(12.dp)).padding(16.dp).testTag("report-status"))
+                                    }
                                     Text("파일 생성과 정비소 수신은 별개입니다. 자동 예약·센터 접수·GDS는 연결되지 않았습니다.", color = Muted, fontSize = 16.sp)
                                 }
                                 "history" -> {
@@ -409,8 +415,9 @@ private fun duration(ms: Long): String {
     OutlinedButton(onClick = action, enabled = enabled, shape = RoundedCornerShape(12.dp), modifier = Modifier.fillMaxWidth().heightIn(min = 52.dp).testTag(tag)) { Text(text, fontSize = 18.sp) }
 }
 @Composable private fun Check(text: String, checked: Boolean, enabled: Boolean, change: (Boolean) -> Unit) {
-    Row(verticalAlignment = Alignment.CenterVertically) {
-        Checkbox(checked, change, enabled = enabled, modifier = Modifier.testTag(if (text.startsWith("차량")) "consent" else text))
+    Row(Modifier.fillMaxWidth().heightIn(min = 48.dp).toggleable(checked, enabled = enabled, role = Role.Checkbox, onValueChange = change)
+        .testTag(if (text.startsWith("차량")) "consent" else text), verticalAlignment = Alignment.CenterVertically) {
+        Checkbox(checked, null, enabled = enabled)
         Text(text, fontSize = 16.sp, lineHeight = 22.sp, color = if (enabled) Ink else Muted)
     }
 }

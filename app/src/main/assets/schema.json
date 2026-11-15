@@ -2,7 +2,7 @@
   "packageName": "dev.leemh.charok",
   "appDescription": "Chalog records driver-reported vehicle symptoms and available vehicle observations in the background for later service consultation.",
   "invokeWord": "차록",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "actionCalls": [
     {
       "type": "function",

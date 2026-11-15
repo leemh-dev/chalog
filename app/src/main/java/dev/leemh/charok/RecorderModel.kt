@@ -28,6 +28,7 @@ data class RecorderUi(val ready: Boolean = false, val mode: InputMode = InputMod
     val message: String = "차량 연결 대기", val speech: String = "마이크 꺼짐", val nav: String = "내비 요청 없음",
     val notice: String? = null, val backgroundRunning: Boolean = false, val starting: Boolean = false,
     val voiceEnabled: Boolean = false, val startFailure: Boolean = false,
+    val panelVisible: Boolean = false, val reportStatus: String? = null,
     val locationConsent: Boolean = false, val history: List<Session> = emptyList(), val failNextSave: Boolean = false)
 
 class RecorderModel(app: Application) : AndroidViewModel(app) {
@@ -107,7 +108,7 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
             bufferSeconds = recorder.bufferedMs() / 1000, parked = parked(), gear = gear ?: "미확인", busy = false,
             message = if (recorder.phase == Phase.SAVE_FAILED) recorder.storageError else message ?: mutable.value.message,
             failNextSave = failNext, backgroundRunning = serviceRunning,
-            starting = pendingVoiceStart != null, voiceEnabled = voiceEnabled())
+            starting = pendingVoiceStart != null, voiceEnabled = voiceEnabled(), panelVisible = foreground)
     }
     fun foreground() = launch {
         foreground = true
@@ -366,21 +367,29 @@ class RecorderModel(app: Application) : AndroidViewModel(app) {
             }
         }
     }
-    fun reportDelivery(message: String) = launch { publish(message) }
+    fun reportDelivery(message: String?) = launch { mutable.value = mutable.value.copy(reportStatus = message); publish() }
     fun loadHistory() = launch { check(parked()); mutable.value = mutable.value.copy(history = store.list()); publish() }
     fun supplement(text: String) = launch { check(parked()); recorder.supplement(text); publish(message = "원문을 유지하고 사용자 보완을 저장했습니다") }
     fun openHistory(id: String) = launch { check(parked()); recorder.open(id); publish() }
     fun export(includeLocation: Boolean, done: (File) -> Unit) = launch {
-        check(parked() && recorder.phase in listOf(Phase.SAVED, Phase.INTERRUPTED))
-        val selected = store.get(recorder.session!!.id) ?: error("No saved record")
-        val report = if (includeLocation) selected else selected.copy(observations = selected.observations.filterNot { it.origin == Origin.PLEOS_LOCATION })
-        val dir = File(getApplication<Application>().cacheDir, "reports").apply { mkdirs() }
-        dir.listFiles()?.filter { clock.wall() - it.lastModified() > 86_400_000 }?.forEach { it.delete() }
-        val file = File(dir, "chalog-${selected.id}.txt")
-        file.writeText(ConsultationReport.text(report)); check(file.readText() == ConsultationReport.text(report))
-        File(dir, "chalog-${selected.id}.json").writeText(SessionCodec.encode(report))
-        publish(message = "보고서 파일 생성·재조회 완료 · 업체 수신 미확인")
-        withContext(Dispatchers.Main) { done(file) }
+        mutable.value = mutable.value.copy(reportStatus = null)
+        try {
+            check(parked() && recorder.phase in listOf(Phase.SAVED, Phase.INTERRUPTED))
+            val selected = store.get(recorder.session!!.id) ?: error("No saved record")
+            val report = if (includeLocation) selected else selected.copy(observations = selected.observations.filterNot { it.origin == Origin.PLEOS_LOCATION })
+            val dir = File(getApplication<Application>().cacheDir, "reports").apply { mkdirs() }
+            dir.listFiles()?.filter { clock.wall() - it.lastModified() > 86_400_000 }?.forEach { it.delete() }
+            val file = File(dir, "chalog-${selected.id}.txt")
+            file.writeText(ConsultationReport.text(report)); check(file.readText() == ConsultationReport.text(report))
+            File(dir, "chalog-${selected.id}.json").writeText(SessionCodec.encode(report))
+            mutable.value = mutable.value.copy(reportStatus = "보고서 파일 생성·재조회 완료 · 업체 수신 미확인")
+            publish()
+            withContext(Dispatchers.Main) { done(file) }
+        } catch (cancel: CancellationException) { throw cancel }
+        catch (_: Exception) {
+            mutable.value = mutable.value.copy(reportStatus = "보고서를 만들지 못했습니다. 기존 기록은 보존됐습니다.")
+            publish()
+        }
     }
     fun navigate(target: CenterTarget) = launch {
         check(parked() && mutable.value.mode == InputMode.PLEOS && target.valid())

@@ -11,6 +11,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.IBinder
 import android.os.SystemClock
+import android.widget.Toast
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
 import dev.leemh.charok.core.InputMode
@@ -32,6 +33,7 @@ class RecordingService : Service() {
     private var previousNotes = 0
     private var previousStarting = false
     private var previousStartFailure = false
+    private var eventToast: Toast? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -74,7 +76,14 @@ class RecordingService : Service() {
                     val eventTitle = if (previousPhase == Phase.RECORDING && state.phase == Phase.RECORDING) {
                         if (state.session?.notes?.lastOrNull()?.bookmark == true) "방금 순간을 표시했어요" else "증상 설명을 남겼어요"
                     } else title
-                    if (!state.starting) notifications.notify(EVENT_ID, notification(state, eventTitle, ongoing = false, event = true))
+                    if (!state.starting) {
+                        notifications.notify(EVENT_ID, notification(state, eventTitle, ongoing = false, event = true))
+                        if (!state.panelVisible) runCatching {
+                            eventToast?.cancel()
+                            eventToast = Toast.makeText(applicationContext,
+                                (if (state.mode == InputMode.TEST) "TEST · " else "차록 · ") + eventTitle, Toast.LENGTH_SHORT).also { it.show() }
+                        }
+                    }
                 }
                 previousPhase = state.phase
                 previousNotes = notes

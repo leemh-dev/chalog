@@ -100,6 +100,12 @@ class GleoBroadcastDeviceTest {
         File(dir, name).outputStream().use { bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, it) }
         bitmap.recycle()
     }
+    private fun waitForEvent(title: String) {
+        waitFor { app.getSystemService(NotificationManager::class.java).activeNotifications.any {
+            it.id == RecordingService.EVENT_ID && it.notification.extras.getString(android.app.Notification.EXTRA_TITLE) == title
+        } }
+        Thread.sleep(250) // Let the normal SystemUI text toast render after the status notification.
+    }
     @Test fun broadcastStartsWithoutPreparationAndStopsWithoutOpeningPanel() {
         setupVoice()
         runBlocking { app.recorder.toggleTestMotion().join() } // Explicit TEST driving, not a vehicle-state bypass.
@@ -114,6 +120,7 @@ class GleoBroadcastDeviceTest {
         assertTrue(started.observations.none { it.elapsed < started.triggerElapsed })
         assertEquals(InputMode.TEST, started.mode); assertFalse(app.recorder.ui.value.parked)
         assertNoPanel()
+        waitForEvent("증상을 기록하고 있어요")
         capture("gleo-test-background-recording.png")
         val observations = started.observations.size
         waitFor { app.store.get(started.id)!!.observations.size > observations }
@@ -126,6 +133,7 @@ class GleoBroadcastDeviceTest {
         assertEquals(Phase.SAVED, saved.phase); assertEquals(2, saved.notes.size)
         assertEquals(1, saved.notes.count { it.bookmark }); assertTrue(saved.notes.all { it.origin == Origin.TEST })
         assertEquals(count + 1, app.store.list().size); assertNoPanel()
+        waitForEvent("기록을 저장했어요")
         capture("gleo-test-background-saved.png")
         Thread.sleep(1200); assertEquals(saved, app.store.get(started.id))
         val notifications = app.getSystemService(NotificationManager::class.java)
@@ -205,5 +213,33 @@ class GleoBroadcastDeviceTest {
             assertEquals(Phase.IDLE, app.recorder.ui.value.phase)
             assertTrue(replies.isEmpty()) // Android rejects the sender before the app's receiver executes.
         } finally { app.unregisterReceiver(result) }
+    }
+    @Test fun fileSaveCancellationOrMissingPickerShowsFeedbackWithoutLosingRecord() {
+        setupVoice()
+        send(GleoContract.CONTROL, """{"operation":"start"}"""); reply("success")
+        send(GleoContract.CONTROL, """{"operation":"stop"}"""); reply("success")
+        waitFor { !app.recorder.ui.value.backgroundRunning }
+        val saved = app.store.latest()!!; val count = app.store.list().size
+        tap("details"); tap("보고서 내보내기"); tap("save-report")
+        fun hasFeedback() = app.recorder.ui.value.reportStatus?.let {
+            it.contains("파일을 저장하지 않았습니다") || it.contains("저장 화면을 열 수 없습니다")
+        } == true
+        fun panelResumed(): Boolean {
+            var resumed = false
+            InstrumentationRegistry.getInstrumentation().runOnMainSync {
+                resumed = ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(Stage.RESUMED).any { it is MainActivity }
+            }
+            return resumed
+        }
+        waitFor { hasFeedback() || !panelResumed() }
+        if (!hasFeedback()) {
+            // Dismiss the normal document picker without selecting/writing any user file.
+            InstrumentationRegistry.getInstrumentation().uiAutomation.executeShellCommand("input keyevent KEYCODE_BACK").close()
+        }
+        waitFor { hasFeedback() && panelResumed() }
+        ui.onNodeWithTag("report-status").performScrollTo().assertIsDisplayed()
+        ui.onNodeWithTag("report-status").assertTextContains("기존 기록은 보존됐습니다", substring = true)
+        assertEquals(saved, app.store.get(saved.id)); assertEquals(count, app.store.list().size)
+        capture("report-save-feedback.png")
     }
 }
