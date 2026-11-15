@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Only run on this CI job's disposable AVD or a dedicated Charok test AVD."""
+"""Only run on this CI job's disposable AVD or a dedicated Chalog test AVD."""
 import argparse
 import json
 import subprocess
@@ -18,7 +18,7 @@ subprocess.run(adb + ["shell", "run-as", "dev.leemh.charok", "rm", "-f", "files/
 base = adb + ["shell", "am", "instrument", "-w", "-r", "-e", "class"]
 runner = "dev.leemh.charok.test/androidx.test.runner.AndroidJUnitRunner"
 with (out / "process-seed-log.txt").open("w") as log:
-    seed = subprocess.Popen(base + ["dev.leemh.charok.ProcessRecoveryTest#seedForProcessKill", runner], stdout=log, stderr=subprocess.STDOUT)
+    seed = subprocess.Popen(base + ["dev.leemh.chalog.ProcessRecoveryTest#seedForProcessKill", runner], stdout=log, stderr=subprocess.STDOUT)
     marker = None
     try:
         for _ in range(60):
@@ -32,7 +32,7 @@ with (out / "process-seed-log.txt").open("w") as log:
         seed.wait(timeout=15)
     finally:
         if seed.poll() is None: seed.terminate()
-result = subprocess.run(base + ["dev.leemh.charok.ProcessRecoveryTest#verifyAfterProcessKill", runner], capture_output=True, text=True, timeout=90)
+result = subprocess.run(base + ["dev.leemh.chalog.ProcessRecoveryTest#verifyAfterProcessKill", runner], capture_output=True, text=True, timeout=90)
 (out / "process-restore-log.txt").write_text(result.stdout + result.stderr)
 assert result.returncode == 0 and "OK (1 test)" in result.stdout, result.stdout[-3000:]
 print("New PID recovered the same SQLite session without restarting observation")

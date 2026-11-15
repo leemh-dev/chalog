@@ -1,5 +1,9 @@
 # 차록 개발 기록
 
+## 2026-11-15 · CHALOG 이름 변경
+
+저장소는 `leemh-dev/chalog`, 소스 namespace는 `dev.leemh.chalog`, 버전은0.3.2/8입니다. 개발 브랜치·설치 ID·DB는 유지합니다. [현재 변경·검증 상태](21-chalog-rename.md)를 먼저 확인하세요. 아래 항목은 각 버전의 검증 이력입니다.
+
 ## 2026-11-15 · 한글 자막 시연 제작·최종 검증
 
 사용자 요청에 따라 [2분39초 실제 Pleos TEST 시연](evidence/macos-pleos-captioned-demo-2026-11-15/README.md)을 만들었습니다. 좌측 상단 시나리오6개와 하단 한국어 자막17구간을 영상에 넣었습니다. 전체3,820프레임 디코딩·한글 제목/자막 OCR17/17·SRT 타이밍 대조·주요 장면 시각 검토를 통과했습니다. [시나리오·검증 상세](20-captioned-scenario-demo.md).
@@ -10,7 +14,7 @@
 
 [전체 흐름과12개 재검증](19-background-fixes-and-reverification.md): 최초 동의/매 기록 시작을 분리하고 CONTROL/ADD Broadcast·전용 OPEN을 구현했습니다. 권한 없는 앱 호출 차단, 짧은 시스템 토스트 요청, 동의 행 조작, 보고서 저장/공유 결과 안내를 추가했습니다. portrait 검은 여백은 제거했습니다.
 
-코드 **8c8f793 / 0.3.1/7**. Mac JVM39·lint 오류0/경고14·Pleos 기기15·새 PID 복원, [CI43701282754](https://github.com/leemh-dev/charok/actions/runs/43701282754) JVM39·일반 Android 기기15·복원 모두 통과했습니다. 최초77개 전체 행 보존, 최종118개·무결성ok. [실제 화면·APK·CI·DB 증거](evidence/macos-pleos-gleo-fixes-2026-11-15/README.md).
+코드 **8c8f793 / 0.3.1/7**. Mac JVM39·lint 오류0/경고14·Pleos 기기15·새 PID 복원, [CI43701282754](https://github.com/leemh-dev/chalog/actions/runs/43701282754) JVM39·일반 Android 기기15·복원 모두 통과했습니다. 최초77개 전체 행 보존, 최종118개·무결성ok. [실제 화면·APK·CI·DB 증거](evidence/macos-pleos-gleo-fixes-2026-11-15/README.md).
 
 **실제 Gleo 발화/등록·차량/마이크 SDK·음악 재생·차록 SDK 목적지·자동 우측 지정·토스트 실제 노출은 별도 미검증/차단입니다.** 순정 내비340m 안내는 동작하지만 지도 바탕은 비어 있습니다. 우측 화면은 OS 수동 배치, 외부 보고서 수신은 별도 TEST 앱 검사입니다. 영상·자동 병합은 하지 않았습니다. 다음 검증은 이 제한을 정상 환경에서 해결한 뒤 같은12개 기준으로 진행합니다.
 
@@ -22,7 +26,7 @@
 
 ## 2026-11-15 · 0.2.3 CHALOG와 순정 내비
 
-영문 CHALOG / 한글 차록으로 헤더·보고서·영문 응답을 바꿨습니다. 앱 식별자와 DB는 유지했고 기존66개 전체 행이 정확히 동일합니다. 코드 **1ed571d / 0.2.3/5**. Mac JVM31·lint 오류0/경고14, [CI43690911090](https://github.com/leemh-dev/charok/actions/runs/43690911090) 일반 Android 기기9·새 PID 복원까지 통과했습니다.
+영문 CHALOG / 한글 차록으로 헤더·보고서·영문 응답을 바꿨습니다. 앱 식별자와 DB는 유지했고 기존66개 전체 행이 정확히 동일합니다. 코드 **1ed571d / 0.2.3/5**. Mac JVM31·lint 오류0/경고14, [CI43690911090](https://github.com/leemh-dev/chalog/actions/runs/43690911090) 일반 Android 기기9·새 PID 복원까지 통과했습니다.
 
 **순정 내비 직접 조작으로 충전소 검색·340m 경로 안내 시작·종료를 확인했습니다.** 경로선/회전 안내/목적지 핀은 나오지만 배경 도로·건물은 비어 있습니다. SwiftShader 비교는 검은 화면 오류가 나 기존 host로 복귀했으며 지도 바탕의 원인은 미확정입니다. 차록 SDK 목적지 요청, 실제 주행·마이크·Gleo 성공으로 확대하지 않습니다. [브랜드/조사 상세](17-chalog-and-navigation.md) · [실제 화면·APK·DB·검증 증거](evidence/macos-pleos-navigation-2026-11-15/README.md). 영상은 만들지 않았습니다.
 
@@ -30,13 +34,13 @@
 
 SIGNAL 기록 요약·상담 카드·보고서에 경고·표시등 이름, 최초 관측 시각/출처, 점등·점멸·소등 이력을 추가했습니다. 누락/조회 실패는 미확인으로 남깁니다. 공개 CAR_SAFETY getter를 최대5초 간격으로 연결했고 private 구독 API는 사용하지 않았습니다. DB 스키마는 그대로입니다. [명세](16-warning-light-observations.md).
 
-코드 **79d93a1 / 0.2.2/4**. Mac JVM31·lint 오류0/경고14·Pleos 개별 기기9건, [CI43689445105](https://github.com/leemh-dev/charok/actions/runs/43689445105) 일반 Android 기기9건·새 PID 복원 모두 통과했습니다. 기존56개 payload 전체 보존, 최종DB66개·무결성ok. 실제 Pleos에서 TEST 점등→소등→저장·상담 화면을 확인했습니다. CAR_SAFETY 정상 부여는 확인했지만 실제 SDK 경고 수신은 미검증입니다. 영상은 만들지 않았습니다. [실제 화면4장·검사·DB·APK 증거](evidence/macos-pleos-warnings-2026-11-15/README.md).
+코드 **79d93a1 / 0.2.2/4**. Mac JVM31·lint 오류0/경고14·Pleos 개별 기기9건, [CI43689445105](https://github.com/leemh-dev/chalog/actions/runs/43689445105) 일반 Android 기기9건·새 PID 복원 모두 통과했습니다. 기존56개 payload 전체 보존, 최종DB66개·무결성ok. 실제 Pleos에서 TEST 점등→소등→저장·상담 화면을 확인했습니다. CAR_SAFETY 정상 부여는 확인했지만 실제 SDK 경고 수신은 미검증입니다. 영상은 만들지 않았습니다. [실제 화면4장·검사·DB·APK 증거](evidence/macos-pleos-warnings-2026-11-15/README.md).
 
 ## 2026-11-15 · 0.2.1 SIGNAL 구현과 실제 크기 검토
 
 선택된 A · SIGNAL을 흰색/코발트 우측 패널에 구현했습니다. 제목26sp·본문18sp·보조16sp·시간38sp·버튼 최소52dp로 맞추고 설명·시간/순간 요약·번호 타임라인·명시적 닫기를 적용했습니다. 기존 Pleos 2560×1440/density160에서 시스템 배율을 바꾸지 않고 준비·기록·저장·상담 화면을 확인했습니다. 우측 배치는 OS 수동 조작이며 Gleo/자동 창 지정 구현이 아닙니다.
 
-앱 코드 **31ba254**, 버전 **0.2.1/3**. Mac JVM24·lint 오류0/경고14·Pleos 개별 기기8건 통과, [CI43683208769](https://github.com/leemh-dev/charok/actions/runs/43683208769) 일반 Android 기기8건과 새 PID 복원도 통과했습니다. 기존47개 payload 전체 보존, 최종DB56개·무결성ok입니다. 화면을 닫아도 TEST 기록 유지, 알림 종료/저장 뒤 대시보드 미표시를 확인했습니다.
+앱 코드 **31ba254**, 버전 **0.2.1/3**. Mac JVM24·lint 오류0/경고14·Pleos 개별 기기8건 통과, [CI43683208769](https://github.com/leemh-dev/chalog/actions/runs/43683208769) 일반 Android 기기8건과 새 PID 복원도 통과했습니다. 기존47개 payload 전체 보존, 최종DB56개·무결성ok입니다. 화면을 닫아도 TEST 기록 유지, 알림 종료/저장 뒤 대시보드 미표시를 확인했습니다.
 
 **이번에는 영상을 만들지 않았습니다.** 다음 영상은 [한국어 장면 자막과 TEST/실제 입력 구분](09-demo-delivery-plan.md)을 따릅니다. 실제 SDK·마이크·Gleo·순정 내비 목적지 성공은 별도 미검증/차단입니다. [실제 화면8장·APK·DB·검사 증거](evidence/macos-pleos-signal-2026-11-15/README.md).
 
@@ -63,7 +67,7 @@ Mac JVM24·lint 오류0, Pleos 기기8개 메서드 개별 실행·별도 새 �
 
 화면·검사 로그·수정 APK metadata·후속 절차는 [Mac 검증 증거](evidence/macos-pleos-2026-11-15/README.md)에 있습니다. 기존 기획·DB·AVD는 보존했고 자동 병합은 수행하지 않았습니다.
 
-[실제 TEST 시연 영상](evidence/macos-pleos-2026-11-15/charok-pleos-test-demo.mp4)은89.6초입니다. 수정본 [CI43666974677](https://github.com/leemh-dev/charok/actions/runs/43666974677)도 전체 성공했습니다.
+[실제 TEST 시연 영상](evidence/macos-pleos-2026-11-15/charok-pleos-test-demo.mp4)은89.6초입니다. 수정본 [CI43666974677](https://github.com/leemh-dev/chalog/actions/runs/43666974677)도 전체 성공했습니다.
 
 ## 이전 기록과 절차
 

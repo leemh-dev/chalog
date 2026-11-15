@@ -1,14 +1,15 @@
 plugins { id("com.android.application"); id("org.jetbrains.kotlin.android"); id("org.jetbrains.kotlin.kapt") }
 android {
-    namespace = "dev.leemh.charok"
+    namespace = "dev.leemh.chalog"
     compileSdk = 35
     useLibrary("android.car")
     defaultConfig {
+        // Stable install identity: preserve updates, permissions, provider URIs and existing records.
         applicationId = "dev.leemh.charok"
         minSdk = 28
         targetSdk = 34
-        versionCode = 7
-        versionName = "0.3.1"
+        versionCode = 8
+        versionName = "0.3.2"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         kapt { arguments { arg("room.schemaLocation", "$projectDir/schemas") } }
     }

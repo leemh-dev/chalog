@@ -15,15 +15,19 @@
     <queries>
         <intent><action android:name="android.intent.action.SEND" /><data android:mimeType="text/plain" /></intent>
     </queries>
-    <application android:name=".CharokApp" android:label="차록" android:icon="@drawable/charok_icon" android:allowBackup="false" android:supportsRtl="true" android:theme="@style/AppTheme">
+    <application android:name=".ChalogApp" android:label="차록" android:icon="@drawable/chalog_icon" android:allowBackup="false" android:supportsRtl="true" android:theme="@style/AppTheme">
         <uses-library android:name="android.car" android:required="false" />
         <activity android:name=".MainActivity" android:exported="true" android:launchMode="singleTop" android:resizeableActivity="true">
-            <intent-filter><action android:name="android.intent.action.MAIN" /><category android:name="android.intent.category.LAUNCHER" /></intent-filter>
             <intent-filter>
+                <action android:name="OPEN_CHALOG_RECORDS" />
                 <action android:name="OPEN_CHAROK_RECORDS" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <!-- Keep existing launcher shortcuts; the implementation now lives in dev.leemh.chalog. -->
+        <activity-alias android:name="dev.leemh.charok.MainActivity" android:targetActivity=".MainActivity" android:exported="true">
+            <intent-filter><action android:name="android.intent.action.MAIN" /><category android:name="android.intent.category.LAUNCHER" /></intent-filter>
+        </activity-alias>
         <receiver android:name=".GleoReceiver" android:exported="true" android:permission="android.permission.BIND_VOICE_INTERACTION">
             <intent-filter>
                 <action android:name="CONTROL_SYMPTOM_RECORD" />

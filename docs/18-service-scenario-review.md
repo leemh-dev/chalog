@@ -74,7 +74,7 @@ flowchart LR
 3. 공식 OS 정책 안에서 우측 열기와 이전 콘텐츠 복귀를 확인합니다. 불가능한 조건이면 제품 동작에 제한을 명시합니다. 수동 배치로 완료를 주장하지 않습니다.
 4. 실제 차량 연결·마이크·음악 재생·짧은 알림 배너·공유 수신 앱을 갖춘 환경에서 같은12개 시나리오를 다시 실행합니다. 순정 지도 배경 문제는 독립 조사합니다.
 
-코드 검토 위치: [Gleo 준비 조건](../app/src/main/java/dev/leemh/charok/RecorderModel.kt#L230), [foreground 준비 조건](../app/src/main/java/dev/leemh/charok/RecorderModel.kt#L162), [현재 schema](../app/src/main/assets/schema.json#L6), [일반 Activity/공유 진입](../app/src/main/java/dev/leemh/charok/MainActivity.kt#L28).
+코드 검토 위치: [Gleo 준비 조건](https://github.com/leemh-dev/chalog/blob/324125b50b39278726264b09dd208be68535051f/app/src/main/java/dev/leemh/charok/RecorderModel.kt#L230), [foreground 준비 조건](https://github.com/leemh-dev/chalog/blob/324125b50b39278726264b09dd208be68535051f/app/src/main/java/dev/leemh/charok/RecorderModel.kt#L162), [현재 schema](https://github.com/leemh-dev/chalog/blob/324125b50b39278726264b09dd208be68535051f/app/src/main/assets/schema.json#L6), [일반 Activity/공유 진입](https://github.com/leemh-dev/chalog/blob/324125b50b39278726264b09dd208be68535051f/app/src/main/java/dev/leemh/charok/MainActivity.kt#L28).
 
 ## 검사와 보존 결과
 

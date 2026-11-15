@@ -47,7 +47,7 @@ flowchart LR
 
 ## 검사·보존·남은 조건
 
-Mac JVM **39개**, lint **오류0/경고14**, 실제 Pleos 기기 **15개**와 별도 새 PID 복원 통과. [CI43701282754](https://github.com/leemh-dev/charok/actions/runs/43701282754)도 JVM39·일반 Android 기기15·새 PID 복원을 통과했습니다. CI APK 3개를 내려받아 archive/APK 해시·버전·개발 인증서·미서명 release를 metadata와 대조했습니다. 기존 설치와 서명이 같은 Mac APK로 업데이트했습니다.
+Mac JVM **39개**, lint **오류0/경고14**, 실제 Pleos 기기 **15개**와 별도 새 PID 복원 통과. [CI43701282754](https://github.com/leemh-dev/chalog/actions/runs/43701282754)도 JVM39·일반 Android 기기15·새 PID 복원을 통과했습니다. CI APK 3개를 내려받아 archive/APK 해시·버전·개발 인증서·미서명 release를 metadata와 대조했습니다. 기존 설치와 서명이 같은 Mac APK로 업데이트했습니다.
 
 최초 **77개 모든 행(id/startedAt/payload) 보존**, 최종 **118개**, 추가 **41개는 모두 TEST**, schema1·무결성ok. 실패한 검사에서 만든 TEST 기록도 삭제하지 않았습니다. 외장 SSD·기존 AVD 한 대를 사용했고 빌드 중에는 AVD를 종료했습니다. 테스트 안내와 서비스를 종료한 뒤 AVD를 정상 종료했습니다. 새 영상·자동 병합·데이터 초기화·인증 우회는 없습니다.
 

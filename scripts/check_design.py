@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DESIGN = ROOT / "docs/design"
 server = ThreadingHTTPServer(("127.0.0.1", 0), partial(SimpleHTTPRequestHandler, directory=str(DESIGN)))
 Thread(target=server.serve_forever, daemon=True).start()
-URL = f"http://127.0.0.1:{server.server_port}/charok-prototype.html"
+URL = f"http://127.0.0.1:{server.server_port}/chalog-prototype.html"
 results = {"level": "browser UX simulation only", "checks": [], "layouts": []}
 
 

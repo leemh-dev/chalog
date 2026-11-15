@@ -8,7 +8,9 @@
 
 차록은 운전자가 느낀 이상 증상을 음성으로 표시하면, 실제 확보한 직전 1분부터 종료 명령까지의 차량 상태를 함께 보존하고 정비사와 검토할 수 있게 하는 서비스입니다.
 
-현재 **Android 0.3.1/7**입니다. 최초 동의와 매 기록 시작을 분리하고, 화면 없는 CONTROL/ADD Broadcast와 명시적 OPEN을 구현했습니다. 동의 행 조작·보고서 결과 안내를 고쳤고 SIGNAL 패널과 경고등 이력을 유지합니다. Mac Pleos 기기15개·별도 새 PID 복원과 JVM39개를 통과했습니다. 이번 수정 전 기록77개 전체를 보존했으며 시연 후 최종 DB는119개·무결성ok입니다. [12개 시나리오별 재검증](docs/19-background-fixes-and-reverification.md) · [실제 화면·APK·DB 증거](docs/evidence/macos-pleos-gleo-fixes-2026-11-15/README.md).
+**저장소·소스 이름은 CHALOG로 정리했으며 Android 0.3.2/8 검증을 진행 중입니다.** [이름 변경·호환성](docs/21-chalog-rename.md).
+
+아래는 직전 **Android 0.3.1/7** 검증 결과입니다. 최초 동의와 매 기록 시작을 분리하고, 화면 없는 CONTROL/ADD Broadcast와 명시적 OPEN을 구현했습니다. 동의 행 조작·보고서 결과 안내를 고쳤고 SIGNAL 패널과 경고등 이력을 유지합니다. Mac Pleos 기기15개·별도 새 PID 복원과 JVM39개를 통과했습니다. 이번 수정 전 기록77개 전체를 보존했으며 시연 후 최종 DB는119개·무결성ok입니다. [12개 시나리오별 재검증](docs/19-background-fixes-and-reverification.md) · [실제 화면·APK·DB 증거](docs/evidence/macos-pleos-gleo-fixes-2026-11-15/README.md).
 
 제품 목표는 **Gleo로 화면 없이 기록·종료하고, ‘차록 열어줘’에만 우측 콘텐츠 영역을 표시**하는 것입니다. [개발 방향](docs/15-gleo-background-direction.md) · [선택된 SIGNAL 시안](docs/design/gleo-background/README.md). TEST Broadcast/저장/복원은 확인했지만 실제 Gleo 발화·등록, 차량 SDK·마이크·음악, 자동 우측 배치·차록에서 보내는 내비 목적지는 별도 차단/미검증입니다. 결과 알림은 알림센터에서 확인했고 짧은 토스트의 실제 노출은 미확인입니다. [한국어 기능 자막을 포함한 시연](docs/20-captioned-scenario-demo.md)을 완성했으며 TEST 입력과 검증 범위를 영상에 표시했습니다.
 
@@ -18,8 +20,8 @@
 
 JDK17·Android SDK35에서 `./gradlew :app:testDebugUnitTest :app:lintDebug :app:assembleDebug :app:assembleDebugAndroidTest :app:assembleRelease`로 검사·빌드합니다. debug/test APK는 개발 서명이고 release는 미서명입니다. unsigned release는 실행 가능한 제출 APK가 아닙니다.
 
-- 최신 0.3.1 [성공 CI43701282754](https://github.com/leemh-dev/charok/actions/runs/43701282754): JVM39·일반 Android 기기15건·새 PID 복원, [APK와 metadata artifact](https://github.com/leemh-dev/charok/actions/runs/43701282754/artifacts/14157071359). [다운로드한 ZIP/APK·버전·개발 서명 대조](docs/evidence/macos-pleos-gleo-fixes-2026-11-15/ci-apk-crosscheck.json). Mac은 기존 개발 서명을 유지해 DB를 보존합니다.
-- 0.1 기준 [성공 CI43650320801](https://github.com/leemh-dev/charok/actions/runs/43650320801) · [APK artifact](https://github.com/leemh-dev/charok/actions/runs/43650320801/artifacts/14136300842): 앱 코드ef85516, JVM24·기기5건·새 PID 복원 성공. [해시/서명](docs/evidence/android-v0.1/apk-metadata.json)을 대조하세요.
+- 이전 0.3.1 [성공 CI43701282754](https://github.com/leemh-dev/chalog/actions/runs/43701282754): JVM39·일반 Android 기기15건·새 PID 복원, [APK와 metadata artifact](https://github.com/leemh-dev/chalog/actions/runs/43701282754/artifacts/14157071359). [다운로드한 ZIP/APK·버전·개발 서명 대조](docs/evidence/macos-pleos-gleo-fixes-2026-11-15/ci-apk-crosscheck.json). Mac은 기존 개발 서명을 유지해 DB를 보존합니다.
+- 0.1 기준 [성공 CI43650320801](https://github.com/leemh-dev/chalog/actions/runs/43650320801) · [APK artifact](https://github.com/leemh-dev/chalog/actions/runs/43650320801/artifacts/14136300842): 앱 코드ef85516, JVM24·기기5건·새 PID 복원 성공. [해시/서명](docs/evidence/android-v0.1/apk-metadata.json)을 대조하세요.
 - [Mac Pleos 설치·실행·실제 화면 녹화 절차](docs/12-mac-pleos-handoff.md)
 - 기본은 Pleos 입력/운전 상태 미확인입니다. 수동 TEST는 **입력 설정 → TEST 선택 → 동의 → 기록 준비 켜기 → 기록 시작 → TEST 도구에서 설명/순간 → 종료 → 상담 카드**로 확인합니다. 음성 명령 진입 검사는 정차 중 명시적 음성 설정 후 별도 instrumentation으로 실행하며 실제 Gleo 발화 성공과 구분합니다.
 - 실제 앱은 차록 패널만 그립니다. 아래의 차량/내비 도식은 브라우저 설계 자료이며 앱 자체 기능이 아닙니다.

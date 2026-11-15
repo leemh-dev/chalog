@@ -2,7 +2,7 @@
 
 ## 2026-11-14 UTC · 프로젝트 분리와 초기 기획
 
-사용자는 서비스명을 **차록**, 리포 이름을 `leemh-dev/charok`으로 선택하고 새 저장소의 docs에 기획서 작성을 요청했습니다. 원격은 빈 공개 저장소/default main으로 확인했습니다. 기존 파일/작업 지침은 없었으며 이전 도착자리 저장소는 변경하지 않았습니다.
+사용자는 서비스명을 **차록**, 리포 이름을 `leemh-dev/chalog`으로 선택하고 새 저장소의 docs에 기획서 작성을 요청했습니다. 원격은 빈 공개 저장소/default main으로 확인했습니다. 기존 파일/작업 지침은 없었으며 이전 도착자리 저장소는 변경하지 않았습니다.
 
 ### 사용자 확정 요구
 
@@ -68,7 +68,7 @@ GitHub 저장소 조회→빈 저장소 clone→문서 작성→상대 링크/JS
 
 ### 실제 산출물과 검사
 
-- [HTML](design/charok-prototype.html): 준비 동의→기록·대화→순간 표시→저장 상태→상담 카드·인계 검토, 실패/주행 잠금 시안. 실제 SDK·마이크·SQLite·전송 없는 메모리 시뮬레이션.
+- [HTML](design/chalog-prototype.html): 준비 동의→기록·대화→순간 표시→저장 상태→상담 카드·인계 검토, 실패/주행 잠금 시안. 실제 SDK·마이크·SQLite·전송 없는 메모리 시뮬레이션.
 - Chromium: sandbox socket 오류와 file URL 정책 차단 후 localhost HTTP 방식으로 실행. 정책 변경/인증 우회 없음. 초기 이미지의 화살표 누락과 하단 버튼 여백을 확인·수정하고 최종 화면 7장을 캡처했다. 주요 이미지는 채팅에 직접 공유했다.
 - `python scripts/check_design.py`: 6개 UX 검사 묶음 및 1600/1000/430px ×10개 상태, 가로 넘침/기록 화면 스크롤 없음, JS 오류 없음. 이는 브라우저 시안 검사이며 앱 단위/기기 테스트가 아니다.
 - `python scripts/make_submission_draft.py /tmp/charok-official-form.docx`: 작품 소개8항목 재조회 일치, 참가자/서명 표 원본 유지. [원본/초안 SHA-256](evidence/planning-design/submission-draft.json).

@@ -1,6 +1,6 @@
 # 차록 개발 지침
 
-- 영문 브랜드는 CHALOG, 한글 서비스명·호출어는 차록이다. 브랜드를 병기할 때는 차록과 CHALOG를 함께 표시하며 한글 UI·호출어는 차록을 유지한다. 기존 설치·DB 호환을 위해 applicationId/dev.leemh.charok, 내부 클래스·DB 파일명, 저장소 경로는 유지한다.
+- 영문 브랜드는 CHALOG, 한글 서비스명·호출어는 차록이다. 브랜드를 병기할 때는 차록과 CHALOG를 함께 표시하며 한글 UI·호출어는 차록을 유지한다. 저장소·소스 namespace·클래스·리소스는 chalog/Chalog로 통일한다. 기존 설치·DB 호환을 위해 applicationId dev.leemh.charok, DB 파일명 charok.db, 기존 launcher alias와 구 OPEN action은 유지한다. 과거 검증 증거·서명·해시·영상·제출 초안은 원본으로 보존하며 이름 변경 검증은 docs/21-chalog-rename.md를 참고한다.
 
 - 최신 제품·디자인 방향은 docs/15-gleo-background-direction.md와 docs/design/gleo-background이다. docs/07~09와 이전 시안은 설계 이력으로 보존하고 실제 구현 상태는 docs/11-verification.md와 docs/10-development-log.md에서 확인한다.
 - 차록은 Gleo로 시작·기록·종료하는 백그라운드 서비스가 기본이다. 현재 내비·음악 화면을 유지하고 결과 알림만 표시한다. 저장 후 대시보드 자동 표시 금지. 명시적 ‘차록 열어줘’에만 우측 콘텐츠 영역을 사용하는 것이 목표이며, UI 디자인 변경은 이 패널에 한정한다. Gleo service/Broadcast 경로·발화 분기·우측 창 지정은 실제 검증 전 완료로 표시하지 않는다.

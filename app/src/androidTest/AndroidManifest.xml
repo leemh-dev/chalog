@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application>
-        <activity android:name="dev.leemh.charok.ReportRecipientActivity" android:exported="true" android:label="차록 TEST 보고서 수신기">
+        <activity android:name="dev.leemh.chalog.ReportRecipientActivity" android:exported="true" android:label="차록 TEST 보고서 수신기">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />

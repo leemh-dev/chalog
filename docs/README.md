@@ -22,6 +22,7 @@
 | [17 · CHALOG와 내비](17-chalog-and-navigation.md) | 영문 브랜드, 순정 검색·경로 안내와 지도 바탕 문제 분리 |
 | [18 · 전체 서비스 검토](18-service-scenario-review.md) | 흐름도·12개 시나리오·실제 실행·미충족 우선순위 |
 | [19 · 백그라운드 수정·재검증](19-background-fixes-and-reverification.md) | Broadcast/OPEN·토스트·보고서·12개 재검증 |
+| [21 · CHALOG 이름 변경](21-chalog-rename.md) | 저장소·소스 이름 통일, 기존 설치·DB·실행 호환 |
 | [20 · 한글 자막 시연](20-captioned-scenario-demo.md) | 실제 Pleos TEST 시나리오6개·영상·한글 자막·완성 후 검증 |
 | [최신 우측 패널 시안](design/gleo-background/README.md) | 공식 Pleos 배치 유지, 흐름과 A/B/C 디자인 |
 | [디자인 시안](design/README.md) | 조작 가능한 HTML과 7장 캡처, TEST 시뮬레이션 |
