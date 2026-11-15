@@ -35,7 +35,7 @@ class RecorderDeviceTest {
     private val app get() = ApplicationProvider.getApplicationContext<CharokApp>()
     private fun has(tag: String) = runCatching { ui.onAllNodesWithTag(tag).fetchSemanticsNodes().isNotEmpty() }.getOrDefault(false)
     private fun await(tag: String) = ui.waitUntil(15_000) { has(tag) }
-    private fun tap(tag: String) { ui.onNodeWithTag(tag).performScrollTo().performClick(); ui.waitForIdle() }
+    private fun tap(tag: String) { ui.waitForIdle(); ui.onNodeWithTag(tag).performScrollTo(); ui.waitForIdle(); ui.onNodeWithTag(tag).performClick(); ui.waitForIdle() }
     private fun prepare() {
         ui.waitUntil(15_000) { has("close") || has("input-settings") }
         if (has("close")) tap("close")
@@ -69,14 +69,15 @@ class RecorderDeviceTest {
     @Test fun warningLightsSurviveSaveReopenAndReport() {
         prepare(); tap("start"); await("test-lamps-on")
         tap("test-lamps-on")
-        ui.waitUntil(10_000) { app.store.latest()?.observedLamps()?.size == 2 }
+        ui.waitUntil(10_000) { app.recorder.ui.value.session?.observedLamps()?.size == 2 }
+        ui.waitForIdle() // The added lamp card changes the position of the off button.
         tap("test-lamps-off")
-        ui.waitUntil(10_000) { app.store.latest()?.observedLamps()?.firstOrNull()?.stateLabel == "소등 관측" }
+        ui.waitUntil(10_000) { app.store.latest()?.observedLamps()?.firstOrNull { it.type == "ENGINE" }?.stateLabel == "소등 관측" }
         ui.onNodeWithTag("stop").performClick(); await("details")
         val saved = app.store.latest()!!
         assertEquals(Phase.SAVED, saved.phase)
         assertEquals(saved, app.store.get(saved.id))
-        assertEquals(listOf("OFF", "BLINK"), saved.observedLamps().map { it.latest.value })
+        assertEquals(mapOf("ENGINE" to "OFF", "TPMS" to "BLINK"), saved.observedLamps().associate { it.type to it.latest.value })
         ui.activityRule.scenario.recreate(); await("details")
         assertEquals(saved.id, app.recorder.ui.value.session!!.id)
         tap("details")
@@ -132,7 +133,7 @@ class RecorderDeviceTest {
     }
     @Test fun notificationStartsPreparedRecordInBackgroundOnlyOnce() {
         prepare()
-        val count = app.store.list().size
+        val count = app.savedRecordCount()
         ui.activityRule.scenario.moveToState(androidx.lifecycle.Lifecycle.State.CREATED)
         Thread.sleep(2200)
         assertEquals(Phase.ARMED, app.recorder.ui.value.phase)
@@ -143,7 +144,7 @@ class RecorderDeviceTest {
         start.send(); start.send()
         Thread.sleep(800)
         assertEquals(Phase.RECORDING, app.store.latest()!!.phase)
-        assertEquals(count + 1, app.store.list().size)
+        assertEquals(count + 1, app.savedRecordCount())
         val id = app.store.latest()!!.id
         assertTrue(app.store.latest()!!.observations.isNotEmpty())
         manager.activeNotifications.first { it.id == RecordingService.ONGOING_ID }.notification.actions
@@ -190,18 +191,18 @@ class RecorderDeviceTest {
         ui.waitUntil(10_000) { runCatching { startAction() != stale }.getOrDefault(false) }
         val current = startAction()
         assertNotEquals(stale, current)
-        val count = app.store.list().size
+        val count = app.savedRecordCount()
         stale.send(); Thread.sleep(400)
         assertEquals(Phase.ARMED, app.recorder.ui.value.phase)
-        assertEquals(count, app.store.list().size)
+        assertEquals(count, app.savedRecordCount())
         current.send()
         ui.waitUntil(10_000) { app.recorder.ui.value.phase == Phase.RECORDING }
-        assertEquals(count + 1, app.store.list().size)
+        assertEquals(count + 1, app.savedRecordCount())
     }
     @Test fun rapidCommandsKeepTheSameSession() {
         prepare(); tap("start"); await("stop")
         val original = app.store.latest()!!
-        val count = app.store.list().size
+        val count = app.savedRecordCount()
         ui.activityRule.scenario.onActivity { activity ->
             val model = (activity.application as CharokApp).recorder
             repeat(8) { model.start() }
@@ -209,7 +210,7 @@ class RecorderDeviceTest {
         }
         await("details")
         assertEquals(original.id, app.store.latest()!!.id)
-        assertEquals(count, app.store.list().size)
+        assertEquals(count, app.savedRecordCount())
         assertEquals(Phase.SAVED, app.store.latest()!!.phase)
     }
 }

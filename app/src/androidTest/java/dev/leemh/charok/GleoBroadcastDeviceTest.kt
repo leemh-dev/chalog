@@ -110,13 +110,13 @@ class GleoBroadcastDeviceTest {
         setupVoice()
         runBlocking { app.recorder.toggleTestMotion().join() } // Explicit TEST driving, not a vehicle-state bypass.
         tap("dismiss-panel"); waitFor { ui.activityRule.scenario.state == androidx.lifecycle.Lifecycle.State.DESTROYED }
-        val count = app.store.list().size
+        val count = app.savedRecordCount()
         app.sendBroadcast(Intent(GleoContract.CONTROL).setPackage(app.packageName).putExtra("operation", "start"))
         send(GleoContract.CONTROL, """{"operation":"start"}""")
         reply("success"); reply("success")
         waitFor { app.recorder.ui.value.phase == Phase.RECORDING }
         val started = app.store.latest()!!
-        assertEquals(count + 1, app.store.list().size)
+        assertEquals(count + 1, app.savedRecordCount())
         assertTrue(started.observations.none { it.elapsed < started.triggerElapsed })
         assertEquals(InputMode.TEST, started.mode); assertFalse(app.recorder.ui.value.parked)
         assertNoPanel()
@@ -132,7 +132,7 @@ class GleoBroadcastDeviceTest {
         val saved = app.store.get(started.id)!!
         assertEquals(Phase.SAVED, saved.phase); assertEquals(2, saved.notes.size)
         assertEquals(1, saved.notes.count { it.bookmark }); assertTrue(saved.notes.all { it.origin == Origin.TEST })
-        assertEquals(count + 1, app.store.list().size); assertNoPanel()
+        assertEquals(count + 1, app.savedRecordCount()); assertNoPanel()
         waitForEvent("기록을 저장했어요")
         capture("gleo-test-background-saved.png")
         Thread.sleep(1200); assertEquals(saved, app.store.get(started.id))
@@ -141,32 +141,32 @@ class GleoBroadcastDeviceTest {
         waitFor { notifications.activeNotifications.none { it.id == RecordingService.EVENT_ID } }
         ActivityScenario.launch<MainActivity>(Intent(GleoContract.OPEN).setPackage(app.packageName).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)).use {
             reply("success"); waitFor { app.recorder.ui.value.session?.id == saved.id }
-            assertEquals(count + 1, app.store.list().size); assertEquals(Phase.SAVED, app.recorder.ui.value.phase)
+            assertEquals(count + 1, app.savedRecordCount()); assertEquals(Phase.SAVED, app.recorder.ui.value.phase)
             assertFalse(app.recorder.ui.value.backgroundRunning)
             capture("gleo-test-explicit-open.png")
         }
     }
     @Test fun broadcastRejectsMissingConsentAndMalformedParameters() {
-        selectTestInput(); val count = app.store.list().size
+        selectTestInput(); val count = app.savedRecordCount()
         tap("dismiss-panel")
         send(GleoContract.CONTROL, """{"operation":"start","consent":true,"mode":"TEST"}"""); reply("fail")
         send(GleoContract.CONTROL, """{"operation":"delete"}"""); reply("fail")
         send(GleoContract.ADD, """{"markMoment":"true"}"""); reply("fail")
         send(GleoContract.ADD, """{"note":"inactive record"}"""); reply("fail")
-        assertEquals(count, app.store.list().size); assertFalse(app.recorder.ui.value.backgroundRunning); assertNoPanel()
+        assertEquals(count, app.savedRecordCount()); assertFalse(app.recorder.ui.value.backgroundRunning); assertNoPanel()
     }
     @Test fun broadcastDoesNotReplaceFailedRecordAndRetryKeepsId() {
         setupVoice(); tap("dismiss-panel")
         send(GleoContract.CONTROL, """{"operation":"start"}"""); reply("success")
-        val id = app.store.latest()!!.id; val count = app.store.list().size
+        val id = app.store.latest()!!.id; val count = app.savedRecordCount()
         runBlocking { app.recorder.injectFailure().join() }
         assertEquals(Phase.SAVE_FAILED, app.recorder.ui.value.phase)
         send(GleoContract.CONTROL, """{"operation":"stop"}"""); reply("fail")
         send(GleoContract.CONTROL, """{"operation":"start"}"""); reply("fail")
-        assertEquals(id, app.recorder.ui.value.session!!.id); assertEquals(count, app.store.list().size)
+        assertEquals(id, app.recorder.ui.value.session!!.id); assertEquals(count, app.savedRecordCount())
         runBlocking { app.recorder.retry().join() }
         waitFor { !app.recorder.ui.value.backgroundRunning }
-        assertEquals(Phase.SAVED, app.store.get(id)!!.phase); assertEquals(count, app.store.list().size); assertNoPanel()
+        assertEquals(Phase.SAVED, app.store.get(id)!!.phase); assertEquals(count, app.savedRecordCount()); assertNoPanel()
     }
     @Test fun selectedReportCanBeReadByGrantedExternalTestRecipientOnly() {
         setupVoice()
@@ -196,7 +196,7 @@ class GleoBroadcastDeviceTest {
         } finally { app.unregisterReceiver(result) }
     }
     @Test fun unprivilegedExternalAppCannotStartRecording() {
-        setupVoice(); val count = app.store.list().size
+        setupVoice(); val count = app.savedRecordCount()
         val received = LinkedBlockingQueue<Intent>()
         val result = object : BroadcastReceiver() { override fun onReceive(context: Context, intent: Intent) { received.put(intent) } }
         ContextCompat.registerReceiver(app, result, IntentFilter("dev.leemh.charok.TEST_UNTRUSTED_PROBE_FINISHED"), ContextCompat.RECEIVER_EXPORTED)
@@ -208,7 +208,7 @@ class GleoBroadcastDeviceTest {
             val proof = received.poll(10, TimeUnit.SECONDS) ?: error("External command probe did not run")
             assertNotEquals(android.os.Process.myUid(), proof.getIntExtra("senderUid", -1))
             Thread.sleep(1000)
-            assertEquals(count, app.store.list().size)
+            assertEquals(count, app.savedRecordCount())
             assertFalse(app.recorder.ui.value.backgroundRunning)
             assertEquals(Phase.IDLE, app.recorder.ui.value.phase)
             assertTrue(replies.isEmpty()) // Android rejects the sender before the app's receiver executes.
@@ -219,7 +219,7 @@ class GleoBroadcastDeviceTest {
         send(GleoContract.CONTROL, """{"operation":"start"}"""); reply("success")
         send(GleoContract.CONTROL, """{"operation":"stop"}"""); reply("success")
         waitFor { !app.recorder.ui.value.backgroundRunning }
-        val saved = app.store.latest()!!; val count = app.store.list().size
+        val saved = app.store.latest()!!; val count = app.savedRecordCount()
         tap("details"); tap("보고서 내보내기"); tap("save-report")
         fun hasFeedback() = app.recorder.ui.value.reportStatus?.let {
             it.contains("파일을 저장하지 않았습니다") || it.contains("저장 화면을 열 수 없습니다")
@@ -239,7 +239,7 @@ class GleoBroadcastDeviceTest {
         waitFor { hasFeedback() && panelResumed() }
         ui.onNodeWithTag("report-status").performScrollTo().assertIsDisplayed()
         ui.onNodeWithTag("report-status").assertTextContains("기존 기록은 보존됐습니다", substring = true)
-        assertEquals(saved, app.store.get(saved.id)); assertEquals(count, app.store.list().size)
+        assertEquals(saved, app.store.get(saved.id)); assertEquals(count, app.savedRecordCount())
         capture("report-save-feedback.png")
     }
 }
