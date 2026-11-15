@@ -68,9 +68,12 @@ class GleoBroadcastDeviceTest {
             app.recorder.finish().join()
             app.recorder.closeRecord().join()
             app.recorder.chooseMode(InputMode.TEST).join()
-            if (!app.recorder.ui.value.parked) app.recorder.toggleTestMotion().join()
-            app.recorder.configureVoice(false).join()
         }
+        // onStart/foreground runs asynchronously; unknown is not TEST driving.
+        waitFor { app.recorder.ui.value.gear in listOf("PARK", "DRIVE") }
+        if (app.recorder.ui.value.gear == "DRIVE") runBlocking { app.recorder.toggleTestMotion().join() }
+        waitFor { app.recorder.ui.value.parked }
+        runBlocking { app.recorder.configureVoice(false).join() }
         waitFor { app.recorder.ui.value.parked && !app.recorder.ui.value.voiceEnabled }
         ui.waitForIdle()
     }
