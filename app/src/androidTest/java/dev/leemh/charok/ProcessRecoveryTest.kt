@@ -29,10 +29,10 @@ class ProcessRecoveryTest {
     @Test fun seedForProcessKill() {
         ui.waitUntil(15_000) { has("close") || has("input-settings") }
         if (has("close")) tap("close")
-        ui.waitUntil { has("input-settings") }; tap("input-settings"); tap("test-mode")
-        ui.waitUntil { ui.onAllNodesWithText("TEST · P 확인").fetchSemanticsNodes().isNotEmpty() }
-        tap("consent"); tap("arm"); ui.waitUntil { has("start") }; tap("test-tools")
-        tap("start"); ui.waitUntil { has("test-note") }; tap("test-note")
+        ui.waitUntil(10_000) { has("input-settings") }; tap("input-settings"); tap("test-mode")
+        ui.waitUntil(10_000) { ui.onAllNodesWithText("TEST · P 확인").fetchSemanticsNodes().isNotEmpty() }
+        tap("consent"); tap("arm"); ui.waitUntil(10_000) { has("start") }; tap("test-tools")
+        tap("start"); ui.waitUntil(10_000) { has("test-note") }; tap("test-note")
         ui.onNodeWithTag("mark").performClick()
         ui.waitUntil(10_000) { app.store.latest()?.notes?.any { it.bookmark } == true }
         val s = app.store.latest()!!

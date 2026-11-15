@@ -40,7 +40,7 @@ class RecorderDeviceTest {
         ui.waitUntil(15_000) { has("close") || has("input-settings") }
         if (has("close")) tap("close")
         await("input-settings"); tap("input-settings"); tap("test-mode")
-        ui.waitUntil { ui.onAllNodesWithText("TEST · P 확인").fetchSemanticsNodes().isNotEmpty() }
+        ui.waitUntil(10_000) { ui.onAllNodesWithText("TEST · P 확인").fetchSemanticsNodes().isNotEmpty() }
         tap("consent"); tap("arm"); await("start"); tap("test-tools")
     }
     private fun capture(name: String) {
@@ -52,10 +52,10 @@ class RecorderDeviceTest {
     @Test fun recordsBookmarksAndPersistsRealDatabase() {
         prepare(); Thread.sleep(2200); capture("01-prepared-test")
         tap("start"); await("test-note"); tap("test-note")
-        ui.waitUntil { app.store.latest()?.notes?.isNotEmpty() == true }
+        ui.waitUntil(10_000) { app.store.latest()?.notes?.isNotEmpty() == true }
         capture("02-recording-test")
         ui.onNodeWithTag("mark").performClick()
-        ui.waitUntil { app.store.latest()?.notes?.any { it.bookmark } == true }
+        ui.waitUntil(10_000) { app.store.latest()?.notes?.any { it.bookmark } == true }
         capture("03-marked-test")
         ui.onNodeWithTag("stop").performClick(); await("details")
         val saved = app.store.latest()!!
@@ -76,7 +76,7 @@ class RecorderDeviceTest {
     }
     @Test fun drivingLocksDetailsButAllowsStop() {
         prepare(); tap("start"); await("stop"); tap("motion")
-        ui.waitUntil { !app.recorder.ui.value.parked }
+        ui.waitUntil(10_000) { !app.recorder.ui.value.parked }
         ui.onNodeWithTag("stop").performClick(); await("details")
         ui.onNodeWithTag("details").assertIsNotEnabled()
         capture("07-driving-lock-test")
@@ -161,12 +161,13 @@ class RecorderDeviceTest {
         val manager = app.getSystemService(android.app.NotificationManager::class.java)
         fun startAction() = manager.activeNotifications.first { it.id == RecordingService.ONGOING_ID }
             .notification.actions.first { it.title.toString() == "기록 시작" }.actionIntent
+        ui.waitUntil(10_000) { runCatching { startAction(); true }.getOrDefault(false) }
         val stale = startAction()
         kotlinx.coroutines.runBlocking { app.recorder.finish().join() }
-        ui.waitUntil { !app.recorder.ui.value.backgroundRunning }
+        ui.waitUntil(10_000) { !app.recorder.ui.value.backgroundRunning }
         kotlinx.coroutines.runBlocking { app.recorder.arm(true).join() }
-        ui.waitUntil { app.recorder.ui.value.backgroundRunning && app.recorder.ui.value.phase == Phase.ARMED }
-        ui.waitUntil { runCatching { startAction() != stale }.getOrDefault(false) }
+        ui.waitUntil(10_000) { app.recorder.ui.value.backgroundRunning && app.recorder.ui.value.phase == Phase.ARMED }
+        ui.waitUntil(10_000) { runCatching { startAction() != stale }.getOrDefault(false) }
         val current = startAction()
         assertNotEquals(stale, current)
         val count = app.store.list().size
@@ -174,7 +175,7 @@ class RecorderDeviceTest {
         assertEquals(Phase.ARMED, app.recorder.ui.value.phase)
         assertEquals(count, app.store.list().size)
         current.send()
-        ui.waitUntil { app.recorder.ui.value.phase == Phase.RECORDING }
+        ui.waitUntil(10_000) { app.recorder.ui.value.phase == Phase.RECORDING }
         assertEquals(count + 1, app.store.list().size)
     }
     @Test fun rapidCommandsKeepTheSameSession() {

@@ -10,12 +10,15 @@ import android.content.pm.ServiceInfo
 import android.net.Uri
 import android.os.Build
 import android.os.IBinder
+import android.os.SystemClock
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
 import dev.leemh.charok.core.InputMode
 import dev.leemh.charok.core.Origin
 import dev.leemh.charok.core.Phase
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.distinctUntilChangedBy
+import kotlinx.coroutines.flow.collectLatest
 import java.util.UUID
 
 /** Explicit, user-started vehicle recording. Process death never resumes collection. */
@@ -41,14 +44,17 @@ class RecordingService : Service() {
                 notification(model.ui.value, "기록 준비를 시작합니다", ongoing = true),
                 if (Build.VERSION.SDK_INT >= 34) ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE else 0)
             promoted = true
+            lastPublishedAt = SystemClock.elapsedRealtime()
         } catch (_: RuntimeException) {
             model.serviceStopped()
             stopSelf()
             return
         }
         scope.launch {
-            model.ui.collect { state ->
-                if (!state.backgroundRunning) return@collect
+            model.ui.distinctUntilChangedBy { Triple(it.backgroundRunning, it.phase, it.session?.notes?.size ?: 0) }.collectLatest { state ->
+                if (!state.backgroundRunning) return@collectLatest
+                // Android drops excessive enqueues. Coalesce rapid commands and keep the latest state.
+                delay((lastPublishedAt + 1000 - SystemClock.elapsedRealtime()).coerceAtLeast(0))
                 val title = when (state.phase) {
                     Phase.ARMED -> "기록 준비 중"
                     Phase.RECORDING -> "증상을 기록하고 있어요"
@@ -61,6 +67,7 @@ class RecordingService : Service() {
                 val notes = state.session?.notes?.size ?: 0
                 val changed = previousPhase != state.phase || previousNotes != notes
                 if (changed) {
+                    lastPublishedAt = SystemClock.elapsedRealtime()
                     notifications.notify(ONGOING_ID, notification(state, title, ongoing = active))
                     val eventTitle = if (previousPhase == Phase.RECORDING && state.phase == Phase.RECORDING) {
                         if (state.session?.notes?.lastOrNull()?.bookmark == true) "방금 순간을 표시했어요" else "증상 설명을 남겼어요"
@@ -140,6 +147,8 @@ class RecordingService : Service() {
     override fun onBind(intent: Intent?): IBinder? = null
 
     companion object {
+        // Shared across service instances; accessed only on the main thread.
+        private var lastPublishedAt = 0L
         const val PROGRESS = "recording_progress"
         const val EVENTS = "recording_events"
         const val ONGOING_ID = 41
