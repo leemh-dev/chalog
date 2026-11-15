@@ -6,6 +6,8 @@
 
 현재 **Android 0.2.0/2의 흰색 UI와 백그라운드 기록·알림을 구현하고 Mac Pleos TEST 검증을 완료**했습니다. 순정 내비 가운데/차록 오른쪽 배치, 화면 종료 후 같은 ID 기록 유지, 알림 조작, 강제 종료 후 자동 수집 없는 복원을 확인했습니다. [실제 화면·영상·검증 결과](docs/evidence/macos-pleos-v0.2-2026-11-15/README.md)와 [0.2 동선/구현 원칙](docs/14-background-and-white-ui.md)을 참고하세요. 실제 SDK·마이크·Gleo·센터 목적지 연동은 환경 차단/미검증 상태입니다. 기획 자료와 이전 검증 이력은 보존합니다.
 
+다음 개발 방향은 **Gleo로 화면 없이 기록·종료하고, ‘차록 열어줘’에만 우측 콘텐츠 영역을 표시**하는 것입니다. [개발 방향](docs/15-gleo-background-direction.md) · [공식 Pleos 구조를 유지한 새 디자인](docs/design/gleo-background/README.md). 현재는 디자인 제안이며 0.2의 실제 구현·검증 결과와 구분합니다.
+
 ## Android 실행
 
 JDK17·Android SDK35에서 `./gradlew :app:testDebugUnitTest :app:lintDebug :app:assembleDebug :app:assembleDebugAndroidTest :app:assembleRelease`로 검사·빌드합니다. debug/test APK는 개발 서명이고 release는 미서명입니다. unsigned release는 실행 가능한 제출 APK가 아닙니다.

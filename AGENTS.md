@@ -1,6 +1,7 @@
 # 차록 개발 지침
 
-- 기획·디자인 기준은 docs/07~09와 docs/design이다. 이 자료는 설계 이력으로 보존하고 실제 구현 상태는 docs/11-verification.md와 docs/10-development-log.md에서 확인한다.
+- 최신 제품·디자인 방향은 docs/15-gleo-background-direction.md와 docs/design/gleo-background이다. docs/07~09와 이전 시안은 설계 이력으로 보존하고 실제 구현 상태는 docs/11-verification.md와 docs/10-development-log.md에서 확인한다.
+- 차록은 Gleo로 시작·기록·종료하는 백그라운드 서비스가 기본이다. 현재 내비·음악 화면을 유지하고 결과 알림만 표시한다. 저장 후 대시보드 자동 표시 금지. 명시적 ‘차록 열어줘’에만 우측 콘텐츠 영역을 사용하는 것이 목표이며, UI 디자인 변경은 이 패널에 한정한다. Gleo service/Broadcast 경로·발화 분기·우측 창 지정은 실제 검증 전 완료로 표시하지 않는다.
 - 앱 개발은 feat/charok-recorder에서 진행한다. 기획 PR과 개발 PR을 자동 병합하지 않고 기존 변경과 데이터를 보존한다.
 - 차량·내비 시스템 영역을 차록에서 복제하지 않는다. 앱 창 크기에 적응하는 차록 패널만 구현한다.
 - TEST, AAOS/Pleos SDK, Gleo Intent, 실제 마이크, 일반 Android, Pleos 에뮬레이터, 실차 검증 수준을 구분한다. 미지원 필드·과거·원음·예약 완료·고장 원인을 만들어내지 않는다.
