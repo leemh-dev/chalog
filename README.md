@@ -37,7 +37,7 @@ adb -s emulator-5560 shell am start --user 10 -W \
 | --- | --- |
 | 실행 장비 | Mac M1, 메모리8GB, 외장SSD에 SDK·AVD·프로젝트 배치 |
 | Android | Android14(API34), ARM64(`arm64-v8a`) |
-| AVD | 기존 `CharokPleosMac` **1대** 사용, serial `emulator-5560`, 사용자10 |
+| AVD | Pleos Connect Emulator **1대** 사용, serial `emulator-5560`, 사용자10 |
 | 설치 도구 | Android SDK Platform-Tools의 ADB, 준비 검사에 Python3 사용 |
 | 앱 설정 | 수동 TEST 입력, 정차(P) 확인, 차량 상태 기록 동의, 차록 알림 허용 |
 | 소스 빌드 도구 | JDK17, Android SDK35, 저장소의 Gradle Wrapper |
