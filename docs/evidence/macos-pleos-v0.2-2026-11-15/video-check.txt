@@ -1,0 +1,19 @@
+duration_seconds=89.82158888888888
+requested=0s actual=0.0s
+requested=15s actual=14.9895s
+requested=25s actual=24.976466666666667s
+requested=30s actual=29.942944444444443s
+requested=33s actual=32.82772222222222s
+requested=35s actual=34.99256666666667s
+requested=37s actual=36.95202222222222s
+requested=40s actual=39.9901s
+requested=41s actual=40.99047777777778s
+requested=45s actual=44.993988888888886s
+requested=46s actual=45.989422222222224s
+requested=50s actual=49.991344444444444s
+requested=60s actual=59.99208888888889s
+requested=75s actual=74.9731s
+requested=88s actual=87.9899s
+Review: preparation and recording are visible with native navigation in the middle; closing the Activity leaves navigation visible; the saved TEST consultation card is visible after reopening.
+Limitation: the Android system notification panel visible in screencap is NOT rendered in the screenrecord video. Notification operation is evidenced separately by screenshots, runtime service state, instrumentation and SQLite. Do not present the video as visually showing notification buttons.
+Input: TEST; no microphone/audio or real SDK validation.

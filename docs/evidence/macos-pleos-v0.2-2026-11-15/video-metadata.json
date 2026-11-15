@@ -1,0 +1,38 @@
+{
+  "duration_seconds": 89.82158888888888,
+  "bytes": 14206457,
+  "sha256": "001d1c479a7b99df6a2cec95ce767a900a63e47c6a8a64504bd38dce8ea402c5",
+  "tracks": [
+    {
+      "kind": "vide",
+      "width": 1920.0,
+      "height": 1080.0
+    },
+    {
+      "kind": "meta"
+    },
+    {
+      "kind": "meta"
+    }
+  ],
+  "capture": "ADB screenrecord of the actual Pleos display; TEST input",
+  "reviewed_frame_seconds": [
+    0,
+    15,
+    25,
+    30,
+    33,
+    35,
+    37,
+    40,
+    41,
+    45,
+    46,
+    50,
+    60,
+    75,
+    88
+  ],
+  "audio": "No audio track; not microphone validation",
+  "capture_limitation": "System notification panel visible in screencap is absent from screenrecord; use notification screenshot and runtime/database proof for those actions."
+}
