@@ -51,7 +51,10 @@ private fun at(time: Long) = SimpleDateFormat("HH:mm:ss", Locale.KOREA).format(D
                         Text(if (state.mode == InputMode.TEST) "TEST · 차량 입력 재현" else "PLEOS · SDK 입력", color = if (state.mode == InputMode.TEST) Amber else Mint, fontSize = 14.sp)
                     }
                     Spacer(Modifier.height(12.dp))
-                    if (!state.ready) { Text("저장된 기록을 확인하고 있어요", color = Muted); Text(state.message); return@Column }
+                    if (!state.ready) {
+                        Text("저장된 기록을 확인하고 있어요", color = Muted)
+                        Text(state.message)
+                    } else {
                     if (state.busy) LinearProgressIndicator(Modifier.fillMaxWidth())
                     val body = Modifier.weight(1f).fillMaxWidth().verticalScroll(rememberScrollState())
                     Column(body, verticalArrangement = Arrangement.spacedBy(14.dp)) {
@@ -175,6 +178,7 @@ private fun at(time: Long) = SimpleDateFormat("HH:mm:ss", Locale.KOREA).format(D
                     if (page != "main") TextButton(onClick = { page = "main" }) { Text("기록 상태로") }
                     Text(if (state.parked) "${state.mode} · P 확인" else "주행/상태 미확인 · 상세 조작 제한", color = if (state.parked) Muted else Amber, fontSize = 13.sp, modifier = Modifier.padding(top = 8.dp))
                     Text(state.message, color = Muted, fontSize = 13.sp, maxLines = 2)
+                    }
                 }
             }
         }
