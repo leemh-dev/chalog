@@ -21,14 +21,19 @@
 | [16 · 경고등 관측](16-warning-light-observations.md) | 점등·점멸·소등 이력과 수신 제한, 실제 TEST 검증 |
 | [17 · CHALOG와 내비](17-chalog-and-navigation.md) | 영문 브랜드, 순정 검색·경로 안내와 지도 바탕 문제 분리 |
 | [18 · 전체 서비스 검토](18-service-scenario-review.md) | 흐름도·12개 시나리오·실제 실행·미충족 우선순위 |
+| [19 · 백그라운드 수정·재검증](19-background-fixes-and-reverification.md) | Broadcast/OPEN·토스트·보고서·12개 재검증 |
 | [최신 우측 패널 시안](design/gleo-background/README.md) | 공식 Pleos 배치 유지, 흐름과 A/B/C 디자인 |
 | [디자인 시안](design/README.md) | 조작 가능한 HTML과 7장 캡처, TEST 시뮬레이션 |
 | [접수양식 초안](submission/charok-application-draft.docx) | 작품 소개 작성, 개인정보·동의·서명 미작성 |
 | [정적 SDK 조사 근거](evidence/sdk-review/README.md) | 이전 조사에서 확인한 버전·해시·28개 메서드/권한 |
 
-문서는 제품 목표, 구현 제안, 실제 검증 결과를 구분합니다. 기획 명세는 07~09, 최신 제품 방향은 15, 실제 구현·검증 상태는 10~14·18과 최신 실행 증거를 우선합니다. 이전 도착자리의 빌드·기기 검사 결과를 차록의 성공 증거로 사용하지 않습니다.
+문서는 제품 목표, 구현 제안, 실제 검증 결과를 구분합니다. 기획 명세는 07~09, 최신 제품 방향은 15, 실제 구현·검증 상태는 10~14·18~19와 최신 실행 증거를 우선합니다. 이전 도착자리의 빌드·기기 검사 결과를 차록의 성공 증거로 사용하지 않습니다.
 
-## 최신 실행 결과 · 전체 서비스 시나리오 검토
+## 최신 실행 결과 · 0.3.1 수정·재검증
+
+- [수정과12개 판정](19-background-fixes-and-reverification.md) · [실제 화면·기기15·새 PID·CI·DB 증거](evidence/macos-pleos-gleo-fixes-2026-11-15/README.md)
+
+## 이전 실행 결과 · 전체 서비스 시나리오 검토
 
 - [12개 시나리오와 실행 판정](18-service-scenario-review.md) · [실제 화면11장·Mac 기기9·새 PID 복원·DB 보존](evidence/macos-pleos-scenario-2026-11-15/README.md)
 

@@ -1,6 +1,6 @@
 # 차록 개발 방향 · Gleo 중심 백그라운드 기록
 
-2026-11-15 사용자 정정에 따른 개발 기준입니다. 최초 bb872c6은 설계 문서와 이미지뿐이었으며, 후속 **31ba254 / 0.2.1**에서 선택된 A · SIGNAL 우측 패널을 구현하고 실제 크기를 검토했습니다. [SIGNAL 실행 증거](evidence/macos-pleos-signal-2026-11-15/README.md). 아래 Gleo 발화/Broadcast·자동 우측 배치는 여전히 제품 목표와 후속 검증 조건입니다.
+2026-11-15 사용자 정정에 따른 개발 기준입니다. 최초 bb872c6은 설계 문서와 이미지뿐이었으며, 후속 **31ba254 / 0.2.1**에서 선택된 A · SIGNAL 우측 패널을 구현했습니다. **0.3.1에서는 CONTROL/ADD Broadcast·명시적 OPEN·최초 동의를 구현하고 TEST로 재검증**했습니다. [최신12개 시나리오 판정](19-background-fixes-and-reverification.md). 실제 Gleo 발화/등록·자동 우측 배치·토스트 실제 노출은 여전히 검증 조건입니다.
 
 ## 시스템 구조와 차록의 역할
 
@@ -38,9 +38,9 @@
 
 공식 App Schema는 `component: "service"`를 UI 없는 백그라운드 처리 방식으로 설명하며, 실제 전달은 `sendBroadcast()`와 `BroadcastReceiver`입니다. 이름이 service라고 해서 Gleo가 차록의 Android Service를 직접 시작하는 것으로 가정하지 않습니다. 기존 0.2의 투명 Activity 전달은 구현 이력으로 보존하고, 후속 개발에서 Broadcast 진입을 우선 검토합니다.
 
-현재 함수 최대 3개라는 제한에 맞춘 후보는 다음과 같습니다. **이 후보 함수 구성은 아직 schema.json에 적용하지 않았습니다. 0.2.1에서는 앱 버전만 갱신했습니다.**
+함수 최대3개라는 제한에 맞춘 구성은 다음과 같습니다. **후속0.3.1에서 schema.json과 Receiver/Activity에 적용했고 TEST 검사를 통과했습니다. 실제 Gleo 등록·발신자/한국어 발화는 미검증입니다.**
 
-| 후보 기능 | component | 역할 |
+| 기능 | component | 역할 |
 | --- | --- | --- |
 | CONTROL_SYMPTOM_RECORD | service | operation=start/stop으로 기록 시작과 종료 |
 | ADD_SYMPTOM_EVENT | service | 사용자 설명과 순간 표시 |

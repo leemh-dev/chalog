@@ -1,5 +1,13 @@
 # 다음 실행 · Mac Pleos 실제 앱 검증
 
+## 2026-11-15 · 0.3.1 백그라운드 명령·토스트·보고서 수정
+
+[전체 흐름과12개 재검증](19-background-fixes-and-reverification.md): 최초 동의/매 기록 시작을 분리하고 CONTROL/ADD Broadcast·전용 OPEN을 구현했습니다. 권한 없는 앱 호출 차단, 짧은 시스템 토스트 요청, 동의 행 조작, 보고서 저장/공유 결과 안내를 추가했습니다. portrait 검은 여백은 제거했습니다.
+
+코드 **8c8f793 / 0.3.1/7**. Mac JVM39·lint 오류0/경고14·Pleos 기기15·새 PID 복원, [CI43701282754](https://github.com/leemh-dev/charok/actions/runs/43701282754) JVM39·일반 Android 기기15·복원 모두 통과했습니다. 최초77개 전체 행 보존, 최종118개·무결성ok. [실제 화면·APK·CI·DB 증거](evidence/macos-pleos-gleo-fixes-2026-11-15/README.md).
+
+**실제 Gleo 발화/등록·차량/마이크 SDK·음악 재생·차록 SDK 목적지·자동 우측 지정·토스트 실제 노출은 별도 미검증/차단입니다.** 순정 내비340m 안내는 동작하지만 지도 바탕은 비어 있습니다. 우측 화면은 OS 수동 배치, 외부 보고서 수신은 별도 TEST 앱 검사입니다. 영상·자동 병합은 하지 않았습니다. 다음 검증은 이 제한을 정상 환경에서 해결한 뒤 같은12개 기준으로 진행합니다.
+
 ## 2026-11-15 · 전체 서비스12개 시나리오 검토
 
 [전체 흐름도·번호순 시나리오·판정/수정 우선순위](18-service-scenario-review.md)를 기준으로 기존0.2.3/5를 실제 Pleos에서 확인했습니다. 알림 TEST 기록·동일 ID·59.23초 사전 구간·설명/순간/경고등·백그라운드/종료·상담/보고서가 확인됐고, Mac 기기9개와 새 PID 복원도 통과했습니다. 기존66개 전체 보존, 최종77개·무결성ok. [실제 화면11장·검사·DB 증거](evidence/macos-pleos-scenario-2026-11-15/README.md).
@@ -43,7 +51,7 @@ Mac JVM24·lint 오류0, Pleos 기기8개 메서드 개별 실행·별도 새 �
 
 2026-11-15 Mac 결과는 [실행 증거](evidence/macos-pleos-2026-11-15/README.md)를 먼저 확인합니다. b6b7e77에서 초기 화면 크래시 수정, Pleos TEST·복원·보고서·분할 표시·89.6초 녹화를 완료했습니다. 다음 작업은 기존 차록 전용 AVD와 DB를 보존하면서 Console/VHAL 비활성 원인을 공식 지원 경로로 해결하고 실제 SDK·마이크·Gleo·센터 핀을 재검증하는 것입니다. 아래 전달문은 최초 실행 이력입니다.
 
-Cloud 구현과 일반 Android TEST 결과를 실제 Pleos 성공으로 바꾸어 해석하지 않습니다. 최신 결과·APK 기준은 docs/11-verification.md와 docs/evidence/macos-pleos-navigation-2026-11-15/apk-metadata.json을 먼저 확인합니다.
+Cloud 구현과 일반 Android TEST 결과를 실제 Pleos 성공으로 바꾸어 해석하지 않습니다. 최신 결과·APK 기준은 docs/11-verification.md와 docs/evidence/macos-pleos-gleo-fixes-2026-11-15/apk-metadata.json을 먼저 확인합니다.
 
 아래 내용을 Mac Codex에 전달합니다.
 
