@@ -54,3 +54,5 @@
 - [이전 SIGNAL 실제 화면8장·글자/버튼 크기·검증 증거](evidence/macos-pleos-signal-2026-11-15/README.md) — 이번에는 영상 없음, 다음 영상 한국어 기능 자막 적용
 - [흰색 UI와 백그라운드 기록 원칙](14-background-and-white-ui.md)
 - [이전 0.2 Mac Pleos 실제 화면·알림·시연 영상·검증 증거](evidence/macos-pleos-v0.2-2026-11-15/README.md)
+
+- [22 · CHALOG 병합·재촬영·제출 준비](22-submission-ready.md) — 최신0.3.2 영상·심사용release·공식신청서·제출절차

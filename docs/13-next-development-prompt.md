@@ -1,5 +1,6 @@
 # 다음 실행 · Mac Pleos 실제 앱 검증
 
+최신 인계: [CHALOG 제출 준비](22-submission-ready.md)와 [0.3.2 재촬영·release 증거](evidence/chalog-submission-demo-2026-11-15/README.md)를 먼저 확인합니다. 사용자 지시로 PR1/2가 main에 병합되었고, 기존 기록을 보존한 최종 DB는135개입니다. 에뮬레이터는 정상 종료 상태이며 마지막 설치는 개발 인증서로 서명한0.3.2 release입니다. 실제 Gleo·SDK·마이크 등 미검증 범위는 유지합니다.
 ## 2026-11-15 · CHALOG 이름 변경
 
 저장소는 `leemh-dev/chalog`, 소스 namespace는 `dev.leemh.chalog`, 버전은0.3.2/8입니다. 개발 브랜치·설치 ID·DB는 유지합니다. Mac JVM40·Pleos16·새 PID 복원과 CI43707910220을 통과했고 기존119개 모든 행을 보존했습니다(최종133개, 추가14개 TEST). AVD 정상 종료·자동 병합 없음. [현재 변경·검증 상태](21-chalog-rename.md)를 먼저 확인하세요. 아래 항목은 각 버전의 검증 이력입니다.

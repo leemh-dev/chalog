@@ -1,0 +1,284 @@
+{
+  "app_version": "0.3.2/8",
+  "app_code_commit": "ce4990558b0afb943b3a6a9ccb1a2f0140175b0c",
+  "merged_main_before_evidence": "8534008bd723b833a9dd2f6e20cfc60d6e5e0ce0",
+  "demo_apk_variant": "debug",
+  "demo_apk_sha256": "56deee7ac78bc71ce5f72db3ab6f74d01933f96a2ed30d2e2ad1b4797fb5d56d",
+  "development_certificate_sha256": "868a8ee5b37eb58711ebf79da06145f6d935aa938b2db59da145aa8c8b33904d",
+  "capture": {
+    "start": 1794743439.7293708,
+    "end": 1794743811.492703,
+    "frames": 847,
+    "requested_fps": 5.0,
+    "audio": false,
+    "source": "adb exec-out screencap -p; actual complete display",
+    "elapsed_seconds": 371.7633321285248,
+    "effective_fps": 2.2783312037540537,
+    "all_source_frame_hashes_verified": true,
+    "source_manifest_sha256": "67bc7ea49118586b1c5af370c8902b6e61f7bfe6e0593080e0a333ba9afdc8f8"
+  },
+  "database": {
+    "baseline_count": 133,
+    "all_original_rows_exactly_preserved": true,
+    "after_video_count": 134,
+    "after_release_test_count": 135,
+    "integrity": "ok",
+    "all_134_rows_preserved_after_release_install": true
+  },
+  "snapshots": {
+    "prepared-hidden": {
+      "count": 133,
+      "integrity": "ok",
+      "latest": {
+        "id": "a8bf5ec5-5c0c-4cb2-bfb7-735e65704d83",
+        "phase": "INTERRUPTED",
+        "mode": "TEST",
+        "reason": "프로세스 종료: 마지막 저장 지점까지만 복원",
+        "triggerElapsed": 402776,
+        "endedAt": null,
+        "notes": 2,
+        "bookmarks": 1,
+        "observations": 9,
+        "origin_counts": {
+          "TEST": 9
+        },
+        "pretrigger_ms": 317,
+        "lamp_values": [],
+        "note_origins": [
+          "TEST"
+        ]
+      },
+      "dashboard_in_history": false,
+      "foreground_service": true
+    },
+    "recording-hidden": {
+      "count": 134,
+      "integrity": "ok",
+      "latest": {
+        "id": "b497ff9f-3ac3-4a17-b444-c2c6388a5522",
+        "phase": "RECORDING",
+        "mode": "TEST",
+        "reason": "",
+        "triggerElapsed": 355005,
+        "endedAt": null,
+        "notes": 0,
+        "bookmarks": 0,
+        "observations": 272,
+        "origin_counts": {
+          "TEST": 272
+        },
+        "pretrigger_ms": 59101,
+        "lamp_values": [],
+        "note_origins": []
+      },
+      "dashboard_in_history": false,
+      "foreground_service": true
+    },
+    "after-moment-hidden": {
+      "count": 134,
+      "integrity": "ok",
+      "latest": {
+        "id": "b497ff9f-3ac3-4a17-b444-c2c6388a5522",
+        "phase": "RECORDING",
+        "mode": "TEST",
+        "reason": "",
+        "triggerElapsed": 355005,
+        "endedAt": null,
+        "notes": 2,
+        "bookmarks": 1,
+        "observations": 687,
+        "origin_counts": {
+          "TEST": 687
+        },
+        "pretrigger_ms": 59101,
+        "lamp_values": [
+          [
+            "telltale:ENGINE",
+            "ON"
+          ],
+          [
+            "telltale:TPMS",
+            "BLINK"
+          ],
+          [
+            "telltale:ENGINE",
+            "OFF"
+          ],
+          [
+            "telltale:TPMS",
+            "BLINK"
+          ]
+        ],
+        "note_origins": [
+          "TEST"
+        ]
+      },
+      "dashboard_in_history": false,
+      "foreground_service": true
+    },
+    "saved-a": {
+      "count": 134,
+      "integrity": "ok",
+      "latest": {
+        "id": "b497ff9f-3ac3-4a17-b444-c2c6388a5522",
+        "phase": "SAVED",
+        "mode": "TEST",
+        "reason": "사용자 종료",
+        "triggerElapsed": 355005,
+        "endedAt": 1794743688358,
+        "notes": 2,
+        "bookmarks": 1,
+        "observations": 739,
+        "origin_counts": {
+          "TEST": 739
+        },
+        "pretrigger_ms": 59101,
+        "lamp_values": [
+          [
+            "telltale:ENGINE",
+            "ON"
+          ],
+          [
+            "telltale:TPMS",
+            "BLINK"
+          ],
+          [
+            "telltale:ENGINE",
+            "OFF"
+          ],
+          [
+            "telltale:TPMS",
+            "BLINK"
+          ]
+        ],
+        "note_origins": [
+          "TEST"
+        ]
+      },
+      "dashboard_in_history": false,
+      "foreground_service": false
+    },
+    "saved-b": {
+      "count": 134,
+      "integrity": "ok",
+      "latest": {
+        "id": "b497ff9f-3ac3-4a17-b444-c2c6388a5522",
+        "phase": "SAVED",
+        "mode": "TEST",
+        "reason": "사용자 종료",
+        "triggerElapsed": 355005,
+        "endedAt": 1794743688358,
+        "notes": 2,
+        "bookmarks": 1,
+        "observations": 739,
+        "origin_counts": {
+          "TEST": 739
+        },
+        "pretrigger_ms": 59101,
+        "lamp_values": [
+          [
+            "telltale:ENGINE",
+            "ON"
+          ],
+          [
+            "telltale:TPMS",
+            "BLINK"
+          ],
+          [
+            "telltale:ENGINE",
+            "OFF"
+          ],
+          [
+            "telltale:TPMS",
+            "BLINK"
+          ]
+        ],
+        "note_origins": [
+          "TEST"
+        ]
+      },
+      "dashboard_in_history": false,
+      "foreground_service": false
+    },
+    "restored": {
+      "count": 134,
+      "integrity": "ok",
+      "latest": {
+        "id": "b497ff9f-3ac3-4a17-b444-c2c6388a5522",
+        "phase": "SAVED",
+        "mode": "TEST",
+        "reason": "사용자 종료",
+        "triggerElapsed": 355005,
+        "endedAt": 1794743688358,
+        "notes": 2,
+        "bookmarks": 1,
+        "observations": 739,
+        "origin_counts": {
+          "TEST": 739
+        },
+        "pretrigger_ms": 59101,
+        "lamp_values": [
+          [
+            "telltale:ENGINE",
+            "ON"
+          ],
+          [
+            "telltale:TPMS",
+            "BLINK"
+          ],
+          [
+            "telltale:ENGINE",
+            "OFF"
+          ],
+          [
+            "telltale:TPMS",
+            "BLINK"
+          ]
+        ],
+        "note_origins": [
+          "TEST"
+        ]
+      },
+      "dashboard_in_history": true,
+      "foreground_service": false
+    },
+    "release-db-audit": {
+      "count": 135,
+      "integrity": "ok",
+      "latest": {
+        "id": "438e77e2-ae3f-4567-a160-9fab2955355c",
+        "phase": "SAVED",
+        "mode": "TEST",
+        "reason": "사용자 종료",
+        "triggerElapsed": 690294,
+        "endedAt": 1794743920751,
+        "notes": 2,
+        "bookmarks": 1,
+        "observations": 216,
+        "origin_counts": {
+          "TEST": 216
+        },
+        "pretrigger_ms": 5522,
+        "lamp_values": [],
+        "note_origins": [
+          "TEST"
+        ]
+      },
+      "dashboard_in_history": false,
+      "foreground_service": false
+    }
+  },
+  "restart": {
+    "before_pid": 24714,
+    "after_pid": 30734,
+    "method": "Normal dashboard close ended the app process; no force-stop required."
+  },
+  "shutdown": "adb emu kill OK; emulator exited 0; no remaining AVD process or adb device",
+  "limits": [
+    "TEST input and manual buttons/notification center; no real Gleo speech",
+    "manual OS right-side placement",
+    "native route guidance works; basemap blank",
+    "no actual microphone/vehicle SDK success claimed",
+    "no document-picker export or repair-shop transmission success claimed"
+  ]
+}
