@@ -54,7 +54,10 @@ class ProcessRecoveryTest {
         val count = restored.observations.size
         Thread.sleep(1800)
         assertEquals(count, app.store.get(restored.id)!!.observations.size)
-        val dir = File(app.getExternalFilesDir(null), "evidence").apply { mkdirs() }
-        File(dir, "process-recovery.json").writeText(JSONObject().put("sessionId", restored.id).put("oldPid", seed.getInt("pid")).put("newPid", Process.myPid()).put("phase", restored.phase.name).put("notes", restored.notes.size).put("observationsUnchanged", true).put("input", "TEST").toString())
+        val proof = JSONObject().put("sessionId", restored.id).put("oldPid", seed.getInt("pid")).put("newPid", Process.myPid()).put("phase", restored.phase.name).put("notes", restored.notes.size).put("observationsUnchanged", true).put("input", "TEST").toString()
+        // Internal copy supports normal run-as access on Pleos passenger/user profiles.
+        listOf(File(app.filesDir, "evidence"), File(app.getExternalFilesDir(null), "evidence")).forEach { dir ->
+            dir.mkdirs(); File(dir, "process-recovery.json").writeText(proof)
+        }
     }
 }

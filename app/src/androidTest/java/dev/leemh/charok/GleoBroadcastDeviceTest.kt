@@ -57,7 +57,11 @@ class GleoBroadcastDeviceTest {
         while (!test() && android.os.SystemClock.elapsedRealtime() < deadline) Thread.sleep(50)
         assertTrue("Timed out waiting for the expected recorder state", test())
     }
-    private fun tap(tag: String) { ui.onNodeWithTag(tag).performScrollTo().performClick(); ui.waitForIdle() }
+    private fun tap(tag: String) {
+        val node = ui.onNodeWithTag(tag)
+        if (tag == "dismiss-panel") node.performClick() else node.performScrollTo().performClick()
+        ui.waitForIdle()
+    }
     private fun selectTestInput() {
         waitFor { app.recorder.ui.value.ready }
         runBlocking {
@@ -87,6 +91,12 @@ class GleoBroadcastDeviceTest {
     private fun assertNoPanel() = InstrumentationRegistry.getInstrumentation().runOnMainSync {
         assertTrue(ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(Stage.RESUMED).none { it is MainActivity })
     }
+    private fun capture(name: String) {
+        val dir = File(app.filesDir, "evidence").apply { mkdirs() }
+        val bitmap = InstrumentationRegistry.getInstrumentation().uiAutomation.takeScreenshot() ?: error("No actual device screenshot")
+        File(dir, name).outputStream().use { bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG, 100, it) }
+        bitmap.recycle()
+    }
     @Test fun broadcastStartsWithoutPreparationAndStopsWithoutOpeningPanel() {
         setupVoice()
         runBlocking { app.recorder.toggleTestMotion().join() } // Explicit TEST driving, not a vehicle-state bypass.
@@ -101,6 +111,7 @@ class GleoBroadcastDeviceTest {
         assertTrue(started.observations.none { it.elapsed < started.triggerElapsed })
         assertEquals(InputMode.TEST, started.mode); assertFalse(app.recorder.ui.value.parked)
         assertNoPanel()
+        capture("gleo-test-background-recording.png")
         val observations = started.observations.size
         waitFor { app.store.get(started.id)!!.observations.size > observations }
         send(GleoContract.ADD, """{"note":"회전할 때 덜컥 소리가 나요"}"""); reply("success")
@@ -112,6 +123,7 @@ class GleoBroadcastDeviceTest {
         assertEquals(Phase.SAVED, saved.phase); assertEquals(2, saved.notes.size)
         assertEquals(1, saved.notes.count { it.bookmark }); assertTrue(saved.notes.all { it.origin == Origin.TEST })
         assertEquals(count + 1, app.store.list().size); assertNoPanel()
+        capture("gleo-test-background-saved.png")
         Thread.sleep(1200); assertEquals(saved, app.store.get(started.id))
         val notifications = app.getSystemService(NotificationManager::class.java)
         assertFalse(notifications.activeNotifications.any { it.id == RecordingService.ONGOING_ID })
@@ -120,6 +132,7 @@ class GleoBroadcastDeviceTest {
             reply("success"); waitFor { app.recorder.ui.value.session?.id == saved.id }
             assertEquals(count + 1, app.store.list().size); assertEquals(Phase.SAVED, app.recorder.ui.value.phase)
             assertFalse(app.recorder.ui.value.backgroundRunning)
+            capture("gleo-test-explicit-open.png")
         }
     }
     @Test fun broadcastRejectsMissingConsentAndMalformedParameters() {
@@ -168,6 +181,26 @@ class GleoBroadcastDeviceTest {
             assertEquals(digest, proof.getStringExtra("sha256"))
             assertTrue(proof.getBooleanExtra("siblingDenied", false))
             assertTrue(proof.getBooleanExtra("containsTest", false))
+            assertNotEquals(android.os.Process.myUid(), proof.getIntExtra("senderUid", -1))
+        } finally { app.unregisterReceiver(result) }
+    }
+    @Test fun unprivilegedExternalAppCannotStartRecording() {
+        setupVoice(); val count = app.store.list().size
+        val received = LinkedBlockingQueue<Intent>()
+        val result = object : BroadcastReceiver() { override fun onReceive(context: Context, intent: Intent) { received.put(intent) } }
+        ContextCompat.registerReceiver(app, result, IntentFilter("dev.leemh.charok.TEST_UNTRUSTED_PROBE_FINISHED"), ContextCompat.RECEIVER_EXPORTED)
+        try {
+            ui.activityRule.scenario.onActivity { activity ->
+                activity.startActivity(Intent("dev.leemh.charok.test.PROBE_COMMAND")
+                    .setClassName("dev.leemh.charok.test", ReportRecipientActivity::class.java.name))
+            }
+            val proof = received.poll(10, TimeUnit.SECONDS) ?: error("External command probe did not run")
+            assertNotEquals(android.os.Process.myUid(), proof.getIntExtra("senderUid", -1))
+            Thread.sleep(1000)
+            assertEquals(count, app.store.list().size)
+            assertFalse(app.recorder.ui.value.backgroundRunning)
+            assertEquals(Phase.IDLE, app.recorder.ui.value.phase)
+            assertTrue(replies.isEmpty()) // Android rejects the sender before the app's receiver executes.
         } finally { app.unregisterReceiver(result) }
     }
 }
