@@ -1,0 +1,25 @@
+{
+  "document": "chalog-application-draft.docx",
+  "sha256": "c775249b89d04b732d9d56b511ce6fd7975950e8983c4b9f232b3d2f048f47cd",
+  "official_template_sha256": "07be893d58b0e96ab7788f0d189d6829f0e59a2cee4bc18cb90ec37eeda2f5fd",
+  "source": "https://appdevchallenge.auto-hmg.io/guide/submission",
+  "project_answer_slots_filled": 8,
+  "project_name_slots_filled": 3,
+  "rendered_pages": 5,
+  "all_pages_visually_reviewed": true,
+  "final_metadata_only_rerender_pixel_identical": true,
+  "hangul_visible_without_missing_glyphs": true,
+  "overlap_or_clipped_text_observed": false,
+  "official_legal_and_consent_text_preserved": true,
+  "applicant_and_signature_tables_preserved_byte_for_byte": true,
+  "section_geometry_and_styles_preserved": true,
+  "changed_zip_parts": [
+    "word/document.xml",
+    "docProps/core.xml"
+  ],
+  "layout_adjustment": "one empty source spacer before member section removed to avoid an extra near-empty page",
+  "personal_info_and_signature": "unfilled; participants must supply their own information, consent choices and signatures",
+  "metadata_privacy": "official template editor name cleared from lastModifiedBy",
+  "style_lint": "official template direct formatting retained; no generic normalization applied",
+  "render_font_fallback": "Malgun Gothic -> installed Apple SD Gothic Neo using task-local Fontconfig; DOCX declarations unchanged"
+}

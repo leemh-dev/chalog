@@ -1,0 +1,30 @@
+{
+  "app_code_commit": "ce4990558b0afb943b3a6a9ccb1a2f0140175b0c",
+  "merged_main_commit": "8534008bd723b833a9dd2f6e20cfc60d6e5e0ce0",
+  "path": "apk/CHALOG_차록_release.apk",
+  "version": "0.3.2",
+  "versionCode": 8,
+  "build_variant": "release",
+  "debuggable": false,
+  "sha256": "b47b663a3a7fc52988691ab8acff59f18bda208ea668676afd63cb1463a51d3a",
+  "unsigned_source_sha256": "c66dbba982a5fe782a3e48842964ee14a351129dd032fb13d6789e814269de11",
+  "bytes": 39725544,
+  "certificate_sha256": "868a8ee5b37eb58711ebf79da06145f6d935aa938b2db59da145aa8c8b33904d",
+  "signing_purpose": "existing development certificate; evaluation release build, not a production store certificate",
+  "key_copied_or_published": false,
+  "package": "package: name='dev.leemh.charok' versionCode='8' versionName='0.3.2' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'",
+  "runtime_validation": {
+    "installed_successfully": true,
+    "version_verified": "0.3.2/8",
+    "debuggable": false,
+    "existing_134_rows_exactly_preserved": true,
+    "new_test_record_saved": true,
+    "new_process_restore": true,
+    "pid_before": "11320",
+    "pid_after": "27329",
+    "collection_auto_resumed": false,
+    "database_integrity": "ok",
+    "final_record_count": 135,
+    "db_inspection_method": "same-certificate debug update temporarily restores normal run-as access; no authentication bypass or data deletion"
+  }
+}

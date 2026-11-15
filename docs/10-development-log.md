@@ -131,3 +131,8 @@ artifact ZIP 다운로드는 GitHub CLI의 저장소 blob 경로403으로 막혔
 증거: docs/evidence/android-v0.1/{README.md,ci-43650320801-summary.json,apk-metadata.json,apk-crosscheck.json,screens/}. APK코드ef85516·0.1.0/1·개발서명/unsigned를 구분한다. 문서/증거 커밋에는 앱 변경이 없으므로 동일 검사를 반복하지 않는다. PR #2에 결과·차단·다음 작업을 반영한다.
 
 남은 작업: Mac 외장SSD에서 기존 Pleos 환경/자원 확인→같은 artifact debug APK 준비·설치→실제 SDK/Console/STT/Gleo/순정 내비 핀/보고서 전달→실제 화면 녹화. Cloud에서 Mac 접속/녹화를 수행하지 않았고 원음·자동예약·GDS는 미연결 확장이다. 다음 작업 프롬프트는 docs/13에 저장하고 채팅에도 제공한다. 기획 DOCX는 기존 초안으로 유지하며 제출/서명/개인정보 작성은 수행하지 않았다.
+
+
+## 2026-11-15 · CHALOG 병합·동일 구성 재촬영·제출 준비
+
+사용자 요청으로 PR1·PR2를 main에 병합했습니다. 같은0.3.2 앱 코드로 실제 Pleos6개시나리오를 다시 촬영하고, 기존 영상과 동일159.167초·17개한글자막 구간으로 완성했습니다. 전체3820프레임·제목/자막OCR17개·SRT시간/문구 검사 통과. 기존133개 모든 행 보존, 촬영기록739개관측·새PID복원 후134개, release설치/TEST저장/새PID복원까지135개·무결성ok. 최종release설치·수집/내비종료·AVD정상종료. 공식양식5페이지 작성/시각검사, 개인정보·동의·서명은 미작성. [영상과 실행 증거](evidence/chalog-submission-demo-2026-11-15/README.md) · [제출 준비](22-submission-ready.md). 실제Gleo/SDK/마이크 등 미검증 구분은 유지합니다.

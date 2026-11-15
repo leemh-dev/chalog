@@ -11,7 +11,7 @@ struct Clip: Codable {
     let start: Double; let end: Double
     let title: String; let subtitle: String
 }
-struct Plan: Decodable { let capture: String; let clips: [Clip] }
+struct Plan: Decodable { let capture: String; let clips: [Clip]; let version: String? }
 let args = CommandLine.arguments
 guard args.count == 3 else { fatalError("Usage: renderer PLAN.json OUTPUT.mp4") }
 let planURL = URL(fileURLWithPath: args[1])
@@ -27,7 +27,7 @@ let fontName = "AppleSDGothicNeo-Medium"
 guard let titleFont = NSFont(name: fontName, size: 34),
       let subtitleFont = NSFont(name: fontName, size: 32),
       let metaFont = NSFont(name: fontName, size: 22) else { fatalError("Korean font unavailable") }
-let meta = "CHALOG 0.3.1 · 실제 Pleos 화면\nTEST 입력 · 무음 · 버튼/알림 직접 조작"
+let meta = "CHALOG \(plan.version ?? "0.3.1") · 실제 Pleos 화면\nTEST 입력 · 무음 · 버튼/알림 직접 조작"
 let allText = plan.clips.map { $0.title + $0.subtitle }.joined() + meta
 let characters = Array(allText.replacingOccurrences(of: "\n", with: "").utf16)
 var glyphs = [CGGlyph](repeating: 0, count: characters.count)
