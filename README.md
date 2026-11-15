@@ -4,7 +4,7 @@
 
 차록은 운전자가 느낀 이상 증상을 음성으로 표시하면, 실제 확보한 직전 1분부터 종료 명령까지의 차량 상태를 함께 보존하고 정비사와 검토할 수 있게 하는 서비스입니다.
 
-현재 **Android 0.1.0/1 첫 구현과 일반 Android TEST 검증을 완료**했습니다. 기획·브라우저 시안은 아래에 보존했습니다. 실제 구현 상태는 [검증 현황](docs/11-verification.md), 진행 이력은 [개발 기록](docs/10-development-log.md)을 따릅니다. 실제 Pleos SDK 실행과 정비소 스캐너 연동은 미검증입니다.
+현재 **Android 0.1.0/1 구현, 일반 Android 및 Mac Pleos TEST 검증을 완료**했습니다. Mac 최초 실행 크래시를 수정했고 TEST 기기5건·새 프로세스 복원·SQLite 재조회·순정 내비 동시 표시를 확인했습니다. [Mac 실제 화면과 검증 결과](docs/evidence/macos-pleos-2026-11-15/README.md)를 참고하세요. 기획·브라우저 시안은 아래에 보존했습니다. 실제 구현 상태는 [검증 현황](docs/11-verification.md), 진행 이력은 [개발 기록](docs/10-development-log.md)을 따릅니다. 실제 Pleos SDK 실행과 정비소 스캐너 연동은 미검증입니다.
 
 ## Android 실행
 

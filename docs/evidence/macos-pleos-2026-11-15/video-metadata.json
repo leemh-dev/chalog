@@ -1,0 +1,22 @@
+{
+  "duration_seconds": 89.56185555555555,
+  "bytes": 16702353,
+  "sha256": "af59fbcfc2561c7d79247c559a792c2601abf349f54ad754d7f5dabf25bb6ea5",
+  "input": "TEST UI buttons",
+  "environment": "Mac M1 8GiB / Pleos ARM64 API34 / no-audio",
+  "code_commit": "b6b7e77c363003d218d2340edca94088eea68443",
+  "reviewed_frame_seconds": [
+    0,
+    15,
+    30,
+    45,
+    60,
+    75,
+    88
+  ],
+  "session_id": "2b07e5fb-eebf-4495-87b6-6414901a74a8",
+  "observations": 172,
+  "notes": 2,
+  "audio": "none",
+  "real_sdk_speech_gleo_navigation_pin": "unverified"
+}

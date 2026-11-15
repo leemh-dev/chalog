@@ -1,0 +1,34 @@
+{
+  "mac_unit_tests": [
+    {
+      "name": "dev.leemh.charok.RoomStoreTest",
+      "tests": "1",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "dev.leemh.charok.VoiceCommandTest",
+      "tests": "3",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    },
+    {
+      "name": "dev.leemh.charok.RecorderTest",
+      "tests": "20",
+      "failures": "0",
+      "errors": "0",
+      "skipped": "0"
+    }
+  ],
+  "lint_errors": 0,
+  "lint_warnings": 14,
+  "build": "BUILD SUCCESSFUL in 4m 20s",
+  "ci_run_id": 43666974677,
+  "ci_job_id": 132668408688,
+  "ci_conclusion": "success",
+  "ci_artifact_id": 14143016539,
+  "ci_artifact_zip_digest": "cb3c4fe359a9d778402b4decb82c01ccc8494b2b45a98efe911293db812ccdd9",
+  "ci_artifact_download_crosscheck": "not performed; installed Mac APK metadata is separate"
+}

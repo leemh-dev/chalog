@@ -1,5 +1,7 @@
 # 다음 실행 · Mac Pleos 실제 앱 검증
 
+2026-11-15 Mac 결과는 [실행 증거](evidence/macos-pleos-2026-11-15/README.md)를 먼저 확인합니다. b6b7e77에서 초기 화면 크래시 수정, Pleos TEST·복원·보고서·분할 표시·89.6초 녹화를 완료했습니다. 다음 작업은 기존 차록 전용 AVD와 DB를 보존하면서 Console/VHAL 비활성 원인을 공식 지원 경로로 해결하고 실제 SDK·마이크·Gleo·센터 핀을 재검증하는 것입니다. 아래 전달문은 최초 실행 이력입니다.
+
 Cloud 구현과 일반 Android TEST 결과를 실제 Pleos 성공으로 바꾸어 해석하지 않습니다. 최신 결과·APK 기준은 docs/11-verification.md와 docs/evidence/android-v0.1/apk-metadata.json을 먼저 확인합니다.
 
 아래 내용을 Mac Codex에 전달합니다.

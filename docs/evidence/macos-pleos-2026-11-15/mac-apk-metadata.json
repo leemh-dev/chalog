@@ -1,0 +1,25 @@
+{
+  "code_commit": "b6b7e77c363003d218d2340edca94088eea68443",
+  "working_tree_dirty": false,
+  "apk_files": [
+    {
+      "path": "app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk",
+      "bytes": 2237020,
+      "sha256": "6a3578b227391dcde64f04afd13990738f6cf2cd51d75a3cf05862f11670a86e",
+      "package": "package: name='dev.leemh.charok.test' versionCode='' versionName='' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'",
+      "signature_rc": 0,
+      "signature": "Signer #1 certificate DN: C=US, O=Android, CN=Android Debug\nSigner #1 certificate SHA-256 digest: 868a8ee5b37eb58711ebf79da06145f6d935aa938b2db59da145aa8c8b33904d\nSigner #1 certificate SHA-1 digest: d84b706cafd8ac78b95715516e9fa66ac7454bed\nSigner #1 certificate MD5 digest: da4d1cf4894e4e0fdc907d872bab6dff\n",
+      "signing_purpose": "development/test"
+    },
+    {
+      "path": "app/build/outputs/apk/debug/app-debug.apk",
+      "bytes": 47319707,
+      "sha256": "e5dcc9efd2acf96a6136b208d314e7f69cc85b87d95f88f30b19978fd6e8429c",
+      "package": "package: name='dev.leemh.charok' versionCode='1' versionName='0.1.0' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'",
+      "signature_rc": 0,
+      "signature": "Signer #1 certificate DN: C=US, O=Android, CN=Android Debug\nSigner #1 certificate SHA-256 digest: 868a8ee5b37eb58711ebf79da06145f6d935aa938b2db59da145aa8c8b33904d\nSigner #1 certificate SHA-1 digest: d84b706cafd8ac78b95715516e9fa66ac7454bed\nSigner #1 certificate MD5 digest: da4d1cf4894e4e0fdc907d872bab6dff\n",
+      "signing_purpose": "development/test"
+    }
+  ],
+  "device_validation": "see separate device reports; hashes do not prove execution"
+}

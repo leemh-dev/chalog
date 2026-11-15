@@ -1,0 +1,7 @@
+Console Park request: {"error":"emulator_inactive"}
+Console speed=0/brake=0/steering=0 request: {"error":"emulator_inactive"}
+VHAL log: SecureStorageError: RPC error: Connection failed: Permission denied (os error 13)
+CAR_SPEED granted=true for foreground user 10 through Android permission UI.
+CAR_POWERTRAIN, CAR_DRIVE, CAR_CLIMATE, STT_SERVICE, TTS_SERVICE, NAVI_ROUTE and NAVI_ROUTE_SEARCH granted=true.
+Gleo model provider and CaaS SpeechService present. Presence does not establish action or speech success.
+Local browser automation disabled in Work settings. Console HTTP endpoints were read from its served page.
