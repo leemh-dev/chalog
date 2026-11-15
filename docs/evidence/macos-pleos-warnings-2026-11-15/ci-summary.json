@@ -1,0 +1,68 @@
+{
+  "run_id": 43689445105,
+  "head_sha": "79d93a18a51bb7d1649cd5ee2e5ce921fbcefec8",
+  "conclusion": "success",
+  "unit_suites": [
+    {
+      "name": "dev.leemh.charok.RecorderTest",
+      "tests": "20",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0",
+      "timestamp": "2026-11-15T07:22:39",
+      "hostname": "runnervmccnms",
+      "time": "0.104"
+    },
+    {
+      "name": "dev.leemh.charok.RoomStoreTest",
+      "tests": "1",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0",
+      "timestamp": "2026-11-15T07:22:39",
+      "hostname": "runnervmccnms",
+      "time": "6.765"
+    },
+    {
+      "name": "dev.leemh.charok.TelltalesTest",
+      "tests": "7",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0",
+      "timestamp": "2026-11-15T07:22:46",
+      "hostname": "runnervmccnms",
+      "time": "0.012"
+    },
+    {
+      "name": "dev.leemh.charok.VoiceCommandTest",
+      "tests": "3",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0",
+      "timestamp": "2026-11-15T07:22:46",
+      "hostname": "runnervmccnms",
+      "time": "0.001"
+    }
+  ],
+  "general_android_device_suite": {
+    "name": "dev.leemh.charok.RecorderDeviceTest",
+    "tests": "9",
+    "failures": "0",
+    "errors": "0",
+    "skipped": "0",
+    "time": "49.965",
+    "timestamp": "2026-11-15T07:25:43",
+    "hostname": "localhost"
+  },
+  "general_android_process_recovery": {
+    "sessionId": "15455ef7-f736-4b25-8a82-44d4803459fe",
+    "oldPid": 2634,
+    "newPid": 2707,
+    "phase": "INTERRUPTED",
+    "notes": 2,
+    "observationsUnchanged": true,
+    "input": "TEST"
+  },
+  "mac_pleos_tests": "9 isolated instrumentation methods, all passed",
+  "video_recorded": false
+}

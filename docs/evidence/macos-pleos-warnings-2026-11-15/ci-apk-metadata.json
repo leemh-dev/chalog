@@ -1,0 +1,34 @@
+{
+  "code_commit": "79d93a18a51bb7d1649cd5ee2e5ce921fbcefec8",
+  "working_tree_dirty": false,
+  "apk_files": [
+    {
+      "path": "app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk",
+      "bytes": 2258004,
+      "sha256": "609816f114fb9ae6358afb7a90656475364c23cdadf090d21423ddf71ef70c1d",
+      "package": "package: name='dev.leemh.charok.test' versionCode='' versionName='' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'",
+      "signature_rc": 0,
+      "signature": "V2 Signer: certificate DN: C=US, O=Android, CN=Android Debug\nV2 Signer: certificate SHA-256 digest: 70e4848a42e5b5b593048e90085d97ed724ebb6a92d6eec9a19101ba9adfe89f\nV2 Signer: certificate SHA-1 digest: 95162717b9ded2781991ceb2e3e4694074c4ced5\nV2 Signer: certificate MD5 digest: dcc01c578304976ffae431ccd11e47f1\n",
+      "signing_purpose": "development/test"
+    },
+    {
+      "path": "app/build/outputs/apk/debug/app-debug.apk",
+      "bytes": 47469744,
+      "sha256": "51974f033d35c116658c51785e79621a1b32fd1b22326acbb1e827c600a94696",
+      "package": "package: name='dev.leemh.charok' versionCode='4' versionName='0.2.2' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'",
+      "signature_rc": 0,
+      "signature": "V2 Signer: certificate DN: C=US, O=Android, CN=Android Debug\nV2 Signer: certificate SHA-256 digest: 70e4848a42e5b5b593048e90085d97ed724ebb6a92d6eec9a19101ba9adfe89f\nV2 Signer: certificate SHA-1 digest: 95162717b9ded2781991ceb2e3e4694074c4ced5\nV2 Signer: certificate MD5 digest: dcc01c578304976ffae431ccd11e47f1\n",
+      "signing_purpose": "development/test"
+    },
+    {
+      "path": "app/build/outputs/apk/release/app-release-unsigned.apk",
+      "bytes": 39613061,
+      "sha256": "b3b7ec6d769b34cf41f4a1b6b9e6355ce3a79e1d4d729104d7894794bd12c7c7",
+      "package": "package: name='dev.leemh.charok' versionCode='4' versionName='0.2.2' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'",
+      "signature_rc": 1,
+      "signature": "unsigned or verification failed; not an installable signed release",
+      "signing_purpose": "unsigned release"
+    }
+  ],
+  "device_validation": "see separate device reports; hashes do not prove execution"
+}

@@ -1,0 +1,60 @@
+{
+  "before_count": 56,
+  "after_count": 66,
+  "all_56_original_payloads_exactly_preserved": true,
+  "original_before_sha256": "b851d8c017ca295cf1297372f4c071b5edfc7c8f60b1cd8c83115936b4a2f167",
+  "original_after_sha256": "b851d8c017ca295cf1297372f4c071b5edfc7c8f60b1cd8c83115936b4a2f167",
+  "integrity_check": "ok",
+  "manual_session": {
+    "id": "f960b08c-cd4d-4c47-b7cd-c873102929e0",
+    "input": "TEST",
+    "phase": "SAVED",
+    "observations": 482,
+    "notes": 2,
+    "bookmarks": 1,
+    "duration_ms": 100579,
+    "lamp_observations": [
+      {
+        "field": "telltale:ENGINE",
+        "value": "ON",
+        "unit": "state",
+        "origin": "TEST",
+        "elapsed": 396358,
+        "receivedAt": 1794727604801,
+        "available": true,
+        "sampleAt": null
+      },
+      {
+        "field": "telltale:TPMS",
+        "value": "BLINK",
+        "unit": "state",
+        "origin": "TEST",
+        "elapsed": 396358,
+        "receivedAt": 1794727604801,
+        "available": true,
+        "sampleAt": null
+      },
+      {
+        "field": "telltale:ENGINE",
+        "value": "OFF",
+        "unit": "state",
+        "origin": "TEST",
+        "elapsed": 476491,
+        "receivedAt": 1794727684934,
+        "available": true,
+        "sampleAt": null
+      },
+      {
+        "field": "telltale:TPMS",
+        "value": "BLINK",
+        "unit": "state",
+        "origin": "TEST",
+        "elapsed": 476491,
+        "receivedAt": 1794727684934,
+        "available": true,
+        "sampleAt": null
+      }
+    ]
+  },
+  "database_files_published": false
+}

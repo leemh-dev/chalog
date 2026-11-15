@@ -1,0 +1,8 @@
+{
+  "package": "dev.leemh.charok",
+  "version": "0.2.2/4",
+  "permission": "pleos.car.permission.CAR_SAFETY",
+  "granted": true,
+  "private_permission_declared": false,
+  "actual_sdk_reception_verified": false
+}

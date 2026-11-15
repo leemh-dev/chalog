@@ -1,5 +1,11 @@
 # 다음 실행 · Mac Pleos 실제 앱 검증
 
+## 2026-11-15 · 0.2.2 경고·표시등 관측
+
+SIGNAL 기록 요약·상담 카드·보고서에 경고·표시등 이름, 최초 관측 시각/출처, 점등·점멸·소등 이력을 추가했습니다. 누락/조회 실패는 미확인으로 남깁니다. 공개 CAR_SAFETY getter를 최대5초 간격으로 연결했고 private 구독 API는 사용하지 않았습니다. DB 스키마는 그대로입니다. [명세](16-warning-light-observations.md).
+
+코드 **79d93a1 / 0.2.2/4**. Mac JVM31·lint 오류0/경고14·Pleos 개별 기기9건, [CI43689445105](https://github.com/leemh-dev/charok/actions/runs/43689445105) 일반 Android 기기9건·새 PID 복원 모두 통과했습니다. 기존56개 payload 전체 보존, 최종DB66개·무결성ok. 실제 Pleos에서 TEST 점등→소등→저장·상담 화면을 확인했습니다. CAR_SAFETY 정상 부여는 확인했지만 실제 SDK 경고 수신은 미검증입니다. 영상은 만들지 않았습니다. [실제 화면4장·검사·DB·APK 증거](evidence/macos-pleos-warnings-2026-11-15/README.md).
+
 ## 2026-11-15 · 0.2.1 SIGNAL 구현과 실제 크기 검토
 
 선택된 A · SIGNAL을 흰색/코발트 우측 패널에 구현했습니다. 제목26sp·본문18sp·보조16sp·시간38sp·버튼 최소52dp로 맞추고 설명·시간/순간 요약·번호 타임라인·명시적 닫기를 적용했습니다. 기존 Pleos 2560×1440/density160에서 시스템 배율을 바꾸지 않고 준비·기록·저장·상담 화면을 확인했습니다. 우측 배치는 OS 수동 조작이며 Gleo/자동 창 지정 구현이 아닙니다.
@@ -25,7 +31,7 @@ Mac JVM24·lint 오류0, Pleos 기기8개 메서드 개별 실행·별도 새 �
 
 2026-11-15 Mac 결과는 [실행 증거](evidence/macos-pleos-2026-11-15/README.md)를 먼저 확인합니다. b6b7e77에서 초기 화면 크래시 수정, Pleos TEST·복원·보고서·분할 표시·89.6초 녹화를 완료했습니다. 다음 작업은 기존 차록 전용 AVD와 DB를 보존하면서 Console/VHAL 비활성 원인을 공식 지원 경로로 해결하고 실제 SDK·마이크·Gleo·센터 핀을 재검증하는 것입니다. 아래 전달문은 최초 실행 이력입니다.
 
-Cloud 구현과 일반 Android TEST 결과를 실제 Pleos 성공으로 바꾸어 해석하지 않습니다. 최신 결과·APK 기준은 docs/11-verification.md와 docs/evidence/macos-pleos-signal-2026-11-15/apk-metadata.json을 먼저 확인합니다.
+Cloud 구현과 일반 Android TEST 결과를 실제 Pleos 성공으로 바꾸어 해석하지 않습니다. 최신 결과·APK 기준은 docs/11-verification.md와 docs/evidence/macos-pleos-warnings-2026-11-15/apk-metadata.json을 먼저 확인합니다.
 
 아래 내용을 Mac Codex에 전달합니다.
 

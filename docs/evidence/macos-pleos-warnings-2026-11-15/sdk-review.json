@@ -1,0 +1,28 @@
+{
+  "scope": "static AAR signatures and annotations, not successful vehicle reception",
+  "version": "Vehicle 2.3.2",
+  "aar_sha256": "e11fdfe498cad3ecc0d5a2a6992b0c4a4d135195f1455018127bc069fd5ef937",
+  "methods": {
+    "getTelltalesInfo": {
+      "signature": "public abstract void getTelltalesInfo(kotlin.jvm.functions.Function1<? super ai.pleos.playground.vehicle.api.model.telltale.Telltales, kotlin.Unit>, kotlin.jvm.functions.Function1<? super java.lang.Exception, kotlin.Unit>);",
+      "permissions": [
+        "pleos.car.permission.CAR_SAFETY"
+      ]
+    },
+    "checkTelltalesCapabilities": {
+      "signature": "public abstract void checkTelltalesCapabilities(kotlin.jvm.functions.Function1<? super ai.pleos.playground.vehicle.api.model.capability.CapabilityConfig, kotlin.Unit>, kotlin.jvm.functions.Function1<? super java.lang.Exception, kotlin.Unit>);",
+      "permissions": [
+        "pleos.car.permission.PRIVATE_CAR_SAFETY"
+      ]
+    },
+    "registerTelltales": {
+      "signature": "public abstract void registerTelltales(ai.pleos.playground.vehicle.listener.TelltaleInfoListener);",
+      "permissions": [
+        "pleos.car.permission.PRIVATE_CAR_SAFETY"
+      ]
+    }
+  },
+  "implemented_method": "getTelltalesInfo",
+  "poll_interval_ms": 5000,
+  "actual_sdk_reception_verified": false
+}

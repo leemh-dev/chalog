@@ -1,0 +1,50 @@
+{
+  "code_commit": "79d93a18a51bb7d1649cd5ee2e5ce921fbcefec8",
+  "build": "BUILD SUCCESSFUL in 2m 12s",
+  "unit_suites": [
+    {
+      "name": "dev.leemh.charok.RoomStoreTest",
+      "tests": "1",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0",
+      "timestamp": "2026-11-15T07:17:44",
+      "hostname": "imyeonghun-ui-MacBookPro.local",
+      "time": "5.018"
+    },
+    {
+      "name": "dev.leemh.charok.TelltalesTest",
+      "tests": "7",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0",
+      "timestamp": "2026-11-15T07:17:49",
+      "hostname": "imyeonghun-ui-MacBookPro.local",
+      "time": "0.007"
+    },
+    {
+      "name": "dev.leemh.charok.VoiceCommandTest",
+      "tests": "3",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0",
+      "timestamp": "2026-11-15T07:17:49",
+      "hostname": "imyeonghun-ui-MacBookPro.local",
+      "time": "0.001"
+    },
+    {
+      "name": "dev.leemh.charok.RecorderTest",
+      "tests": "20",
+      "skipped": "0",
+      "failures": "0",
+      "errors": "0",
+      "timestamp": "2026-11-15T07:17:44",
+      "hostname": "imyeonghun-ui-MacBookPro.local",
+      "time": "0.05"
+    }
+  ],
+  "lint_severity_counts": {
+    "Warning": 14
+  },
+  "video_recorded": false
+}

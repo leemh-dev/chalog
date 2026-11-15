@@ -1,0 +1,36 @@
+{
+  "run_id": 43689445105,
+  "artifact_id": 14151208545,
+  "zip_sha256": "b9a95a6ef10d1de59c9cbb90ea16e3b3f5d41b96133ba7d6ab33c0e9c6bc4c8f",
+  "zip_matches_api_digest": true,
+  "files": [
+    {
+      "path": "app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk",
+      "sha256": "609816f114fb9ae6358afb7a90656475364c23cdadf090d21423ddf71ef70c1d",
+      "hash_matches_metadata": true,
+      "package_matches_metadata": true,
+      "signature_rc": 0,
+      "certificate_sha256": "70e4848a42e5b5b593048e90085d97ed724ebb6a92d6eec9a19101ba9adfe89f",
+      "signing_purpose": "development/test"
+    },
+    {
+      "path": "app/build/outputs/apk/debug/app-debug.apk",
+      "sha256": "51974f033d35c116658c51785e79621a1b32fd1b22326acbb1e827c600a94696",
+      "hash_matches_metadata": true,
+      "package_matches_metadata": true,
+      "signature_rc": 0,
+      "certificate_sha256": "70e4848a42e5b5b593048e90085d97ed724ebb6a92d6eec9a19101ba9adfe89f",
+      "signing_purpose": "development/test"
+    },
+    {
+      "path": "app/build/outputs/apk/release/app-release-unsigned.apk",
+      "sha256": "b3b7ec6d769b34cf41f4a1b6b9e6355ce3a79e1d4d729104d7894794bd12c7c7",
+      "hash_matches_metadata": true,
+      "package_matches_metadata": true,
+      "signature_rc": 1,
+      "certificate_sha256": null,
+      "signing_purpose": "unsigned release"
+    }
+  ],
+  "installed_on_mac": false
+}
