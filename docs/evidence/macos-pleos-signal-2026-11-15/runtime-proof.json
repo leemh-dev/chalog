@@ -1,0 +1,23 @@
+{
+  "background": {
+    "input": "TEST",
+    "installed_apk_sha256": "e3eb11732ea162d4ea49488ec1087634bacdfed320f8fee335f4607add5daa3b",
+    "matches_built_apk": true,
+    "foreground_service": true,
+    "dashboard_activity_in_history": false
+  },
+  "saved": {
+    "input": "TEST",
+    "installed_apk_sha256": "e3eb11732ea162d4ea49488ec1087634bacdfed320f8fee335f4607add5daa3b",
+    "matches_built_apk": true,
+    "foreground_service": false,
+    "dashboard_activity_in_history": false
+  },
+  "finished": {
+    "input": "TEST",
+    "installed_apk_sha256": "e3eb11732ea162d4ea49488ec1087634bacdfed320f8fee335f4607add5daa3b",
+    "matches_built_apk": true,
+    "foreground_service": false,
+    "dashboard_activity_in_history": false
+  }
+}

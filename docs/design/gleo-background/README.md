@@ -1,6 +1,6 @@
 # Gleo 중심 차록 · 화면을 유지하는 기록
 
-2026-11-15 사용자 정정을 반영한 **디자인 제안**입니다. 앱 구현과 실제 실행 증거가 아닙니다. [개발 방향](../../15-gleo-background-direction.md)을 먼저 읽습니다.
+아래 이미지는 2026-11-15 사용자 정정을 반영한 **디자인 제안**입니다. 이후 A · SIGNAL을 선택해 글자·버튼을 줄인 0.2.1 우측 패널을 구현했습니다. [실제 Pleos 스크린샷과 크기 검토](../../evidence/macos-pleos-signal-2026-11-15/README.md)를 생성 시안과 구분합니다. [개발 방향](../../15-gleo-background-direction.md)을 먼저 읽습니다.
 
 평소에는 왼쪽 차량정보와 오른쪽 전체 내비, 또는 왼쪽 차량정보·중앙 내비·오른쪽 음악/콘텐츠를 유지합니다. Gleo로 기록을 시작하고 종료할 때 차록 대시보드는 나타나지 않습니다. 명시적으로 ‘차록 열어줘’라고 했을 때만 우측 앱 패널을 사용하는 것이 목표입니다. 알림 위치와 우측 창 지정은 후속 구현 검증 항목입니다.
 
@@ -32,4 +32,4 @@
 - [사용한 전체 프롬프트](prompts.json), [파일 해시](assets.json).
 - 공식 참조: [현대차 Pleos 미디어킷](https://www.hyundai.com/worldwide/en/newsroom/detail/0000001168), [차량정보·내비·음악 화면](https://www.hyundai.com/content/dam/hyundai/ww/en/images/newsroom/news-image/2026/04/0430-1/media-kit/mk01.png), [차량정보·전체 내비 화면](https://www.hyundai.com/content/dam/hyundai/ww/en/images/newsroom/news-image/2026/04/0430-1/media-kit/mk02.png).
 - 공식 사진 속 순정 UI와 지도는 현대차/Pleos의 참조 자료이며 차록이 구현한 기능으로 표시하지 않습니다. 생성된 이미지는 참조 사진을 기반으로 한 제안이며 공식 현대차 시안이 아닙니다.
-- 이번 변경에는 Android 소스·schema·manifest·빌드·APK·DB 변경이 없습니다. 향후 실제 Gleo 동작과 앱 위치 지정은 [docs/15](../../15-gleo-background-direction.md)의 완료 기준으로 검증합니다.
+- 최초 시안 커밋 bb872c6에는 Android 소스·schema·manifest·빌드·APK·DB 변경이 없습니다. 향후 실제 Gleo 동작과 앱 위치 지정은 [docs/15](../../15-gleo-background-direction.md)의 완료 기준으로 검증합니다.

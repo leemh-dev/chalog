@@ -25,7 +25,8 @@
 
 문서는 제품 목표, 구현 제안, 실제 검증 결과를 구분합니다. 기획 명세는 07~09, 실제 구현·검증 상태는 10~14와 최신 실행 증거를 우선합니다. 이전 도착자리의 빌드·기기 검사 결과를 차록의 성공 증거로 사용하지 않습니다.
 
-## 최신 실행 결과 · 0.2
+## 최신 실행 결과 · 0.2.1 SIGNAL
 
+- [SIGNAL 실제 화면8장·글자/버튼 크기·검증 증거](evidence/macos-pleos-signal-2026-11-15/README.md) — 이번에는 영상 없음, 다음 영상 한국어 기능 자막 적용
 - [흰색 UI와 백그라운드 기록 원칙](14-background-and-white-ui.md)
-- [Mac Pleos 실제 화면·알림·시연 영상·검증 증거](evidence/macos-pleos-v0.2-2026-11-15/README.md)
+- [이전 0.2 Mac Pleos 실제 화면·알림·시연 영상·검증 증거](evidence/macos-pleos-v0.2-2026-11-15/README.md)

@@ -1,0 +1,58 @@
+[
+  {
+    "path": "screens/01-first-installed.png",
+    "sha256": "6e650a08953496dd23693cfe580fb5508ae19d40742e5c3d27f48b24279bd278",
+    "kind": "actual Pleos screencap",
+    "input": "TEST",
+    "modified": false
+  },
+  {
+    "path": "screens/02-prepared-right.png",
+    "sha256": "e58a1357d15054c8e47dcbe52ba57f615fabd2fb81796cb56e2dcbc0eaba42f0",
+    "kind": "actual Pleos screencap",
+    "input": "TEST",
+    "modified": false
+  },
+  {
+    "path": "screens/03-recording-right.png",
+    "sha256": "799bfe70f2535c7354ccb7d956c39d1a6cbf01ff1b51783576e397130c68af3f",
+    "kind": "actual Pleos screencap",
+    "input": "TEST",
+    "modified": false
+  },
+  {
+    "path": "screens/04-background-nav.png",
+    "sha256": "f320f123197f0828eb2c9e6f12d5266ed29b55082a120f62d9220991ccd23ea9",
+    "kind": "actual Pleos screencap",
+    "input": "TEST",
+    "modified": false
+  },
+  {
+    "path": "screens/05-notification.png",
+    "sha256": "d712ca5b6684104ab96a3b6ff3acb7e978cc01537f9c6e8edf859f9a8146f90e",
+    "kind": "actual Pleos screencap",
+    "input": "TEST",
+    "modified": false
+  },
+  {
+    "path": "screens/06-saved-nav.png",
+    "sha256": "f320f123197f0828eb2c9e6f12d5266ed29b55082a120f62d9220991ccd23ea9",
+    "kind": "actual Pleos screencap",
+    "input": "TEST",
+    "modified": false
+  },
+  {
+    "path": "screens/07-saved-right.png",
+    "sha256": "c401ab41d0c3dc988d60e5dea4a2fd90cadd24b46fdd47f66e71cbaa3abe0af6",
+    "kind": "actual Pleos screencap",
+    "input": "TEST",
+    "modified": false
+  },
+  {
+    "path": "screens/08-consultation-right.png",
+    "sha256": "e4f4c53cafa526bdae2f8609c9ba2f6af762224b7e1c284af998269b37937f52",
+    "kind": "actual Pleos screencap",
+    "input": "TEST",
+    "modified": false
+  }
+]

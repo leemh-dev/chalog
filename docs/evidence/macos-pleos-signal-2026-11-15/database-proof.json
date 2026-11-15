@@ -1,0 +1,19 @@
+{
+  "before_count": 47,
+  "after_count": 56,
+  "integrity_check": "ok",
+  "all_47_original_payloads_exactly_preserved": true,
+  "before_original_rows_sha256": "98c3ac2a17835e6017fdd326020da85494f577b1d71554beaea0a3434a88a40d",
+  "after_original_rows_sha256": "98c3ac2a17835e6017fdd326020da85494f577b1d71554beaea0a3434a88a40d",
+  "manual_session": {
+    "id": "21a55713-7f36-4081-aa81-7aaab27c2cbe",
+    "input": "TEST",
+    "phase": "SAVED",
+    "observations": 932,
+    "notes": 4,
+    "bookmarks": 3,
+    "duration_ms": 222389,
+    "reason": "사용자 종료"
+  },
+  "database_files_published": false
+}

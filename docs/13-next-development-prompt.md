@@ -1,8 +1,16 @@
 # 다음 실행 · Mac Pleos 실제 앱 검증
 
+## 2026-11-15 · 0.2.1 SIGNAL 구현과 실제 크기 검토
+
+선택된 A · SIGNAL을 흰색/코발트 우측 패널에 구현했습니다. 제목26sp·본문18sp·보조16sp·시간38sp·버튼 최소52dp로 맞추고 설명·시간/순간 요약·번호 타임라인·명시적 닫기를 적용했습니다. 기존 Pleos 2560×1440/density160에서 시스템 배율을 바꾸지 않고 준비·기록·저장·상담 화면을 확인했습니다. 우측 배치는 OS 수동 조작이며 Gleo/자동 창 지정 구현이 아닙니다.
+
+앱 코드 **31ba254**, 버전 **0.2.1/3**. Mac JVM24·lint 오류0/경고14·Pleos 개별 기기8건 통과, [CI43683208769](https://github.com/leemh-dev/charok/actions/runs/43683208769) 일반 Android 기기8건과 새 PID 복원도 통과했습니다. 기존47개 payload 전체 보존, 최종DB56개·무결성ok입니다. 화면을 닫아도 TEST 기록 유지, 알림 종료/저장 뒤 대시보드 미표시를 확인했습니다.
+
+**이번에는 영상을 만들지 않았습니다.** 다음 영상은 [한국어 장면 자막과 TEST/실제 입력 구분](09-demo-delivery-plan.md)을 따릅니다. 실제 SDK·마이크·Gleo·순정 내비 목적지 성공은 별도 미검증/차단입니다. [실제 화면8장·APK·DB·검사 증거](evidence/macos-pleos-signal-2026-11-15/README.md).
+
 ## 최신 방향 · Gleo로 기록하고 명시적으로 열 때만 우측 표시
 
-먼저 [docs/15 개발 방향](15-gleo-background-direction.md)과 [새 디자인 시안](design/gleo-background/README.md)을 읽습니다. 왼쪽 차량정보 / 전체 내비 또는 중앙 내비·오른쪽 음악 구성을 유지합니다. Gleo로 시작·표시·종료할 때 차록 대시보드를 열지 않으며, 명시적 ‘차록 열어줘’에서만 우측 패널을 쓰는 것이 목표입니다. 이번 작업은 설계만 했습니다. 아래 0.2 구현·검증 이력은 새 음성/우측 자동 배치의 성공 증거가 아닙니다.
+먼저 [docs/15 개발 방향](15-gleo-background-direction.md)과 [새 디자인 시안](design/gleo-background/README.md)을 읽습니다. 왼쪽 차량정보 / 전체 내비 또는 중앙 내비·오른쪽 음악 구성을 유지합니다. Gleo로 시작·표시·종료할 때 차록 대시보드를 열지 않으며, 명시적 ‘차록 열어줘’에서만 우측 패널을 쓰는 것이 목표입니다. 앞선 변경은 설계였고 후속 0.2.1에서 SIGNAL 패널만 구현했습니다. 아래 0.2와 0.2.1 구현·검증 이력은 새 음성/우측 자동 배치의 성공 증거가 아닙니다.
 
 후속 개발은 공식 `component: service`의 Broadcast 진입, ‘켜줘’와 ‘열어줘’ 의도 분리, 우측 배치 경로를 먼저 검증합니다. 앱을 열고 준비 버튼을 누르는 흐름을 주 사용 경로로 계속 확장하지 않습니다. 현재 공개 창 정책은 우측 고정을 보장하지 않으므로 기능 제한을 숨기지 않습니다.
 
@@ -17,7 +25,7 @@ Mac JVM24·lint 오류0, Pleos 기기8개 메서드 개별 실행·별도 새 �
 
 2026-11-15 Mac 결과는 [실행 증거](evidence/macos-pleos-2026-11-15/README.md)를 먼저 확인합니다. b6b7e77에서 초기 화면 크래시 수정, Pleos TEST·복원·보고서·분할 표시·89.6초 녹화를 완료했습니다. 다음 작업은 기존 차록 전용 AVD와 DB를 보존하면서 Console/VHAL 비활성 원인을 공식 지원 경로로 해결하고 실제 SDK·마이크·Gleo·센터 핀을 재검증하는 것입니다. 아래 전달문은 최초 실행 이력입니다.
 
-Cloud 구현과 일반 Android TEST 결과를 실제 Pleos 성공으로 바꾸어 해석하지 않습니다. 최신 결과·APK 기준은 docs/11-verification.md와 docs/evidence/android-v0.1/apk-metadata.json을 먼저 확인합니다.
+Cloud 구현과 일반 Android TEST 결과를 실제 Pleos 성공으로 바꾸어 해석하지 않습니다. 최신 결과·APK 기준은 docs/11-verification.md와 docs/evidence/macos-pleos-signal-2026-11-15/apk-metadata.json을 먼저 확인합니다.
 
 아래 내용을 Mac Codex에 전달합니다.
 
